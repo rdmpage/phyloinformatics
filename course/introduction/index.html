@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css" title="text/css">
+	body
+	{
+		font-family: sans-serif;
+		margin:40px;
+	}
+	
+	.example
+	{
+		margin:20px;
+		padding:20px;
+		background-color: rgb(222,222,222);
+		-webkit-border-radius: 10px;
+	}
+</style>
+<title>Introduction</title>
+</head>
+<body>
+<a href="../">Home</a>
+
+<h1>Introduction</h1>
+
+<h2>Background reading</h2>
+
+<table>
+<tr><td><img src="images/blogger.jpeg" width="100"/></td><td><a href="http://iphylo.blogspot.com" target="_new">iPhylo</a></td></tr>
+<tr><td><img src="images/s_CoverShadow.png" width="100"/></td><td><a href="http://www.amazon.co.uk/Practical-Computing-Biologists-Steven-Haddock/dp/0878933913" target="_new">Practical Computing for Biologists</a></td></tr>
+<tr><td><img src="images/facts_are_sacred_ebook_cover_140x187.jpg" width="100"/></td><td><a href="http://www.amazon.co.uk/Facts-are-Sacred-Guardian-ebook/dp/B006PI9PQG/" target="_new">Facts are Sacred: The power of data (Guardian Shorts)</a> [Kindle and iBooks]</td></tr>
+<tr><td><img src="images/mzi.avwwwmvp.225x225-75.jpg" width="100"/></td><td><a href="http://www.amazon.co.uk/Visualize-This-Flowing-Visualization-Statistics/dp/0470944889/" target="_new">Visualize This: The Flowing Data Guide to Design, Visualization, and Statistics</a> [Kindle and iBooks]</td></tr>
+
+</table>
+
+<h2>Lecture</h2>
+
+<h3>Notes on lecture</h3>
+
+<h4>Linking</h4>
+
+<h5><i>Melisotarsus</i></h5>
+<p>The sequence used in the lecture is <a href="http://www.ncbi.nlm.nih.gov/nucleotide/DQ176312.1" target="_new">DQ176312</a>. Since I made the original slides GenBank has updated the sequence to include the proper name of the ant. You can see the original version of the sequence taxon name using the history tool, see <a href="http://www.ncbi.nlm.nih.gov/nucleotide/DQ176312.1?report=girevhist" target="_new">http://www.ncbi.nlm.nih.gov/nucleotide/DQ176312.1?report=girevhist</a>.</p>
+
+<h5>iSpecies</h5>
+<p>iSpecies is at <a href="http://ispecies.org" target="_new">http://ispecies.org</a>.</p>
+
+<h4>Geography</h4>
+
+<p>This is a video of a geophylogeny on Google Earth.</p>
+
+<video width="400" controls="controls">
+  <source src="movies/ge.mov" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+<p><a href="movies/ge.mov">Download</a></p>
+
+<h4>Taxonomy</h4>
+
+<p>The description of <i>Microgale jenkinsae</i> is available in <a href="http://biostor.org/reference/81349" target="_new">BioStor</a></p>
+
+<p>Touch screen displaying a large classification.</p>
+
+<video width="400" controls="controls">
+  <source src="movies/perceptive.mov" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+<p><a href="movies/perceptive.mov">Download</a></p>
+
+<h2>Finding information on organisms</h2>
+
+<div class="example">
+<b>Search</b>
+<p>One basic challenge is to find out what we know about an organism. Pick an organism and find out the following:
+<ol>
+<li>What does it look like?</li>
+<li>Were does it live?</li>
+<li>What is it's evolutionary history (e.g., closest living relative</li>
+<li>Where was it's original description? </li>
+<li>Has it been sequenced?</li>
+<li>How big is it?</li>
+<li>What does it eat?</li>
+<li>What parasites does it have? (or if it's a parasite, what are its hosts?)</li>
+</ol>
+</p>
+<p>Possible organisms (or try your own favourites):
+<ul>
+<li><i>Eleutherodactylus philipi</i></li>
+<li><i>Kiwa puravida</i></li>
+<li><i>Parasitodiplogaster laevigata</i></li>
+<li><i>Alpheus lottini</i></li>
+<li><i>Isthmohyla rivularis</i></li>
+</ul>
+</p>
+</div>
+
+<h2>Data on the web</h2>
+
+<p>The previous exercise required you to search various web sites and assemble the information by hand. In order to automate this we need to a way to extract data, rather than web pages.</p>
+
+<h3>Kinds of data</h3>
+
+<p>Most web pages are designed to be viewed by people, for example <a href="http://en.wikipedia.org/wiki/Mantidactylus" target="_new">http://en.wikipedia.org/wiki/Mantidactylus</a>. 
+
+<table>
+<thead><tr><th>Data type</th><th>URL</th></tr></thead>
+<tbody>
+<tr><td>HTML</td><td><a href="../../services/inspector.php?url=http://dbpedia.org/page/Mantidactylus" target="_new">http://dbpedia.org/page/Mantidactylus</a></td></tr>
+
+<tr><td>CSV</td><td><a href="../../services/inspector.php?url=http%3A%2F%2Fdbpedia.org%2Fsparql%3Fdefault-graph-uri%3Dhttp%253A%252F%252Fdbpedia.org%26query%3DDESCRIBE%2B%253Chttp%3A%2F%2Fdbpedia.org%2Fresource%2FMantidactylus%253E%26format%3Dtext%252Fcsv" target="_new">http://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=DESCRIBE+%3Chttp://dbpedia.org/resource/Mantidactylus%3E&format=text%2Fcsv</a></td></tr>
+
+<tr><td>JSON</td><td><a href="../../services/inspector.php?url=http://dbpedia.org/data/Mantidactylus.json" target="_new">http://dbpedia.org/data/Mantidactylus.json</a></td></tr>
+
+<tr><td>XML</td><td><a href="../../services/inspector.php?url=http://dbpedia.org/data/Mantidactylus.rdf" target="_new">http://dbpedia.org/data/Mantidactylus.rdf</a></td></tr>
+
+
+
+</tbody>
+</table>
+
+
+
+
+<h3>RSS feeds</h3>
+
+<p>RSS feeds are availalble for many sites. Originally a simple way to provide a "live update" of content such as the top ten current news stories, RSS feeds can contain additional information, such as geolocation and embedded images.</p>
+
+<p>Here is an example RSS feed <a href="../../services/inspector.php?url=http%3A%2F%2Fapi.flickr.com%2Fservices%2Ffeeds%2Fgeo%2F%3Fg%3D806927%40N20%26lang%3Den-us%26format%3Drss_200" target="_new">http://api.flickr.com/services/feeds/geo/?g=806927@N20&lang=en-us&format=rss_200</a>, which is an XML document. Remember that this is intended to be read by a computer, not by people. Most web browsers can convert RSS feeds into something readable.  Tools such as Google Maps understand RSS feeds, enabling you to create instant maps.</p>
+
+<div class="example">
+<b>GenBank</b>
+<p>The site <a href="http://bioguid.info/rss/">http://bioguid.info/rss/</a> provides several RSS feeds for biological data, such as DNA barcode sequences. For example, if you copy the RSS feed URL below and paste it into Google Maps, you should see a map of recent DNA barcodes for amphibians.</p>
+
+<p><textarea cols="80" rows="1" readonly="readonly">http://bioguid.info/rss/barcode.php?taxon_id=8292</textarea></p>
+
+<img src="images/googlemaps.png" width="500" />
+
+</div>
+
+<div class="example">
+<b>Flickr</b>
+<p>The photo site Flickr produces GeoRSS feeds. For example the <a href="http://www.flickr.com/groups/encyclopedia_of_life/pool/">EOL Flickr group</a> contains lots of images that are geotagged. To see these on a map, copy the RSS feed URL below and paste it into Google Maps.</p>
+
+<p><textarea cols="80" rows="1" readonly="readonly">http://api.flickr.com/services/feeds/geo/?g=806927@N20&lang=en-us&format=rss_200</textarea></p>
+</div>
+
+<h2>Making a mashup</h2>
+
+<p><a href="http://ispecies.org">iSpecies</a> is an example of a mashup, whereby different sources of data are assembled in one place. This web site is showing its age, so we will look at making a new one. As a starting point, <a href="../../mashup.html">../../mashup.html</a> enables you to search four different data sources for information about a taxon.</p>
+
+
+
+<div class="example">
+<b>Adding to the mashup</b>
+
+What information is missing from the mashup tool? Find at least two sources of information that you'd like to add to the mashup. Do they have an API that you can use to get the information you need?
+</div>
+
+<h2>Where next?</h2>
+<p>Some ideas:
+<ul>
+<li>Combine the separate queries into a single mashup</li>
+<li>Add a database back end to cache the queries so that if service is unavailable we can still get results (plus we could also query the cache for more details)</li>
+<li>Make the mashup results more interactive, or the source of new queries (e.g., what other trees have these taxa)</li>
+</ul>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'phyloinformatics'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>

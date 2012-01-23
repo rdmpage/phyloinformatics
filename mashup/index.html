@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+	body
+	{
+		font-family: sans-serif;
+		margin:40px;
+	}
+    </style>
+    
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
+    
+    <script type="text/javascript"
+      src="../js/jquery.js">
+    </script>
+
+    
+    
+    <script type="text/javascript">
+    	var map; // Google map
+    	var markersArray = [];
+    	
+		google.maps.Map.prototype.clearOverlays = function() {
+		  if (markersArray) {
+			for (var i = 0; i < markersArray.length; i++ ) {
+			  markersArray[i].setMap(null);
+			}
+		  }
+		}    	
+    
+    
+      function initialize() {
+        var myOptions = {
+        	center: new google.maps.LatLng(0, 0),
+          	zoom: 2,
+           mapTypeId: google.maps.MapTypeId.TERRAIN
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      }
+      
+        
+      
+      function gbifmap(id)
+      {
+      	//var id = $('#gbif_id').val();
+      	
+      	$('#map_progress').html('working...');
+      	
+      	$.getJSON("../services/get_gbif_density.php?id=" + id + "&callback=?",
+			function(data){
+				if (data.cells)
+				{
+					// clear any previous markers
+					map.clearOverlays();
+					
+					var bounds = new google.maps.LatLngBounds();
+					for(var i in data.cells)
+					{
+						var square = [
+							new google.maps.LatLng(data.cells[i].minLatitude,data.cells[i].minLongitude),
+							new google.maps.LatLng(data.cells[i].minLatitude,data.cells[i].maxLongitude),
+							new google.maps.LatLng(data.cells[i].maxLatitude,data.cells[i].maxLongitude),
+							new google.maps.LatLng(data.cells[i].maxLatitude,data.cells[i].minLongitude),
+							new google.maps.LatLng(data.cells[i].minLatitude,data.cells[i].minLongitude)
+							];
+						bounds.extend(square[0]);
+						bounds.extend(square[2]);
+						
+						var polygon = new google.maps.Polygon({
+							paths: square,
+							strokeColor: data.cells[i].colour,
+							strokeOpacity: 0.6,
+							strokeWeight: 1.0,
+							fillColor: data.cells[i].colour,
+							fillOpacity: 0.6
+							});
+							
+						markersArray.push(polygon);							
+							
+						polygon.setMap(map);
+					}
+					map.fitBounds(bounds); 
+				}
+			}
+		);
+
+		$('#map_progress').html('');
+
+      
+      }
+      
+   function gbiftaxa()
+      {
+      	var name = $('#gbif_id').val();
+      	$("#taxa").html('');
+      	
+      	$.getJSON("../services/get_gbif_taxa.php?name=" + name + "&callback=?",
+			function(data){
+				if (data.taxonConcepts.length > 0)
+				{
+					if (data.taxonConcepts.length == 1)
+					{
+						gbifmap(data.taxonConcepts[0].gbifKey);
+					}
+					else
+					{
+						var html = 'More than one taxon with this name:';
+						html += '<ul>';
+						for (var i in data.taxonConcepts)
+						{
+							html += '<li><span onclick="gbifmap(' + data.taxonConcepts[i].gbifKey + ');">' + data.taxonConcepts[i].nameComplete + ' [' + data.taxonConcepts[i].gbifKey + ']</span></li>';
+						}
+						html += '</ul>';
+						$("#taxa").html(html);
+					}
+				}
+			}
+		);
+      }
+      
+      
+     function dbpedia()
+      {
+      	var query = $('#dbpedia_query').val();
+      	
+      	query = query.replace(" ", "_");
+      	
+      	var query_url = "http://dbpedia.org/data/" + query;
+      	var uri = "http://dbpedia.org/resource/" + query;
+      	
+      	$("#dbpedia_output").html('');
+       	
+      	$.getJSON(query_url + ".json" + "?callback=?",
+			function(data){
+
+				var html = '';
+				if (data[uri]["http://www.w3.org/2000/01/rdf-schema#comment"])
+				{
+					for(var i in data[uri]["http://www.w3.org/2000/01/rdf-schema#comment"])
+					{
+						if (data[uri]["http://www.w3.org/2000/01/rdf-schema#comment"][i]["lang"] == "en")
+						{
+							html += data[uri]["http://www.w3.org/2000/01/rdf-schema#comment"][i]["value"];
+						}
+					}
+				}
+				
+				if (data[uri]["http://dbpedia.org/ontology/thumbnail"])
+				{
+					html += '<div style="float:right;"><img src="' + data[uri]["http://dbpedia.org/ontology/thumbnail"][0]["value"] + '"></div>';
+				}
+			
+				$("#dbpedia_output").html(html);
+				}
+		);
+
+		$('#map_progress').html('');
+
+      
+      }
+      
+     function biostor()
+      {
+      	var query = $('#biostor_query').val();
+      	$("#biostor_output").html('');
+      	
+      	$.getJSON('http://biostor.org/name/' + query + ".json" + "?callback=?",
+			function(data){
+				var html = '<table>';
+				if (data.references)
+				{
+					for(var i in data.references)
+					{
+						html += '<tr>';
+						html += '<td>';
+						if (data.references[i].PageID)
+						{
+							html += '<img src="http://biostor.org/bhl_image.php?PageID=' + data.references[i].PageID + '&thumbnail" width="48">';
+						}
+						html += '</td>';
+						html += '<td>';
+						html += '<a href="http://biostor.org/reference/' + data.references[i].reference_id + '" target="_new">' + data.references[i].title + '</a><br/>';
+						html += data.references[i].secondary_title + '<br/>';
+						html += '<td>';
+					}
+				}
+				html += '</table>';
+				$("#biostor_output").html(html);
+			}
+		);
+      }
+      
+      
+    function treebase()
+    {
+      	var query = $('#treebase_query').val();
+      	
+		$("#treelist").html('');      	
+		
+      	$.getJSON('../services/treebase_search.php?taxon=' + query + "&callback=?",
+			function(data){
+				if (data.trees)
+				{
+					var html = 'Trees for this taxon';
+					html += '<ul>';
+					for (var i in data.trees)
+					{
+						html += '<li><span onclick="showtree(\'' + data.trees[i].identifier + '\');">' + data.trees[i].identifier + ' [' + data.trees[i].ntax + ']</span></li>';
+					}
+					html += '</ul>';
+					$("#treelist").html(html);
+				}
+				
+			}
+		);
+      }
+
+	function showtree(id)
+	{
+		$('#svgload').load("services/treebase_tree.php?id=" + id);
+	}
+	
+     function find_images()
+      {
+      	var query = $('#images_query').val();
+      	$("#images_output").html('');
+      	   	
+      	$.getJSON('http://api.bing.net/json.aspx?JsonType=callback&JsonCallback=?&Appid=F83F42E3B9C6AF8DD04675AC16C481DB744AAD0A&query=' + query + "&sources=image" + "&count=10",
+			function(data){
+				var html = '';
+				if (data.SearchResponse)
+				{
+					for(var i in data.SearchResponse.Image.Results)
+					{
+						html += '<div style="float:left;padding:10px;">';
+						html += '<img src="' + data.SearchResponse.Image.Results[i].Thumbnail.Url + '" height="100"/>';
+						html += '</div>';
+					}
+				}
+				html += '';
+				$("#images_output").html(html);
+			}
+		);
+      }
+	
+      
+      
+      
+    </script>
+  </head>
+  <body onload="initialize()">
+  	<h1>Mashup</h1>
+  	<div style="position:relative;">
+  		<h2>GBIF Map</h2>
+  		<input type="text" id="gbif_id" value=""> 		
+  		<button onclick="gbiftaxa();">Make map</button>
+  		<span id="map_progress"></span>
+  	    <div id="map_canvas" style="width:700px; height:300px;float:right;top:0px;"></div>
+  		<div style="width:200px;" id="taxa"></div>
+  	</div>
+  	<div style="clear:both;"><div>
+  	<div>
+  		<h2>Dbpedia</h2>
+  		<input type="text" id="dbpedia_query" value="" >
+  		<button onclick="dbpedia();">Search</button>
+  	    <div id="dbpedia_output" style="width:700px; height:300px;float:right;top:0px;"></div>
+  	</div>
+  	<div style="clear:both;"><div>
+  	<div>
+  		<h2>BioStor</h2>
+  		<input type="text" id="biostor_query" value="" >
+  		<button onclick="biostor();">Search</button>
+  	    <div id="biostor_output" style="width:700px; height:300px;float:right;overflow:auto;"></div>
+  	</div>
+ 	<div style="clear:both;"><div>
+   	<div style="position:relative;">
+  		<h2>TreeBASE</h2>
+  		<input type="text" id="treebase_query" value=""> 		
+  		<button onclick="treebase();">Find trees</button>
+  		
+  		<!--
+  	    <div style="width:700px;height:700px;top:0px;float:right;">
+  	    	<iframe id="svg" src="blank.html" width="100%" height="100%" frameborder="0"></iframe>
+  	    </div>
+  	    -->
+  	      	    
+  	   <div id="svgload" style="width:700px;height:700px;top:0px;float:right;overflow:auto;">
+  	   
+  	   </div>
+
+  	    
+  	    
+  		<div style="width:200px;" id="treelist"></div>
+  	</div>
+  	
+  	<!--
+ 	<div style="clear:both;"><div>
+   	<div style="position:relative;">
+  		<h2>Images</h2>
+  		<input type="text" id="images_query" value=""> 		
+  		<button onclick="find_images();">Find images</button>
+		<div id="images_output" style="width:700px;height:700px;top:0px;float:right;overflow:auto;">
+  	   </div>
+  	</div>
+  	-->
+  	
+  	<div style="clear:both;"><div>
+  	<div></div>
+  	
+  	
+  </body>
+</html>

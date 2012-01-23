@@ -1,0 +1,84 @@
+<?php
+
+require_once (dirname(dirname(__FILE__)) . '/lib.php');
+
+$url = '';
+
+if (isset($_GET['url']))
+{
+	$url = $_GET['url'];
+}
+
+// Form
+echo '<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<style type="text/css" title="text/css">
+	body
+	{
+		font-family:sans-serif;padding:20px;
+	}
+	</style>
+	<title>Inspector</title>
+</head>
+<body>
+<h1>Service inspector</h1>
+<h2>URL</h2>
+<form method="get" action="inspector.php">
+	<input style="font-size:24px;" id="url" name="url" size="80" value="' . $url . '"></input>
+	<input style="font-size:24px;" type="submit" value="Go"></input>
+</form>';
+
+
+if ($url != '')
+{
+	echo '<h2>Output</h2>';
+	echo '<div style="background-color:#eeeeee;padding:4px;border:1px solid rgb(128,128,128);overflow:auto;width:auto;height:600px;">';
+	
+	$content = get($url);
+	
+	// classify
+	
+	$what = 'unknown';
+	
+	if ($what == 'unknown')
+	{
+		if (preg_match('/<html/m', $content))
+		{
+			$what = 'html';
+			$content = htmlentities($content);
+			$content = mb_convert_encoding($content, 'UTF-8');
+		}
+	}
+
+	if ($what == 'unknown')
+	{
+		if (preg_match('/<\?xml/m', $content))
+		{
+			$what = 'xml';
+			$content = htmlentities($content);
+			$content = mb_convert_encoding($content, 'UTF-8');
+		}
+	}
+	
+	if ($what == 'unknown')
+	{
+		if (preg_match('/^(\w+\()?\s*{/m', $content))
+		{
+			$what = 'json';
+			$content = json_format($content);
+		}
+	}
+	
+	echo '<pre>';
+		
+	echo $content;
+	echo '</pre>';
+
+	echo '</div>';
+}
+echo '</body>
+</html>';
+
+?>	

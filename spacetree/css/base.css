@@ -1,0 +1,13 @@
+html, body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+}
+
+#infovis {
+    position:absolute;
+    width:700px;
+    height:600px;
+    border:1px solid rgb(192,192,192);
+    margin:auto;
+}
