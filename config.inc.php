@@ -22,7 +22,7 @@ $config['proxy_name'] 	= 'wwwcache.gla.ac.uk';
 $config['proxy_port'] 	= '8080';
 
 // Keys---------------------------------------------------------------------------------------------
-$config['bing_appid'] 		= '';
+$config['bing_appid'] 		= 'F83F42E3B9C6AF8DD04675AC16C481DB744AAD0A';
 
 
 
