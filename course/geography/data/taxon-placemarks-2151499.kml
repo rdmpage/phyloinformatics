@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document xmlns="http://earth.google.com/kml/2.1">
+ <name>GBIF Data Portal Occurrence Search</name>
+ <open>true</open>
+ <description><![CDATA[-
+
+This document contains data shared through the GBIF Network - see http://data.gbif.org/ for more information.
+					
+All usage of these data must be in accordance with the GBIF Data Use Agreement - see http://www.gbif.org/DataProviders/Agreements/DUA
+<br/><br/><b>Please cite these data as follows:</b><br/><br/>KBIF Data Repository, Spider (NSMK-SP) (accessed through GBIF data portal, <a href="http://data.gbif.org/datasets/resource/11455">http://data.gbif.org/datasets/resource/11455</a>, 2012-01-24)<br/><br/>National Science Museum of Korea, National Science Museum of Korea Spider (accessed through GBIF data portal, <a href="http://data.gbif.org/datasets/resource/910">http://data.gbif.org/datasets/resource/910</a>, 2012-01-24)<br/><br/>
+-
+]]></description>
+ <Style id="gbifIcon1">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GE1.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon2">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GE2.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon3">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GE3.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon4">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GE4.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon5">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GE5.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon6">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcube1.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon7">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcube2.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon8">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcube3.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon9">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcube4.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon10">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcube5.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon11">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GErc1.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon12">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GErc2.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon13">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GErc3.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon14">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEfl1.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon15">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcil1.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon16">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcil2.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon17">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcil3.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon18">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcil4.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon19">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEcil5.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon20">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEslp1.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon21">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEslp2.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon22">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEslp3.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon23">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEslp4.png</href>
+   </Icon>
+  </IconStyle>
+ </Style>
+ <Style id="gbifIcon24">
+  <IconStyle>
+   <Icon>
+    <href>http://data.gbif.org/images/GEslp5.png</href>
+   </Icon>
+  </IconStyle>
+ </Style> 
+ <Folder>
+  <name>Leucauge magnifica</name>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954 (2 records)]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005055</td><td>2007-02-27</td><td><a href="http://data.gbif.org/occurrences/238529897">http://data.gbif.org/occurrences/238529897</a></td></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005053</td><td>2007-02-27</td><td><a href="http://data.gbif.org/occurrences/238529895">http://data.gbif.org/occurrences/238529895</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.573,33.312,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005051</td><td>2007-02-27</td><td><a href="http://data.gbif.org/occurrences/238529937">http://data.gbif.org/occurrences/238529937</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>125.409,34.644,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005052</td><td>2007-02-27</td><td><a href="http://data.gbif.org/occurrences/238529857">http://data.gbif.org/occurrences/238529857</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.658,33.323,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005054</td><td></td><td><a href="http://data.gbif.org/occurrences/78862016">http://data.gbif.org/occurrences/78862016</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.538185,33.419033,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0000164</td><td>1990-09-10</td><td><a href="http://data.gbif.org/occurrences/78861370">http://data.gbif.org/occurrences/78861370</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>127.77217,38.185257,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0000164</td><td>1990-09-10</td><td><a href="http://data.gbif.org/occurrences/238529627">http://data.gbif.org/occurrences/238529627</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>127.772,38.185,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005054</td><td>2007-02-27</td><td><a href="http://data.gbif.org/occurrences/238529896">http://data.gbif.org/occurrences/238529896</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.538,33.419,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0000165</td><td>1993-06-11</td><td><a href="http://data.gbif.org/occurrences/238529628">http://data.gbif.org/occurrences/238529628</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.33,37.712,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005051</td><td></td><td><a href="http://data.gbif.org/occurrences/78862013">http://data.gbif.org/occurrences/78862013</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>125.40921,34.644497,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0000163</td><td>1980-07-31</td><td><a href="http://data.gbif.org/occurrences/238529626">http://data.gbif.org/occurrences/238529626</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>127.495,35.245,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954 (2 records)]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005053</td><td></td><td><a href="http://data.gbif.org/occurrences/78862015">http://data.gbif.org/occurrences/78862015</a></td></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005055</td><td></td><td><a href="http://data.gbif.org/occurrences/78862017">http://data.gbif.org/occurrences/78862017</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.57345,33.312183,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0000165</td><td>1993-06-11</td><td><a href="http://data.gbif.org/occurrences/78861371">http://data.gbif.org/occurrences/78861371</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.32955,37.712032,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954 (6 records)]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0006190</td><td>1981-08-02</td><td><a href="http://data.gbif.org/occurrences/238529940">http://data.gbif.org/occurrences/238529940</a></td></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0006189</td><td>1972-08-04</td><td><a href="http://data.gbif.org/occurrences/238529939">http://data.gbif.org/occurrences/238529939</a></td></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0006193</td><td>2004-05-14</td><td><a href="http://data.gbif.org/occurrences/238529943">http://data.gbif.org/occurrences/238529943</a></td></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0006192</td><td>1981-08-02</td><td><a href="http://data.gbif.org/occurrences/238529942">http://data.gbif.org/occurrences/238529942</a></td></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005642</td><td>1980-07-31</td><td><a href="http://data.gbif.org/occurrences/238529976">http://data.gbif.org/occurrences/238529976</a></td></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0006191</td><td>1984-07-26</td><td><a href="http://data.gbif.org/occurrences/238529941">http://data.gbif.org/occurrences/238529941</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>0.0,0.0,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>KBIF Data Repository</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005050</td><td>2007-02-27</td><td><a href="http://data.gbif.org/occurrences/238529919">http://data.gbif.org/occurrences/238529919</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.514,33.288,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0000163</td><td>1980-07-31</td><td><a href="http://data.gbif.org/occurrences/78861369">http://data.gbif.org/occurrences/78861369</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>127.49455,35.24479,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005052</td><td></td><td><a href="http://data.gbif.org/occurrences/78862014">http://data.gbif.org/occurrences/78862014</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.65829,33.32271,0</coordinates>
+   </Point>
+  </Placemark>
+  <Placemark>
+   <name><![CDATA[Leucauge magnifica Yaginuma, 1954]]></name>
+   <description><![CDATA[<p><img src="http://data.gbif.org/images/gbifSmall.gif"/></p><p><b>Data retrieved from <a href="http://data.gbif.org">GBIF Data Portal</a></b><p><table><tr><th>Data Provider</th><th>Institution Code</th><th>Collection Code</th><th>Catalogue Number</th><th>Date</th><th>Portal URL</th></tr><tr><td>National Science Museum of Korea</td><td>NSMK</td><td>EN-SP</td><td>NSMK-SP-0005050</td><td></td><td><a href="http://data.gbif.org/occurrences/78862012">http://data.gbif.org/occurrences/78862012</a></td></tr></table></p>]]></description>
+   <styleUrl>#gbifIcon20</styleUrl>
+   <Point>
+    <coordinates>126.51431,33.287556,0</coordinates>
+   </Point>
+  </Placemark>
+ </Folder>
+</Document>
+</kml>

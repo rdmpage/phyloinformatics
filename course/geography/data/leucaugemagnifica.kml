@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+
+<NetworkLink>
+	<name>Recent Uploads tagged leucaugemagnifica, with geodata</name>
+	<open>1</open>
+	<flyToView>0</flyToView>
+	<Url>
+		<href>http://www.flickr.com/services/feeds/geo/?format=kml&amp;tags=leucaugemagnifica&amp;lang=en-us&amp;page=1</href>
+		<refreshMode>onInterval</refreshMode>
+		<refreshInterval>3600</refreshInterval>
+	</Url>
+</NetworkLink>
+</kml>

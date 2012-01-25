@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" 
+xmlns="http://www.w3.org/2000/svg" 
+width="360px" height="180px">
+
+
+	<style type="text/css">
+		<![CDATA[     
+		
+		.region { fill:none; stroke:black; stroke-width:1}
+		
+		]]></style>
+		
+			<script type="text/javascript">
+				<![CDATA[
+
+				/* Hint from http://groups.google.com/group/mozilla.dev.tech.svg/browse_thread/thread/488562b99c511059/c7c4375e970c3cae?#c7c4375e970c3cae */
+				function go(loc)
+				{
+					// o is the object that embeds the SVG
+					var o = window.frameElement.id;
+					var p = window.frameElement.parentNode.parentNode.parentNode;
+					p.location=loc;
+				}
+
+				// ]]>
+				</script>
+
+
+<!-- <rect id="dot" x="0" y="0" width="4" height="4" style="stroke:none; stroke-width:1; fill:black; opacity:1.0"/> -->
+
+
+<!-- Object is self geotagged -->
+<g id="self0">
+	<circle  cx="0" cy="0" r="5" style="stroke:black; stroke-width:1; fill:white; opacity:1.0"/>
+	<circle  cx="0" cy="0" r="3" style="stroke:none; stroke-width:1; fill:black; opacity:1.0"/>
+</g>
+
+<g id="self1">
+	<circle  cx="0" cy="0" r="4" style="stroke:black; stroke-width:1; fill:white; opacity:1.0"/>
+	<circle  cx="0" cy="0" r="2" style="stroke:none; stroke-width:1; fill:black; opacity:1.0"/> 
+</g>
+<circle id="self2" cx="0" cy="0" r="2" style="stroke:black; stroke-width:1; fill:black; opacity:1.0"/>
+
+
+<!-- We have geotagged it -->
+<g id="tagged0">
+	<circle  cx="0" cy="0" r="5" style="stroke:black; stroke-width:1; fill:white; opacity:1.0"/>
+	<circle  cx="0" cy="0" r="3" style="stroke:none; stroke-width:1; fill:white; opacity:1.0"/>
+</g>
+
+<g id="tagged1">
+	<circle  cx="0" cy="0" r="4" style="stroke:black; stroke-width:1; fill:white; opacity:0.7"/>
+	<circle  cx="0" cy="0" r="2" style="stroke:none; stroke-width:1; fill:white; opacity:0.7"/>
+</g>
+<circle id="tagged2" cx="0" cy="0" r="2" style="stroke:black; stroke-width:1; fill:white; opacity:1.0"/>
+
+<!-- map background -->
+<image x="0" y="0" width="360" height="180" xlink:href="mape.png" />
+
+<g transform="translate(180,90) scale(1,-1)"> 
+
+
+<!-- current locations -->
+<!-- MCZ A-119851 -->
+<a xlink:href="http://iphylo.org/~rpage/demo1/uri/c1017aaf39348f65694a0a81ffaed462" title="MCZ A-119851" target="_parent" >   <use xlink:href="#self0" transform="translate(-21.33,-47.39)" /></a>
+<!-- MCZ A-119852 -->
+<a xlink:href="http://iphylo.org/~rpage/demo1/uri/c1017aaf39348f65694a0a81ffaed462" title="MCZ A-119852" target="_parent" >   <use xlink:href="#self0" transform="translate(-47.43,-21.31)" /></a>
+
+
+<!-- Madagascar -->
+<polygon class="region" points="43.229 -11.9454,  43.229 -25.609, 50.4838 -25.609, 50.4838 -11.9454" />
+
+<!-- moved -->
+<!-- MCZ A-119851 -->
+<!-- should be -->
+<a xlink:href="http://iphylo.org/~rpage/demo1/uri/c1017aaf39348f65694a0a81ffaed462" title="MCZ A-119851" target="_parent" >   <use xlink:href="#tagged2" transform="translate(47.39, -21.33)" /></a>
+<line x1="-21.33" y1="-47.39" x2="47.39" y2="-47.39" style="stroke:black; stroke-width:1;"/>
+<line x1="47.39" y1="-47.39" x2="47.39" y2="-21.33" style="stroke:black; stroke-width:1;"/>
+
+<!-- MCZ A-119852 -->
+<a xlink:href="http://iphylo.org/~rpage/demo1/phylomash/uri/c1017aaf39348f65694a0a81ffaed462" title="MCZ A-119851" target="_parent" >   <use xlink:href="#tagged2" transform="translate(47.43, -21.31)" /></a>
+<line x1="-47.43" y1="-21.31" x2="47.43" y2="-21.31" style="stroke:black; stroke-width:1;"/>
+
+
+
+</g>
+</svg>

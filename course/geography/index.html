@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css" title="text/css">
+	body
+	{
+		font-family: sans-serif;
+		margin:40px;
+	}
+	
+	.example
+	{
+		margin:20px;
+		padding:20px;
+		background-color: rgb(222,222,222);
+		-webkit-border-radius: 10px;
+	}
+</style>
+<title>Geography</title>
+</head>
+<body>
+<a href="../">Home</a>
+
+<h1>Geography</h1>
+
+<ul>
+<li><a href="#background">Background</a></li>
+<li><a href="#lecture">Lecture</a></li>
+<li><a href="#maps">Maps</a></li>
+<li><a href="#gbif">GBIF</a></li>
+<li><a href="#errors">Georeferencing errors</a></li>
+<li><a href="#googleearth">Google Earth</a></li>
+<li><a href="#fusion">Google Fusion Tables</a></li>
+<li><a href="#other">Other uses for maps</a></li>
+<li><a href="#geophylogenies">Geophylogenies</a></li>
+<li><a href="#next">Where next?</a></li>
+</ul>
+
+<h2><a name="background"/>Background</h2>
+
+<p>To follow the examples in this session you will need a Google account (to use Google Fusion tables) and you will need to download <a href="http://www.google.com/earth/index.html">Google Earth</a>.</p>
+
+<h2><a name="lecture"/>Lecture</h2>
+
+<p>[Slides coming]</p>
+
+<h2><a name="maps"/>Maps</h2>
+
+<p>The availability of easy to use online maps (e.g., Google Maps), together with the relative easy of geotagging data using GPS has resulted in an explosion of mapping services. These can be used to display spatial data, or to navigate through data using geography.</p>
+
+<h3>Alternatives to Google</h3>
+
+<p>There are numerous alternatives to Google Maps and Google Earth. Perhaps the best known is <a href="http://www.openstreetmap.org/" target=_new">OpenStreetMap</a>, which is a free, collaboratively edited map of the world (see video below for an animation of one year's edits).</p>
+
+<!--
+<video width="400" controls="controls">
+  <source src="movies/ito.m4v" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+-->
+<iframe src="http://player.vimeo.com/video/2598878?title=0&amp;byline=0&amp;portrait=0" width="398" height="224" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+<p>Other mapping projects include <a href="http://polymaps.org/" target=_new">Polymaps</a>, and spatial analysis tools such as <a href="https://cartodb.com/" target=_new">CartoDB</a>.</p>
+
+
+<h2><a name="gbif"/>GBIF</h2>
+
+<p>GBIF currently has over 300 million data records, or which 275 million have geographic coordinates, meaning that they can be placed on a map. The data is available from <a href="http://data.gbif.org" target="_new">http://data.gbif.org</a>.</p>
+
+<p><img src="images/AubrechtG_EarthzineEcosystems_Fig1.jpg" width="400"/></p>
+
+
+<p>To get an idea of the impact of GBIF data you can browse the Mendeley group "GBIF Public Library":</p>
+
+<iframe src="http://www.mendeley.com/groups/1068301/_/widget/29/3/" frameborder="0" allowTransparency="true" style="width:260px;height:550px;"></iframe><p style="width:260px"><a href="http://www.mendeley.com/groups/1068301/gbif-public-library/" title="GBIF Public Library on Mendeley">GBIF Public Library</a> is a group in <a href="http://www.mendeley.com/groups/biological-sciences/" title="Biological Sciences on Mendeley">Biological Sciences</a> on <a href="http://www.mendeley.com/" title="Mendeley">Mendeley</a>.</p>
+
+
+<h2><a name="errors"/>Georeferencing errors</h2>
+
+<p>A side effect of aggregating and displaying huge amounts of geographic data, for example, in <a href="http://data.gbif.org" target="_new">GBIF</a> is the discovery of errors. Although errors can be frustrating, exposing them means they can be fixed. For example, in 2008 <a href="http://iphylo.blogspot.com/2008/06/more-gbif-errors-courtesy-of-fishbase.html" target="_new">I discovered errors in the GBIF map for <i>Pagellus erythrinus</i></a>). The map below shows two sets of points. The <img src="images/dot2.png" width="16"/> points were the localities displayed by GBIF, which seemed odd given that this is a Mediterranean fish. However, all that is needed to move the fish to where it might be expected (<img src="images/dot1.png" width="16"/> symbols) is to swap the latitude and longitudes.
+
+<div>
+<object id="mysvg" type="image/svg+xml" width="360" height="180" data="images/fish.svg"><p>
+Error, browser must support "SVG"</p>
+</object>
+</div>
+
+<p>Another example is of a <a href="http://iphylo.blogspot.com/2008/05/fixing-gbif.html">frog that ended up in the Atlantic Ocean</a>. GBIF originally displayed the following map for the frog <i>Boophis periegetes</i>:</p>
+
+<img src="images/Boophis.png" width="400"/>
+
+<p>In this case, one record had latitude and longitude swapped, the other had the longitude mistakenly recorded as being from the Western Hemisphere, instead of the Eastern Hemisphere. Once these are corrected, the frog records return to Madagascar:</p>
+
+<div>
+<object id="mysvg" type="image/svg+xml" width="360" height="180" data="images/Boophis.svg"><p>
+Error, browser must support "SVG"</p>
+</object>
+</div>
+
+
+<h2><a name="googleearth"/>Google Earth</h2>
+
+
+<div class="example">
+<b>Where are new species of frogs found?</b>
+<p>The KML file <a href="data/frogs.kml">frogs.kml</a> contains the locations of recently described frog species (obtained by data mining the Amphibia Species of the World web site). Load this file into Google Earth. Where are the new frogs species being found? Are there any records you might be suspicious of?</p>
+
+<p>Now that we know where the new species of frogs are being found, we can ask whether these new species in conservation areas or not (presumably being in a conservation area increases there chances of avoiding extinction). To answer this question we need to be able to plot conservation area on Google Earth.</p>
+
+<p><img style="float:right;" src="images/protectedplanet-twitter.png" width="48">One source of KML files for Google Earth is <a href="http://www.protectedplanet.net/">protectedplanet.net</a>. If you go to the site and either browse or search for protected areas you can download a KML file of a conservation area (you have to sign in to download data).</p>
+
+<p>As a starting point, here is the <a href="data/rdmpage-ranomafana-1327355500838.kmz">KML file</a> for the <a href="http://protectedplanet.net/sites/Ranomafana_National_Park" target="_new">Ranomafana National Park</a> in Madagascar. If you download this file and open it in Google Earth you will be able to see whether any recently described frogs are in that protected area.</a>
+
+</div>
+
+
+
+<div class="example">
+<b>Comparing two sets of data about a species distribution</b>
+
+<p>GBIF data comes from museum collections and observations of living organisms. Inevitably this data will be affected by sampling bias (organisms won't be found where people haven't looked) as well as digitisation bias (not every museum collection or database of observations). There may also be data that hasn't been added to GBIF. In this exercise we will explore <a href="http://www.flickr.com">Flickr</a> as a source of distributional data. Flickr contains a wealth of images of organisms, many tagged by their scientific name. Many of these images are geotagged (e.g., they were taken with a camera or phone that has GPS built in), which means we can place them on a may. Given that Flickr exports KML files, it is easy to add these images to Google Earth and compare them with GBIF data.</p>
+
+<p>As an example, we can get images for the spider <i>Leucauge magnifica</i> by searching Flickr for the tag "<a href="http://www.flickr.com/photos/tags/leucaugemagnifica/" target="_new">leucaugemagnifica</a>". Grab the search results as a KML file (you should see a link near the bottom of the page) and load this in to Google Earth.</p>
+
+<p>Now go to the GBIF data portal (<a href="http://data.gbif.org" target="_new">http://data.gbif.org</a>) and search for <i>Leucauge magnifica</i> (if you are impatient then click on <a href="http://data.gbif.org/species/2151499/" target="_new">http://data.gbif.org/species/2151499/</a>). You can get the GBIF results as a KML file, so download that file and add it to Google Earth.</p>
+
+<p>Are the Flickr photos within the distributional range from GBIF? If not, how would you interpret this?</p>
+
+<p>Repeat this exercise for another organism that you can find on Flickr and in GBIF.</p>
+
+
+</div>
+
+
+<h2><a name="fusion"/>Google Fusion Tables</h2>
+
+<p><a href="http://www.google.com/fusiontables/Home/" target="_new">Google Fusion tables</a> provide tools to visualise data, and makes it easy to create maps.</p>
+
+<div class="example">
+<b>Fusion tables tutorial</b>
+<p>Google provides a <a href="http://earth.google.com/outreach/tutorial_fusion_sample.html"  target="_new">fusion table tutorial</a> using a biological data set, in this case catepillars collected in Costa Rica. Work through this example to learn how to use fusion tables.</p>
+
+<iframe src="http://player.vimeo.com/video/35584574?title=0&amp;byline=0&amp;portrait=0" width="398" height="398" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+</div>
+
+
+<div class="example">
+<b>Where are the new species of mammals being discovered?</b>
+
+<p>In this example we will use Google Fusion Tables to create a distribution map for recently discovered mammals. Go to Google Docs and create a new table. Populate this with data (say, 10 rows) from the paper <b>Global trends and biases in new mammal species discoveries</b>, by Reeder et al. (2007), <i>Occasional Papers Museum of Texas Tech University</i>, 269:1-35  
+<a href="data/ReederHelgenWilson new mammals OPTTU final.pdf"  target="_new">PDF</a>.
+
+</div>
+
+<h2><a name="other"/>Other uses for maps</h2>
+
+<h3>Maps and timelines</h3>
+
+<p>Maps display data in space, but that spatial arrangement may change over time. There are a number of tools we can use to explore this. Google Earth itself supports timelines, as we can see with the avian flu example. Another useful tool is timemap, which creates a linked timeline and map display. For an example see the <a href="http://www.oe-files.de/gmaps/eqmashup.html" target="new">Live Earthquake Maship</a>.</p>
+
+<p>As an example, below is a timemap for swine flu. By scrolling through the timeline you can see the changes in geographic distribution of this disease.</p>
+
+<iframe src="http://player.vimeo.com/video/35581860?title=0&amp;byline=0&amp;portrait=0" width="398" height="249" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+<p>We can also use a timemap to visualise the growth of knowledge in a particular area. In the previous lecture we plotted an RSS feed for barcoded amphibians on a Google Map. An alternative display that combines a timeline and map is available at <a href="http://darwin.zoology.gla.ac.uk/~rpage/timemap/" target="_new">http://darwin.zoology.gla.ac.uk/~rpage/timemap/</a> (note that this timemap has not been updated in a while).</p>
+
+
+<h3>Spatial browsing</h3>
+
+<p>An obvious use of a map is to display the spatial distribution of some data, for example the occurrences of a particular taxon. But we can also use a map to explore data. For example, if we wanted to find taxonomic papers related to Australian species, we could do a Google search that included the term "Australia". Alternatively, if we had a database of taxonomic descriptions, and these where geotagged (for example, if a paper mentions the latitude and longitude of a locality), then we could do a spatial query. For example, we could define the "bounding box" of Australia as the rectangle that encloses that continent. We could then search our database for papers with localities inside that bounding box. For an example of this see <a href="http://biostor.org/maps" target="_new">http://biostor.org/maps</a>.
+</p>
+
+<p>The part of the map being displayed automatically defines a bounding box, so we could implement a simple spatial browser that shows us the taxonomic papers (or species, or whatever object is of interest) for just that region.</p>
+
+<iframe src="http://player.vimeo.com/video/35581912?title=0&amp;byline=0&amp;portrait=0" width="398" height="249" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+<h2><a name="geophylogenies"/>Geophylogenies</h2>
+
+<p>Around 2007 several researchers started exploring displaying phylogenies on Google Earth (see <a href="http://iphylo.blogspot.com/2007/06/google-earth-phylogenies.html" target="_new">Google Earth phylogenies</a> for some links, and David Kidd's paper <b>Geophylogenies and the Map of Life</b>, <a href="http://dx.doi.org/10.1093/sysbio/syq043" target="_new">http://dx.doi.org/10.1093/sysbio/syq043</a> for a review. Here we will look at some examples, and create a geophylogeny.</p>
+
+<h3>Drawing trees</h3>
+
+<p>To draw a tree on a computer screen we need to locate the nodes in the Euclidean space, in other words, each node needs to be assigned <i>x</i> and <i>y</i> coordinates. The <i>x</i> and <i>y</i> coordinates for the leaf nodes are straightforward to work out. The coordinates for an internal node is based on those of its descendants. Hence, in order to work out where to put the internal nodes we need to first visit their descendants. Walking around a tree in this order is called a <b>postorder traversal</b>.
+</p>
+<img src="images/postorder.png" />
+
+<p>Below we've put the tree on a 3 × 2 grid (note that the origin of the coordinates is the top left). We are going to evenly space the internal nodes along the <i>x</i>-axis, and the leaves along the <y>-axis. All the leaves will line up at <i>x</i>=3, so it just remains to find the <i>y</i> values for the internal nodes. The <i>y</i> value for node <b>3</b> is the midpoint of the values for node <b>1</b> (2) and <b>2</b> (1), i.e. 1.5. Now that we have the <i>y</i> coordinate for node <b>3</b>, we can compute the <i>y</i> coordinate for node <b>5</b>, which is the midpoint of the values for node <b>3</b> (1.5) and <b>4</b> (0), i.e. 0.75.
+</p>
+
+<img src="images/treedrawing.png" />
+
+
+<h3>Drawing trees on Google Earth</h3>
+
+<p>Now that we can draw trees, we need to translate the method for computing simple <i>x</i>-<i>y</i> Euclidean coorindates into latitude and longitude. For details on how to do this see, for example, <a href="http://iphylo.blogspot.com/2007/06/earth-not-flat-official.html" target="_new">Earth not flat - official</a>. The shortest path between two points on a sphere is not a straight line but a <a href="http://en.wikipedia.org/wiki/Great_circle" target="_new">great circle</a>, so when we compute the coordinates of an internal node we need to find the great circle upon which the two descendant nodes fall, and then find the midpoint of the arc between the two child nodes:</p>
+
+<img src="images/greatCircle.jpg" />
+<img src="images/greatCircle2.jpg" />
+
+
+<h3>Examples</h3>
+
+<video width="400" controls="controls">
+  <source src="movies/flu.mov" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+<p><a href="movies/flu.mov">Download</a></p>
+
+<table>
+<tr><td><img src="images/kmz.png" width="32" /></td><td><a href="data/aiTreesapril9.kmz">Avian flu virus</a></td></tr>
+</table>
+
+<p>David Kidd has created an <a href="http://evoviz.blogspot.com/2011/06/terrestrial-mammal-geophylogeny.html" target="_new">ArcGlobe visualisation for terrestrial mammals</a>.</p>
+
+<!--
+<video width="400" controls="controls">
+  <source src="movies/video-54247518.mov" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+-->
+<iframe src="http://player.vimeo.com/video/24887775?title=0&amp;byline=0&amp;portrait=0" width="398" height="234" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+<p>This is just one of a <a href="http://vimeo.com/user3984635" target="_new">series of videos David has created</a>.</p>
+
+
+<h2><a name="next"/>What's next?</h2>
+
+<p>In this session we've focussed on data that is georeferenced, that is, we know where on the Earth's surface it was located. For a lot of legacy data we will not have GPS coordinates. Tools such as <a href="http://www.biogeomancer.org" target="_new">BioGeomancer</a> aim to take a verbal description of where an observation was made (e.g., "5 mi NW of Glasgow") and convert that into latitude and longitude.</p>
+
+<p>Tools to create geophylogenies are in their infancy, and not widely used. It would be interesting to think about how to analyse geophylogenies, for example, can we make inferences about biogeographic processed base don how many lines cross particular geographic features? Can we compare heights of lines (a function, say, of molecular evolution) to infer whether geographic patterns are the same age?</p>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'phyloinformatics'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>
