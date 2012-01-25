@@ -300,7 +300,21 @@ class Tree
 					if (ctype_alnum($token[$i]{0}))
 					{
 						$this->num_leaves++;
-						$curnode->SetLabel($token[$i]);
+						
+						$label = $token[$i];
+						
+	
+						// kml
+						if (preg_match('/^(?<label>.*)\s*lat=(?<lat>.*)long=(?<long>.*)$/Uu', $label, $m))
+						{
+							$curnode->SetAttribute('lat', $m['lat']);
+							$curnode->SetAttribute('long', $m['long']);
+							$label = $m['label'];
+						}
+						
+						$curnode->SetLabel($label);
+						
+						
 						$i++;
 						$state = 1;
 					}
@@ -312,7 +326,20 @@ class Tree
 							$label = preg_replace("/^'/", "", $label);
 							$label = preg_replace("/'$/", "", $label);
 							$this->num_leaves++;
+							
+							
+							// kml
+							if (preg_match('/^(?<label>.*)\s*lat=(?<lat>.*)long=(?<long>.*)$/Uu', $label, $m))
+							{
+								$curnode->SetAttribute('lat', $m['lat']);
+								$curnode->SetAttribute('long', $m['long']);
+								$label = $m['label'];
+							}
+							
 							$curnode->SetLabel($label);
+							
+							
+							
 							$i++;
 							$state = 1;
 							
@@ -1569,6 +1596,260 @@ class PhylogramTreeDrawer extends RectangleTreeDrawer
 			
   		}
 	}
+	
+	
+}	
+
+//-------------------------------------------------------------------------------------------------
+class KmlTreeDrawer extends RectangleTreeDrawer
+{
+	var $altitudeFactor = 20000.0;
+	
+	
+	//----------------------------------------------------------------------------------------------
+	function CalcInternal($p)
+	{
+		$lat1 = deg2rad($p->GetChild()->GetAttribute('lat'));
+		$long1 = deg2rad($p->GetChild()->GetAttribute('long'));
+
+		$lat2 = deg2rad($p->GetChild()->GetRightMostSibling()->GetAttribute('lat'));
+		$long2 = deg2rad($p->GetChild()->GetRightMostSibling()->GetAttribute('long'));
+		
+		$d = acos(sin($lat1)*sin($lat2)+cos($lat1)*cos($lat2)*cos($long1-$long2));
+	
+		if ($d == 0.0)
+		{
+			// descendants are on same spot
+			$p->SetAttribute('lat', $p->GetChild()->GetAttribute('lat'));
+			$p->SetAttribute('long', $p->GetChild()->GetAttribute('long'));
+		}
+		else
+		{
+			$frac = 0.5;
+
+			$A =sin((1-$frac)*$d)/sin($d);
+			$B =sin($frac*$d)/sin($d);
+			$x = $A*cos($lat1)*cos($long1) +  $B*cos($lat2)*cos($long2);
+			$y = $A*cos($lat1)*sin($long1) +  $B*cos($lat2)*sin($long2);
+			$z = $A*sin($lat1)            +  $B*sin($lat2);
+			$lat=atan2($z,sqrt($x*$x+$y*$y));
+			$long=atan2($y,$x);
+		
+			$p->SetAttribute('lat', rad2deg($lat)); 
+			$p->SetAttribute('long', rad2deg($long));
+		}
+		
+		if ($this->t->HasBranchLengths())
+		{
+			$p->SetAttribute('altitude',
+				($this->max_path_length - $p->GetAttribute('path_length')) * 500 * $this->altitudeFactor);		
+		}
+		else
+		{
+			$p->SetAttribute('altitude', $p->GetAttribute('weight') * $this->altitudeFactor);
+		}
+		
+	
+	}
+	
+	//----------------------------------------------------------------------------------------------
+	function CalcLeaf($p)
+	{
+		if ($this->t->HasBranchLengths())
+		{
+			$p->SetAttribute('altitude',
+				($this->max_path_length - $p->GetAttribute('path_length')) * 500 * $this->altitudeFactor);		
+		}
+		else
+		{
+			$p->SetAttribute('altitude', $p->GetAttribute('weight') * $this->altitudeFactor);
+		}
+	}		
+
+	
+	//----------------------------------------------------------------------------------------------
+	function CalcCoordinates()
+	{
+		$this->max_path_length = 0.0;		
+		$this->t->GetRoot()->SetAttribute('path_length', $this->t->GetRoot()->GetAttribute('edge_length'));
+
+		// Get path lengths
+		$n = new PreorderIterator ($this->t->getRoot());
+		$q = $n->Begin();
+		while ($q != NULL)
+		{			
+			$d = $q->GetAttribute('edge_length');
+			if ($d < 0.00001)
+			{
+				$d = 0.0;
+			}
+        	if ($q != $this->t->GetRoot())
+	    		$q->SetAttribute('path_length', $q->GetAncestor()->GetAttribute('path_length') + $d);
+
+			$this->max_path_length = max($this->max_path_length, $q->GetAttribute('path_length'));
+			$q = $n->Next();
+		}
+
+		$leaves = $this->t->GetNumLeaves();
+		$this->leaf_count = 0;
+
+		$n = new NodeIterator ($this->t->getRoot());
+		
+		$q = $n->Begin();
+		while ($q != NULL)
+		{
+			
+			if ($q->IsLeaf ())
+			{
+				$this->CalcLeaf ($q);				
+			}
+			else
+			{
+				$this->CalcInternal ($q);
+			}
+	
+			$q = $n->Next();
+		}
+	}
+	
+	//----------------------------------------------------------------------------------------------
+	function Draw($port)
+	{	
+		$stack = array();
+		$curnode = $this->t->GetRoot();
+		
+		while ($curnode != NULL)
+		{	
+			if ($curnode->GetChild())
+			{
+				echo "<Folder>\n";
+				
+				if ($curnode == $this->t->GetRoot())
+				{
+					echo "<name>Tree</name>\n";
+				}
+				else if ($curnode->GetLabel())
+				{
+					echo "<name>" . $curnode->GetLabel() . "</name>\n";
+				}
+				
+				if ($curnode->IsLeaf())
+				{	
+					$this->DrawLeaf($curnode);
+				}
+				else
+				{
+					$this->DrawInternal($curnode);
+				}
+				
+				$stack[] = $curnode;
+				$curnode = $curnode->GetChild();
+			}
+			else
+			{
+				echo "<Folder>\n";
+				if ($curnode->IsLeaf())
+				{	
+					$this->DrawLeaf($curnode);
+				}
+				else
+				{
+					$this->DrawInternal($curnode);
+				}
+				echo "</Folder>\n";	
+					
+					
+				while (!empty($stack) && ($curnode->GetSibling() == NULL))
+				{
+					echo "</Folder>\n";	
+					$curnode = array_pop($stack);
+					
+				}
+				if (empty($stack))
+				{
+					$curnode = NULL;
+				}
+				else
+				{
+					$curnode = $curnode->GetSibling();
+				}
+			}		
+		}
+	
+
+	}
+	
+	//----------------------------------------------------------------------------------------------
+	function DrawLeaf($p)
+	{
+		echo "<Placemark>\n";
+		echo "<styleUrl>#treeLine</styleUrl>\n";
+		echo "<LineString>\n";
+		echo "<altitudeMode>absolute</altitudeMode>\n";
+		echo "<coordinates>\n";
+		echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
+		echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";
+		echo "</coordinates>\n";
+		echo "</LineString>\n";
+		echo "</Placemark>\n";
+	}
+
+	//----------------------------------------------------------------------------------------------
+	function DrawInternal($p)
+	{
+		echo "<Placemark>\n";
+		echo "<styleUrl>#treeLine</styleUrl>\n";
+		echo "<LineString>\n";
+		echo "<altitudeMode>absolute</altitudeMode>\n";
+		echo "<coordinates>\n";
+		
+		$lat1 = deg2rad($p->GetChild()->GetAttribute('lat'));
+		$long1 = deg2rad($p->GetChild()->GetAttribute('long'));
+
+		$lat2 = deg2rad($p->GetChild()->GetRightMostSibling()->GetAttribute('lat'));
+		$long2 = deg2rad($p->GetChild()->GetRightMostSibling()->GetAttribute('long'));
+		
+		$d = acos(sin($lat1)*sin($lat2)+cos($lat1)*cos($lat2)*cos($long1-$long2));
+	
+		if ($d == 0.0)
+		{
+			// descendants are on same spot
+			echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
+			echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";
+		}
+		else
+		{
+			for ($frac = 0.0; $frac <= 1.0; $frac+= 0.1)
+			{
+				$A =sin((1-$frac)*$d)/sin($d);
+				$B =sin($frac*$d)/sin($d);
+				$x = $A*cos($lat1)*cos($long1) +  $B*cos($lat2)*cos($long2);
+				$y = $A*cos($lat1)*sin($long1) +  $B*cos($lat2)*sin($long2);
+				$z = $A*sin($lat1)            +  $B*sin($lat2);
+				$lat=atan2($z,sqrt($x*$x+$y*$y));
+				$long=atan2($y,$x);
+				
+				echo rad2deg($long) . "," . rad2deg($lat) . "," . $p->GetAttribute('altitude') . "\n";
+				
+				
+				if ($frac == 0.5)
+				{
+					// Draw clade stem
+					if ($p->GetAncestor())
+					{
+						echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";					
+						echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
+					}
+				}
+			}
+		}
+		echo "</coordinates>\n";
+		echo "</LineString>\n";
+		echo "</Placemark>\n";
+	}
+
+	//----------------------------------------------------------------------------------------------
+	function DrawScaleBar($port) {}
 	
 	
 }	

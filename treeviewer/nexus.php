@@ -523,6 +523,11 @@ function parse_nexus($str)
 						$treeblock->tree = new stdclass;
 						
 						$t = $nx->GetToken();
+						if ($t == TokenTypes::Asterix)
+						{
+							$treeblock->tree->default = true;
+							$t = $nx->GetToken();
+						}
 						if ($t == TokenTypes::String)
 						{
 							$treeblock->tree->label = $nx->buffer;
@@ -3482,6 +3487,17 @@ BEGIN TREES;
 
 
 END;
+";
+
+$str="#NEXUS
+
+BEGIN TREES;
+
+tree * Banza = (('B. nihoa A:23.0622222222222:-161.926111111111','B. nihoa B:23.0622222222222:-161.926111111111'),(('B. unica A:21.3372222222222:-157.817777777778','B. unica B:21.4163888888889:-158.103611111111'),((((('B. kauaiensis A:21.975:-159.466111111111','B. kauaiensis B:22.1538888888889:-159.625'),('B. parvula A:21.4447222222222:-158.101388888889','B. parvula B:21.5491666666667:-158.186944444444')),('B. molokaiensis A:21.1097222222222:-156.902777777778','B. molokaiensis B:21.1097222222222:-156.902777777778')),('B. deplanata A:20.8147222222222:-156.875833333333','B. deplanata B:20.8147222222222:-156.870555555556')),(('B. brunnea A:20.9372222222222:-156.619444444444','B. brunnea B:20.855:-156.603333333333'),((('B. mauiensis A:20.845:-156.557222222222','B. mauiensis B:20.845:-156.557222222222'),('B. pilimauiensis A:20.8177777777778:-156.230277777778','B. pilimauiensis B:20.8177777777778:-156.230277777778')),(('B. nitida A:19.5088888888889:-155.862777777778',('B. nitida B:19.5705555555556:-155.188611111111','B. nitida C:20.1291666666667:-155.769166666667'))))))));
+
+END;
+
+
 ";
 
 	$obj = parse_nexus($str);

@@ -43,7 +43,7 @@
 
 <h2><a name="lecture"/>Lecture</h2>
 
-<p>[Slides coming]</p>
+<div style="width:425px" id="__ss_11253521"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/rdmpage/geography-11253521" title="Geography">Geography</a></strong><object id="__sse11253521" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=geography-120125080546-phpapp02&stripped_title=geography-11253521&userName=rdmpage" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><param name="wmode" value="transparent"/><embed name="__sse11253521" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=geography-120125080546-phpapp02&stripped_title=geography-11253521&userName=rdmpage" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" width="425" height="355"></embed></object><div style="padding:5px 0 12px">View more <a href="http://www.slideshare.net/">presentations</a> from <a href="http://www.slideshare.net/rdmpage">Roderic Page</a>.</div></div>
 
 <h2><a name="maps"/>Maps</h2>
 
@@ -224,6 +224,33 @@ Error, browser must support "SVG"</p>
 
 <p>This is just one of a <a href="http://vimeo.com/user3984635" target="_new">series of videos David has created</a>.</p>
 
+<div class="example">
+<b>Make a geopylogeny</b>
+
+<p>To create a geophylogeny we need a phylogeny where all the taxa have latitude and longitude data. For this exercise we will use the <i>Banza</i> example discussed at <a href="http://iphylo.blogspot.com/2007/06/google-earth-phylogenies.html" target="_new">Google Earth phylogenies</a>, based on data from <b>Molecular phylogeny of Banza (Orthoptera: Tettigoniidae), the endemic katydids of the Hawaiian Archipelago</b> (<a href="http://dx.doi.org/10.1016/j.ympev.2006.04.006" target=_new">http://dx.doi.org/10.1016/j.ympev.2006.04.006</a>).
+
+<p>Below is a NEXUS file (a format widely used in phylogenetics) for the <i>Banza</i> that has geographic location encoded in the taxon name (the part beginning <code>lat=</code>). </p>
+
+<textarea cols="80" rows="20" readonly="readonly">
+#NEXUS
+
+[! Example of a tree file with latitude and longitude appended to taxon name. ]
+
+BEGIN TREES;
+
+tree * Banza = (('B. nihoa Alat=23.0622222222222long=-161.926111111111','B. nihoa Blat=23.0622222222222long=-161.926111111111'),(('B. unica Alat=21.3372222222222long=-157.817777777778','B. unica Blat=21.4163888888889long=-158.103611111111'),((((('B. kauaiensis Alat=21.975long=-159.466111111111','B. kauaiensis Blat=22.1538888888889long=-159.625'),('B. parvula Alat=21.4447222222222long=-158.101388888889','B. parvula Blat=21.5491666666667long=-158.186944444444')),('B. molokaiensis Alat=21.1097222222222long=-156.902777777778','B. molokaiensis Blat=21.1097222222222long=-156.902777777778')),('B. deplanata Alat=20.8147222222222long=-156.875833333333','B. deplanata Blat=20.8147222222222long=-156.870555555556')),(('B. brunnea Alat=20.9372222222222long=-156.619444444444','B. brunnea Blat=20.855long=-156.603333333333'),((('B. mauiensis Alat=20.845long=-156.557222222222','B. mauiensis Blat=20.845long=-156.557222222222'),('B. pilimauiensis Alat=20.8177777777778long=-156.230277777778','B. pilimauiensis Blat=20.8177777777778long=-156.230277777778')),(('B. nitida Alat=19.5088888888889long=-155.862777777778',('B. nitida Blat=19.5705555555556long=-155.188611111111','B. nitida Clat=20.1291666666667long=-155.769166666667'))))))));
+
+END;
+</textarea>
+
+<p>To convert this into KML go to <a href="http://iphylo.org/~rpage/phyloinformatics/treeviewer/tkml.php" target="_new">http://iphylo.org/~rpage/phyloinformatics/treeviewer/tkml.php</a> and paste the NEXUS file into the form. The web site will create a KML file and your browser will download this file (called <b>tree.kml</b>). Open it in Google Earth. It should look something like this:</p>
+<img src="images/GoogleEarth_Image2.jpg" width="400" />
+
+<p>Given what we know about the Hawaiian islands, how would you interpret this geophylogeny?</p>
+
+
+</div>
+
 
 <h2><a name="next"/>What's next?</h2>
 
@@ -231,6 +258,7 @@ Error, browser must support "SVG"</p>
 
 <p>Tools to create geophylogenies are in their infancy, and not widely used. It would be interesting to think about how to analyse geophylogenies, for example, can we make inferences about biogeographic processed base don how many lines cross particular geographic features? Can we compare heights of lines (a function, say, of molecular evolution) to infer whether geographic patterns are the same age?</p>
 
+<p>Creating geophylogeny files isn't terribly straightforward, it would be nice to have a tool that made this simpler, pehraps by being able to take a tree and a list of names and coordinates and automatically merging the two.</p>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
