@@ -259,6 +259,40 @@ function extract_specimen_codes($t)
 		
 	}
 	
+	// ---------------------------------------------------------------------------------------------
+	if (preg_match_all(
+		'/
+		(?<code>[A-Z]{2,6})
+		\-
+		(?<number>([0-9]{3,}))
+		
+		(
+			(\-|–|­|—)
+			(?<end>[0-9]+)
+		)?		
+		
+		/x',  
+		
+		$t, $out, PREG_PATTERN_ORDER))
+	{
+		//print_r($out);
+		$found = true;
+		
+		for ($i = 0; $i < count($out[0]); $i++)
+		{
+			$s = new stdClass;
+			$s->code = $out['code'][$i];
+			$s->prefix = '';
+			$s->number = $out['number'][$i];
+			$s->end = $out['end'][$i];
+			array_push($specimens, $s);
+		}
+		
+		//print_r($specimens);
+		
+	}	
+	
+	
 	
 	// ---------------------------------------------------------------------------------------------
 	// Post process to handle lists of specimens
