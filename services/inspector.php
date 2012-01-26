@@ -23,7 +23,10 @@ echo '<!DOCTYPE html>
 	<title>Inspector</title>
 </head>
 <body>
+<a href="index.html">Services</a>
 <h1>Service inspector</h1>
+<p>Enter a URL and get display the content. Useful if you want to see what a webservice returns.
+For example, you can see the <a href="?url=http%3A%2F%2Fapi.flickr.com%2Fservices%2Ffeeds%2Fgeo%2F%3Fg%3D806927%40N20%26lang%3Den-us%26format%3Drss_200">RSS returned from Flickr</a></p>
 <h2>URL</h2>
 <form method="get" action="inspector.php">
 	<input style="font-size:24px;" id="url" name="url" size="80" value="' . $url . '"></input>
