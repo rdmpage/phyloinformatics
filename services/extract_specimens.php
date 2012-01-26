@@ -110,7 +110,7 @@ function extract_specimen_codes($t)
 	// BM(NH) 50.767 e.g. http://biostor.org/reference/31
 	if (preg_match_all(
 		'/
-		(?<code>BM\(NH\))
+		(?<code>BM(\(NH\))?)
 		\s*
 		(?<number>([0-9]+(\.\s*[0-9]+)+) )
 		

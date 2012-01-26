@@ -20,7 +20,7 @@ function display_form()
 <body>
 <a href="index.html">Services</a>
 <h1>Specimen parser</h1>
-<p>This is a simple tool to extract museum specimen codes from text. Proof of concept, so your mileage may vary. Comments to <a href="mailto:rdmpage@gmail.com">Rod Page</a>.</p>
+<p>This is a simple tool to extract museum specimen codes from text. Proof of concept, so your mileage may vary.</p>
 <p>Paste in text containing specimen codes</p>
 <form method="post" action="specimenparser.php">
 	<textarea id="text" name="text" rows="30" cols="60"></textarea><br />
