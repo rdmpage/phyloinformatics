@@ -1,0 +1,9 @@
+#NEXUS
+
+[! Example of a tree file with latitude and longitude appended to taxon name. ]
+
+BEGIN TREES;
+
+tree * Banza = (('B. nihoa Alat=23.0622222222222long=-161.926111111111','B. nihoa Blat=23.0622222222222long=-161.926111111111'),(('B. unica Alat=21.3372222222222long=-157.817777777778','B. unica Blat=21.4163888888889long=-158.103611111111'),((((('B. kauaiensis Alat=21.975long=-159.466111111111','B. kauaiensis Blat=22.1538888888889long=-159.625'),('B. parvula Alat=21.4447222222222long=-158.101388888889','B. parvula Blat=21.5491666666667long=-158.186944444444')),('B. molokaiensis Alat=21.1097222222222long=-156.902777777778','B. molokaiensis Blat=21.1097222222222long=-156.902777777778')),('B. deplanata Alat=20.8147222222222long=-156.875833333333','B. deplanata Blat=20.8147222222222long=-156.870555555556')),(('B. brunnea Alat=20.9372222222222long=-156.619444444444','B. brunnea Blat=20.855long=-156.603333333333'),((('B. mauiensis Alat=20.845long=-156.557222222222','B. mauiensis Blat=20.845long=-156.557222222222'),('B. pilimauiensis Alat=20.8177777777778long=-156.230277777778','B. pilimauiensis Blat=20.8177777777778long=-156.230277777778')),(('B. nitida Alat=19.5088888888889long=-155.862777777778',('B. nitida Blat=19.5705555555556long=-155.188611111111','B. nitida Clat=20.1291666666667long=-155.769166666667'))))))));
+
+END;
