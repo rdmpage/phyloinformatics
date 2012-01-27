@@ -10,7 +10,7 @@ function extract_specimen_codes($t)
 	// (allowing for a prefix before [number]
 	$acronyms = array(
 		'ABTC','AMCC','AMNH','ANSP','ANWC','AMS','ANSP','ASIZB','ASU',
-		'BNHS','BPBM',
+		'BMNHE','BNHS','BPBM',
 		'CAS','CASENT','CFBH','CMK','CWM',
 		'DHMECN',
 		'FMNH',
@@ -262,8 +262,8 @@ function extract_specimen_codes($t)
 	// ---------------------------------------------------------------------------------------------
 	if (preg_match_all(
 		'/
-		(?<code>[A-Z]{2,6})
-		\-
+		(?<code>(MT|QMOR))
+		[\-|:]
 		(?<number>([0-9]{3,}))
 		
 		(

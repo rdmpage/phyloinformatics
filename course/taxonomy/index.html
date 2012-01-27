@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css" title="text/css">
+	body
+	{
+		font-family: sans-serif;
+		margin:40px;
+	}
+	
+	.example
+	{
+		margin:20px;
+		padding:20px;
+		background-color: rgb(222,222,222);
+		-webkit-border-radius: 10px;
+	}
+</style>
+<title>Taxonomy</title>
+</head>
+<body>
+<a href="../">Home</a>
+
+<h1>Taxonomy</h1>
+
+<h2>Background reading</h2>
+
+<table>
+<tr><td><img src="images/blogger.jpeg" width="100"/></td><td><a href="http://iphylo.blogspot.com" target="_new">iPhylo</a></td></tr>
+<tr><td><img src="images/514A87cvGkL._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_AA300_SH20_OU02_.jpg" width="100"/></td><td><a href="http://www.amazon.co.uk/Naming-Nature-Between-Instinct-Science/dp/0393061973" target="_new">Naming Nature</a> [Kindle]</td></tr>
+</table>
+
+<h2>Lecture</h2>
+
+<p>[Slides coming]</p>
+
+<h2>Names</h2>
+
+<p>A crash course in nomenclature.</p>
+
+<h3>Codes of nomenclature</h3>
+
+<p> <a href="http://en.wikipedia.org/wiki/Nomenclature_codes" target ="_new">Codes of nomenclature</a> exist for the "major" groups of organisms.</p>
+
+<ul>
+<li>International Code of Zoological Nomenclature</li>
+<li>International Code of Botanical Nomenclature</li>
+<li>International Code of Nomenclature for Cultivated Plants</li>
+<li>International Code of Nomenclature of Bacteria</li>
+<li>International Code of Virus Classification and Nomenclature</li>
+</ul>
+
+There are two other codes to be aware of. One is the BioCode, which attenpts to merge the existing codes. The other is the <a href="http://www.ohio.edu/phylocode/">Phylocode</a>, which consists of rules for naming clades. It seems to be enjoying as much success as the BioCode.</p>
+
+<p>While I think most would agree that if we had started nomenclature knowing what we know now about phylogeny, we wouldn't have done it they way we did. However, there is a huge legacy of existing names, and data linked to those names, making fundamental change unlikely.</p>
+
+<p>As an example of the compromise the current system requires, the <a href="http://en.wikipedia.org/wiki/Microsporidia" target="_new">Microsporidia</a> are treated under the zoological code (see <b>A new dawn for the naming of fungi: impacts of decisions made in Melbourne in July 2011 on the future publication and regulation of fungal names</b>, <a href="http://dx.doi.org/10.3897/mycokeys.1.2062">http://dx.doi.org/10.3897/mycokeys.1.2062</a>), despite being fungi (and hence should be under the botanical code, although fungi are actually more closely related to animals than plants).</p>
+
+<h3>Names and opaque identifiers</h3>
+
+<p>Names serve as identifiers, and some have argued that in general identifiers should be opaque (see <a href="http://www.w3.org/DesignIssues/Axioms.html#opaque" target="_new">Universal Resource Identifiers -- Axioms of Web Architecture</a>), that is, we shouldn't read anything into the name itself.</p>
+
+<p>Taxonomic names aren't opaque, although they can mislead us (a species name <i>minor</i> need not actually be small). Binomials in particular are invested with meaning. If two species are in the same genus, we expect that they are more closely related to each other than to a species in another genus. If this isn't the case there is a strong incentive to change the names to reflect the relationship of the taxa. Sometimes this is not a trvial undertaking, as shown by the case of <i>Drosophila melanogaster</i>.</p> 
+
+<h3><i>Drosophila melanogaster</i></h3>
+
+<p>A recent example of the clash between having a name "make sense" and the stability of names is the case of <i>Drosophila melanogaster</i>, perhaps the best known model organism in biology. Based on a recent phylogeny Kim van der Linde argued that because the genus <i>Drosophila melanogaster</i> was paraphyletic, should be renamed <i>Sophophora melanogaster</i> (see <a href="http://www.kimvdlinde.com/professional/DrosophilaSplit.html" target="_new">Revising the paraphyletic genus Drosophila sensu lato</a> for details).</p>
+
+<p>Below is a tree from TreeBASE showing the relationship between <i>Drosophila</i> species:</p>
+<embed src="../../services/treebase_tree.php?id=TB2:Tr20084"  type="image/svg+xml" width="600" height="400" />
+
+<p>Below is a summary of the major groups of <i>Drosophila</i>:</p>
+
+<img src="images/Current-phylogeny.gif">
+
+<p>The fundamental problem posed by <i>Drosophila</i> is that the existing taxonomy doesn't fit the tree. To fix this we could:</p>
+<ol>
+<li>Make everything <i>Drosophila</i><br/>
+(Big genus, have to rename lots of species)</li>
+<li>Restrict <i>Drosophila</i> to a monophyletic group that includes the type species (<i>D. funebris</i>)<br/>
+(means <i>Drosophila melanogaster</i> can’t be <i>Drosophila melanogaster</i>)
+<li>Change the type species to be <i>Drosophila melanogaster</i><br/>
+(But nomenclature is not taxonomy, and ICZN said "no")</li>
+</ol>
+
+<p>At core of argument is notion that Linnean names have to match phylogeny.</p>
+
+<div class="example">
+<b><i>Drosophila melanogaster</i></b>
+
+<p>How would you assess the possible disruption caused by renaming the fruit fly <i>Drosophila melanogaster</i> to <i>Sophophora melanogaster</i>?</p>
+
+<p>How could you deal with <i>Drosophila melanogaster</i> changing its name to <i>Sophophora melanogaster</i>?</p>
+
+</div>
+
+<h3>Finding the original description of a name</h3>
+
+<p>Resolving what name to use for a taxon can require extensive bibliographic research, and in theory the entire scientific literature from Linneaus (1758 for animals) onwards is relevant (bacteria started with a clean slate in 1980).</p>
+
+<p>Furthermore, there are few constraints on where a name can be published (but animal names can't be published online only [we've heard of this Internet thingy but we're having no truck with it], although this is changing (plant names can be published online only). As a consequence, names of organisms can be published in very obscure journals.</p>
+
+<div class="example">
+
+<p>In an effort to try and link animal names to their original description online I've created <a href="http://iphylo.org/~rpage/itaxon/" target="_new">http://iphylo.org/~rpage/itaxon/</a>. Some 250,000 names are linked to the original publication. If the publication is freely available it is displayed on the site.</p>
+
+<img src="images/itaxon.png" width="400"/>
+
+<p>Browse the examples, or enter the scientific name of an animal you are interested in. Did you find the original description listed? Is it available online?</p>
+
+</div>
+
+
+<h3>Homonyms</h3>
+
+<p>If two names are the same but refer to different organisms then those names are <b>homonyms</b>. For example, in July 2010 Lambert et al. (<b>The giant bite of a new raptorial sperm whale from the Miocene epoch of Peru</b>, <a href="http://dx.doi.org/10.1038/nature09067">http://dx.doi.org/10.1038/nature09067</a>) published a paper in <i>Nature</i> that described an extinct sperm whale possessing the biggest bite of any tetrapod known. They named this formidable predator <i>Leviathan melvillei</i>, the genus name <i>Leviathan</i> being derived from the Hebrew 'Livyatan', the species name honouring Herman Melville (author of Moby Dick). As appropriate as this name was, it quickly ran foul of the rules of zoological nomenclature because <i>Leviathan</i> had already been used 169 years ago for an extinct species of mammoth (<b>Description of Missourium, or Missouri leviathan</b>, <a href="http://dx.doi.org/10.5962/bhl.title.35985">http://dx.doi.org/10.5962/bhl.title.35985</a>). Although the name <i>Leviathan</i> Koch had lapsed into obscurity (as a synonym of <i>Mammut</i> Blummenbach) its existence meant the newly discovered whale had to be renamed, which it duly was in a month after the original publication.</p>
+
+<p>Homonyms cause obvious problems when searching for data. If the same name is used for more than one taxon, then you may get a mixture of data for two unrelated taxa. Databases such as EOL maintain lists of homonyms (see <a href="http://eol.org/collections/6375" target="_new">Homonyms on EOL</a>) to keep track of these problematic names.</p>
+
+<h3>Hemihomonyms</h3>
+
+<p>A special case of homonym are names that are used in different nomenclatural codes, e.g. <i>Morus</i> is both a plant and an animal. Many of these are included in EOL's homonym collection, but there is a database devoted just to hemihomonyms at <a href="http://herba.msu.ru/shipunov/os/homonyms/index.php" target="_new">http://herba.msu.ru/shipunov/os/homonyms/index.php</a>.</p>
+
+
+<h3>Synonyms</h3>
+
+<p>Names can change over time, so that a single taxon can acquire a suite of names (synonyms).
+
+<div class="example">
+
+<p>Ryan Schenk's <a href="http://synynyms.no.de/" target="_new">http://synynyms.no.de/</a> tool displays the frequency of usage of taxonomic names in literature scanned by the <a href="http://www.biodiversitylibrary.org" target="_new">Biodiversity Heritage Library (BHL)</a>, and was inspired by Google's <a href="http://books.google.com/ngrams" target="_new">Ngram viewer</a>.</p>
+
+<img src="images/synynyms.png" width="400"/>
+
+<p>Go to  <a href="http://synynyms.no.de/" target="_new">http://synynyms.no.de/</a> and look at some example, or try the names of taxa you are interested in.</p>
+
+<p>Bonus question: why has the frequency of usage of names for the <a href="http://synynyms.no.de/taxon/326924" target="_new"><i>Cavia porcellus</i> (the guinea pig)</a> declined in the 20th century?</p>
+</div>
+
+
+<h4>"Objective" and "subjective" synonyms</h4>
+
+<p>Objective synonyms occur when only the name changes, we are making no statement about the taxon. For example, if we move <i>Pithecanthropus erectus</i> to the genus <i>Homo</i> we get <i>Homo erectus</i>, which is an objective synonym of i>Pithecanthropus erectus</i>.</p>
+
+<p>Subjective synonyms occur when we assert, based on some data, that two taxa with different names are actually the same thing. It may be based on an explicit analysis using "objective" methods, but it is considered "subjective" in the sense that it isn't simply a logical consequence of nomenclature. An example of a subject synonym is the shrimp <i>Rimicaris aurantiaca</i> (described in <a href="http://biostor.org/reference/81164" target="_new">A New Species Of Rimicaris (Crustacea: Decapoda: Bresiliidae) From The Snake Pit Hydrothermal Vent Field On The Mid atlantic Ridge</a>, which subsequent genetic data showed likely to be juveniles of an already described species, <i>Rimicaris exoculata</i> (see <a href="http://www.ncbi.nlm.nih.gov/pubmed/9628005" target="_new">Molecular systematics of shrimp (Decapoda: Bresiliidae) from deep-sea hydrothermal vents, I: Enigmatic 'small orange' shrimp from the Mid-Atlantic Ridge are juvenile Rimicaris exoculata</a>).
+
+
+<h3>Names in GenBank</h3>
+
+<div class="example">
+<b>Problematic names in GenBank</b>
+
+<p>Each of the following taxonomic names in GenBank has problems. Can you discover what they are?</p>
+
+<ul>
+<li><i>Crotaphatrema tchabalmboensis</i> (<a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=356293" target="_new">Taxonomy ID: 356293</a>
+
+<!-- should be Crotaphatrema tchabalmbaboensis http://iphylo.org/~rpage/itaxon/?search=Crotaphatrema+tchabalmbaboensis -->
+
+</li>
+
+<li><i>Hemidactylus brasilianus</i> (<a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=498594" target="_new">Taxonomy ID: 498594</a> and <i>
+Briba brasiliana</i> (<a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=343451" target="_new">Taxonomy ID: 343451</a>
+
+<!-- synonyms -->
+</li>
+
+<li><i>Kwonkon goongarriensis</i> (<a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=389830" target="_new">Taxonomy ID: 389830</a>
+
+<!-- should be Kwonkan goongarriensis  http://iphylo.org/~rpage/itaxon/?search=Kwonkan+goongarriensis# -->
+
+</li>
+
+</ul>
+
+
+</div>
+
+
+
+<h2>Classifications</h2>
+
+<!--
+<h2>Creating classifications</h2>
+
+wikipedia here, also glone.
+-->
+<h3>Visualing classifications</h3>
+
+<p>One of the challenges of dealing with biological classifications is simply navigating them. The following are examples of visualising classifications.</p>
+
+<div class="example">
+
+<b>Spacetree</b>
+
+<p>This visualisation uses the <a href="http://thejit.org/">JavaScript InfoVis Toolkit</a> and is an updated version of a <a href="http://iphylo.blogspot.com/2009/06/visualising-taxonomic-classifications.html">demo done in 2009</a>.</p>
+
+<p>View it at <a href="http://iphylo.org/~rpage/phyloinformatics/spacetree/">http://iphylo.org/~rpage/phyloinformatics/spacetree/</a></p>
+
+<iframe src="http://player.vimeo.com/video/35691762?title=0&amp;byline=0&amp;portrait=0" width="398" height="343" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+</div>
+
+
+<div class="example">
+
+<b>EOL on the iPad</b>
+
+<p>A webapp to navigate three of the classifications provided by EOL (see <a href="http://iphylo.blogspot.com/2012/01/eol-ipad-web-app-using-jquerymobile.html">EOL iPad web app using jQueryMobile</a>.</p>
+
+<p>View it at <a href="http://iphylo.org/~rpage/phyloinformatics/eoliphone/">http://iphylo.org/~rpage/phyloinformatics/eoliphone/</a>.</p>
+
+<iframe src="http://player.vimeo.com/video/35321521?title=0&amp;byline=0&amp;portrait=0" width="398" height="517" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+</div>
+
+
+
+<div class="example">
+
+<b>Treemap</b>
+
+<p>This visualisation is an updated version of a <a href="http://iphylo.blogspot.com/2008/06/catalogue-of-life-as-treemap.html">demo done in 2008</a>.</p>
+
+<p>View it at <a href="http://iphylo.org/~rpage/phyloinformatics/treemap/">http://iphylo.org/~rpage/phyloinformatics/treemap/</a></p>
+
+
+<iframe src="http://player.vimeo.com/video/35704473?title=0&amp;byline=0&amp;portrait=0" width="398" height="333" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+<p>For a prettier verson see the <a href="http://synthesis.eol.org/media/treemap" target="_new">EOL Treemap</a>.</p>
+
+<img src="images/eol.png" width="400"/>
+
+
+</div>
+
+<p>In many ways browsing classifications is similar to navigating the file system of a computer. There is a huge computer science literature on this problem,  and some examples have made it into Hollywood movies:</p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/dFUlAQZB9Ng" frameborder="0" allowfullscreen></iframe>
+
+
+<div class="example">
+
+<b>treevis.net</b>
+
+<p>The <a href="http://treevis.net">treevis.net</a> site provides an extensive gallery of tree visualisations, and there is a <a href="http://www.mendeley.com/groups/1364223/treevis-net/">Mendeley group</a> listing the associated publications.</p>
+
+<img src="images/treevis.png" width="400"/>
+
+<p>Browse <a href="http://treevis.net">treevis.net</a> and pick a visualisation that you think would be useful for browsing classifications. What properties are looking for?</p>
+
+</div>
+
+
+<iframe src="http://www.mendeley.com/groups/1364223/_/widget/23/3/" frameborder="0" allowTransparency="true" style="width:600px;height:300px;"></iframe><p style="width:600px"><a href="http://www.mendeley.com/groups/1364223/treevis-net/" title="TreeVis.net on Mendeley">TreeVis.net</a> is a group in <a href="http://www.mendeley.com/groups/biological-sciences/" title="Biological Sciences on Mendeley">Biological Sciences</a> on <a href="http://www.mendeley.com/" title="Mendeley">Mendeley</a>.</p>
+
+
+
+
+<h2>Where next?</h2>
+
+<p>We are somewhat fuzzy about the number of species currently described, and estimates of how many vary widely. For an introduction to some recent estimates see <a href="http://iphylo.blogspot.com/2011/10/how-many-species-are-there-and-why-do.html" target="_new">How many species are there, and why do we get two very different answers from same data?</a> and <a href="http://iphylo.blogspot.com/2011/10/taxonomy-crisis-what-crisis.html">Taxonomy - crisis, what crisis?</a>.</p>
+
+<p>A nice tool for visualising our progress in naming nature is <a href="http://taxatoy.ubio.org/" target="_new">Taxatoy</a></p>
+
+<img src="images/taxatoy.png" width="400" />
+
+<p>There is some tension between phylogenetics and Linnean names, notably over the issue of ranks. Apart from being essentially arbirary, changing the rank of a taxon (for example, discovering that a family-level taxon is actually nested inside another family-level taxon) means the name ending of at least one name will have to change. Naming schemes for phylogeny that use simple rules for locating taxa on a phylogeny will be looked at in a subsequent lecture.</p>
+
+<p>While an increasing amount of taxonomic literature is available online, there are huge gaps, particularly in the mid to late 20th century. Arguably copyright restrictions are crippling our ability to access basic information about organisms.</p>
+
+<p>There are variopus tools online for checking taxonomic names, such as:</p>
+<ul>
+<li><a href="http://darwin.zoology.gla.ac.uk/~rpage/MyToL/www/check_names_form.php" target="_new">Glasgow Taxonomic Name Server</a> (ancient)</li>
+
+<li><a href="http://ropensci.org/tutorials/r-taxize-tutorial/" target="_new">R-taxize Tutorial</a></li>
+
+
+</ul>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'phyloinformatics'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>
