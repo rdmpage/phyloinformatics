@@ -913,7 +913,7 @@ class SVGPort extends Port
 		{
 			$this->output .= ' ' . $action;
 		}
-		$this->output .= '>' . $text . '</text>' . "\n";
+		$this->output .= '>' . htmlentities($text) . '</text>' . "\n";
 	}
 	
 	//----------------------------------------------------------------------------------------------

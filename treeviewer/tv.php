@@ -9,7 +9,9 @@ $have_tree = false;
 
 if (isset($_POST['tree']))
 {
-	$obj = parse_nexus($_POST['tree']);
+	$tree = $_POST['tree'];
+	$tree = stripcslashes($tree);
+	$obj = parse_nexus($tree);
 	$have_tree = true;
 }
 

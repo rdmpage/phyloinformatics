@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      body { margin: 20px; font-family:sans-serif;}
+    </style>
+    
+    <script type="text/javascript"
+      src="../js/jquery.js">
+    </script>
+
+    <script>
+    
+    
+    //----------------------------------------------------------------------------------------------
+    function show_delay(rid, value)
+    {	
+    	$("#countdown").html(value);
+    	
+    	value--;
+    	
+    	if (value > -1)
+    	{
+    		setTimeout('show_delay("' + rid + '",' + value + ')', 1000);
+    	}
+    	else
+    	{
+			// Now let's get the results
+			get_results(rid);
+	   	}
+   	
+    }
+    
+    //----------------------------------------------------------------------------------------------
+    function blast()
+    {
+      	var query = $('#gi').val();
+      	
+      	if (query == '')
+      	{
+      		$("#output").html('Please enter a GenBank accession number or GI number, such as <b>FJ559186</b>');   
+      	}
+      	else
+      	{      	
+			$("#output").html('Submitting BLAST job');      	
+			
+			$.getJSON('submit_blast.php?gi=' + query + "&callback=?",
+				function(data){
+					var html = '';
+					if (data.rid == 0)
+					{
+						html += 'Submission failed';
+						$("#output").html(html);
+					}
+					else
+					{
+						html += 'BLAST job <b>' + data.rid + '</b> expected to take ' + data.rtoe + ' seconds';
+						
+						html += '<br/><span id="countdown" style="font-size:100px;color:rgb(192,192,192);">' + data.rtoe + '</span>';
+						$("#output").html(html);
+						
+						// Now set a timer to count down
+						show_delay(data.rid, data.rtoe);					
+					}
+				}
+			);
+		}
+      }
+    
+    
+    //----------------------------------------------------------------------------------------------
+    function get_results(rid)
+    {
+       	$.getJSON('poll_blast_results.php?rid=' + rid + "&callback=?",
+			function(data){
+				if (data.status)
+				{
+					$("#output").html(data.status);
+					
+					switch (data.status)
+					{
+						case 'WAITING':
+							get_results(rid);
+							break;
+							
+						case 'READY':
+							get_xml(rid);
+							break;
+							
+						default:
+							break;
+					}
+					
+				}
+				
+			}
+		);
+		return status;
+      }
+    
+
+    //----------------------------------------------------------------------------------------------
+    function get_xml(rid)
+    {
+    	$("#output").html('Fetching BLAST results from NCBI...');
+       	$.getJSON('get_blast_results.php?rid=' + rid + "&callback=?",
+			function(data){
+				if (data.xmlfile)
+				{
+					$("#output").html('Making tree...');
+					maketree(rid);
+				}				
+			}
+		);
+		return status;
+      }
+    
+      
+    //----------------------------------------------------------------------------------------------
+    function maketree(rid)
+    {
+       	$.getJSON('maketree.php?rid=' + rid + "&callback=?",
+			function(data){
+				if (data.tree_url)
+				{
+					showtree('http://iphylo.org/~rpage/phyloinformatics/blast/' + data.tree_url);
+				}
+				
+			}
+		);
+    }
+
+    //----------------------------------------------------------------------------------------------
+	function showtree(url)
+	{
+		$('#output').load('../services/tree_url_svg.php?url=' + url);
+	}
+	
+    </script>
+  </head>
+  <body>
+  	<h1>BLAST sequence and make tree</h1>
+  	<p>Construct a tree from the sequences most similar to known sequence in GenBank.</p>
+   	<div style="position:relative;">
+  		<p>Enter accession number or GI of target sequence:</p>
+  		<input type="text" id="gi" value="" placeholder="FJ559186"> 		
+  		<button onclick="blast();">BLAST</button>
+   	      	    
+		<div id="output" style="width:700px;height:700px;top:0px;float:right;overflow:auto;">
+  	   
+  	   </div>
+  	</div>
+  
+  	
+  </body>
+</html>

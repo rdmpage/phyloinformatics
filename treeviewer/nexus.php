@@ -44,6 +44,14 @@ class NumberTokens
 }
 
 //--------------------------------------------------------------------------------------------------
+class StringTokens
+{
+	const ok 			= 0;
+	const quote 		= 1;
+	const done 			= 2;
+}
+
+//--------------------------------------------------------------------------------------------------
 class NexusError
 {
 	const ok 			= 0;
@@ -280,31 +288,44 @@ class Scanner
 		$this->buffer = '';
 		
 		$this->pos++;
-		$parsing = true;
 		
-		while (
-			($this->pos < strlen($this->str))
-			&& $parsing
-			)
+		$state = StringTokens::ok;
+		while ($state != StringTokens::done)
 		{
 			//echo "--" . $this->str{$this->pos} . "\n";
-			if ($this->str{$this->pos} == "'")
+			
+			switch ($state)
 			{
-				// ..  check if next character is "'"
-				if ($this->pos < strlen($this->str) - 1)
-				{
-					$parsing = ($this->str{($this->pos + 1)} == "'");
-				}
-				
-			}
-			if ($parsing)
-			{
-				$this->buffer .= $this->str{$this->pos};
-				$this->pos++;
-			}
+				case StringTokens::ok:
+					if ($this->str{$this->pos} == "'")
+					{
+						$state = StringTokens::quote;
+					}
+					else
+					{
+						$this->buffer .= $this->str{$this->pos};
+					}
+					break;
+					
+				case StringTokens::quote:
+					if ($this->str{$this->pos} == "'")
+					{
+						$this->buffer .= $this->str{$this->pos};
+						$state = StringTokens::ok;
+					}
+					else
+					{
+						$state = StringTokens::done;
+						$this->pos--;
+					}
+					break;
+					
+				default:
+					break;
+			}			
+			$this->pos++;
 		}
-		//echo "ParseString done: " . $this->buffer . "\n";
-		//exit();
+
 		return true;
 	}
 	
@@ -508,6 +529,7 @@ function parse_nexus($str)
 								$curnode = $nx->buffer;
 								break;
 							case TokenTypes::String:
+							case TokenTypes::QuotedString:
 								$treeblock->translations->translate[$curnode] = $nx->buffer;
 								break;
 							default:
@@ -3499,6 +3521,102 @@ END;
 
 
 ";
+
+$str='#NEXUS
+Begin trees;  
+	Translate
+1 \'FJ559181 Gephyromantis blanci voucher ZCMV 5240 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+2 \'AY848330 Gephyromantis cf. klemmeri MV-2005 voucher 2002_692 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+3 \'AY848304 Gephyromantis blanci voucher ZCMV123_Ve12 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+4 \'AY848324 Gephyromantis blanci voucher 2002_2165 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+5 \'FJ559183 Gephyromantis aff. blanci 6 MV-2009 voucher ZCMV 5493 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+6 \'AY848329 Gephyromantis cf. klemmeri MV-2005 voucher FA_m11 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+7 \'FJ559186 Gephyromantis \'\'cf. decaryi 9\'\' MV-2009 voucher ZCMV 5223 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+8 \'AY848332 Gephyromantis decaryi voucher 2002_170 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+9 \'FJ559196 Gephyromantis sp. 25 MV-2009 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+10 \'AY848337 Gephyromantis enki voucher 2002_496 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+11 \'AY848307 Gephyromantis enki voucher ZCMV122_Ve11 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+12 \'FJ559170 Gephyromantis leucocephalus voucher ZCMV 5440 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+13 \'FJ559185 Gephyromantis sp. 8 MV-2009 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+14 \'AY848336 Gephyromantis enki voucher 2002_281 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+15 \'AY848335 Gephyromantis enki voucher 2002_213 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+16 \'AY848334 Gephyromantis enki voucher 2002_197 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+17 \'FJ559195 Gephyromantis sp. 24 MV-2009 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+18 \'FJ559171 Gephyromantis leucocephalus 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+19 \'AY848325 Gephyromantis boulengeri voucher 81 16S ribosomal RNA gene, partial sequence; mitochondrial\'
+;
+tree PAUP_1 = [&R] (((((1:0,2:0):0,3:0):0.017219,(4:0.017338,(10:0.000679,(11:0.000535,(14:0,(15:0,16:0):0):0.001477):0.000595):0.019452):0.015589):0.002633,(((5:0.003562,12:0.010551):0.004215,18:0.010031):0.004492,((7:0.001656,8:0.002368):0.009739,13:0.010382):0.004810):0.017313):0,((6:0.003873,9:0.006252):0.011130,(17:0,19:0):0.027249):0.012834);
+End;';
+
+$str='#NEXUS 
+Begin trees;  
+Translate
+1 \'FJ559181 Gephyromantis blanci voucher ZCMV 5240 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+2 \'AY848330 Gephyromantis cf. klemmeri MV-2005 voucher 2002_692 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+3 \'AY848304 Gephyromantis blanci voucher ZCMV123_Ve12 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+4 \'AY848324 Gephyromantis blanci voucher 2002_2165 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+5 \'FJ559183 Gephyromantis aff. blanci 6 MV-2009 voucher ZCMV 5493 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+6 \'AY848329 Gephyromantis cf. klemmeri MV-2005 voucher FA_m11 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+7 \'FJ559186 Gephyromantis cf. \'\'decaryi\'\' 9 MV-2009 voucher ZCMV 5223 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+8 \'AY848332 Gephyromantis decaryi voucher 2002_170 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+9 \'FJ559196 Gephyromantis sp. 25 MV-2009 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+10 \'AY848337 Gephyromantis enki voucher 2002_496 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+11 \'AY848307 Gephyromantis enki voucher ZCMV122_Ve11 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+12 \'FJ559170 Gephyromantis leucocephalus voucher ZCMV 5440 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+13 \'FJ559185 Gephyromantis sp. 8 MV-2009 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+14 \'AY848336 Gephyromantis enki voucher 2002_281 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+15 \'AY848335 Gephyromantis enki voucher 2002_213 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+16 \'AY848334 Gephyromantis enki voucher 2002_197 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+17 \'FJ559195 Gephyromantis sp. 24 MV-2009 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+18 \'FJ559171 Gephyromantis leucocephalus 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+19 \'AY848325 Gephyromantis boulengeri voucher 81 16S ribosomal RNA gene, partial sequence; mitochondrial\'
+;
+tree PAUP_1 = [&R] (((((1:0,2:0):0,3:0):0.017219,(4:0.017338,(10:0.000679,(11:0.000535,(14:0,(15:0,16:0):0):0.001477):0.000595):0.019452):0.015589):0.002633,(((5:0.003562,12:0.010551):0.004215,18:0.010031):0.004492,((7:0.001656,8:0.002368):0.009739,13:0.010382):0.004810):0.017313):0,((6:0.003873,9:0.006252):0.011130,(17:0,19:0):0.027249):0.012834);End;';
+
+$str ='#NEXUS 
+
+Begin trees;  [Treefile saved Sun Jan 29 18:31:32 2012]
+[!
+>Data file = /Users/rpage/Sites/phyloinformatics/blast/tmp/JB435PXG01S.nex
+>Neighbor-joining search settings:
+>  Ties (if encountered) will be broken systematically
+>  Distance measure = uncorrected ("p")
+>  (Tree is unrooted)
+]
+Translate
+1 \'FJ559188 Gephyromantis aff. horridus \'\'Marojejy\'\' voucher FGZC 2843 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+2 \'FJ559167 Gephyromantis horridus voucher UADBA 10002 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+3 \'AY341708 Mantidactylus horridus 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+4 \'AJ314796 Mantidactylus malagasius mitochondrial partial 16S rRNA gene, variety striped\',
+5 \'AY454385 Mantidactylus horridus 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+6 \'AF261253 Mantidactylus horridus 16S ribosomal RNA gene, partial sequence; mitochondrial gene for mitochondrial product\',
+7 \'GU975157 Gephyromantis ventrimaculatus voucher ZCMV 4591 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+8 \'FJ559200 Gephyromantis ventrimaculatus voucher ZCMV 3362 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+9 \'AY848373 Gephyromantis striatus voucher FA_m53 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+10 \'AJ314807 Mantidactylus malagasius mitochondrial partial 16S rRNA gene\',
+11 \'HM364637 Gephyromantis aff. malagasius \'\'Betampona\'\' voucher MSNT<ITA-Torino\',
+12 \'GU975158 Gephyromantis ventrimaculatus voucher ZCMV 4927 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+13 \'FJ559189 Gephyromantis cf. \'\'malagasius\'\' MV-2009 voucher FAZC-Andranobe 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+14 \'AJ314797 Mantidactylus malagasius mitochondrial partial 16S rRNA gene, variety coastal\',
+15 \'AB325878 Gephyromantis klemmeri mitochondrial DNA, cytb gene to tRNA-Ala gene\',
+16 \'FJ559237 Mantidactylus guttulatus voucher ZSM 644/2001 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+17 \'AY454390 Mantidactylus malagasius 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+18 \'AY848172 Mantidactylus guttulatus voucher FA_m23 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+19 \'AY848170 Mantidactylus grandidieri voucher FA_M17 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+20 \'AY848121 Mantidactylus grandidieri voucher RAN 42628 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+21 \'EF100468 Gephyromantis silvanus 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+22 \'AY848369 Gephyromantis silvanus voucher 2002A80 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+23 \'AY848370 Gephyromantis silvanus voucher 2002A81 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+24 \'AY848366 Gephyromantis silvanus voucher 2001_1379 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+25 \'AB325884 Mantidactylus grandidieri mitochondrial DNA, D-loop to tRNA-Ala gene\',
+26 \'AF215314 Mantidactylus grandidieri 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+27 \'AY341712 Mantidactylus grandidieri 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+28 \'HM364634 Gephyromantis sp. 23 MV-2009 voucher MRSN:A6610 16S ribosomal RNA gene, partial sequence; mitochondrial\',
+29 \'HM364633 Gephyromantis sp. 23 MV-2009 voucher MRSN:A6383 16S ribosomal RNA gene, partial sequence; mitochondrial\'
+;
+tree PAUP_1 = [&R] (((((1:0.021912,(2:0,3:0):0.028696):0.010761,(5:0,6:0):0.047194):0.011291,15:0.053600):0.003991,(((4:0.000173,17:0.002118):0.006109,9:0.009697):0.029928,(((7:0,8:0):-0.000237,12:0.000237):0.035129,((10:0.024184,(13:0,14:0):0.022665):0.002323,11:0.030023):0.010171):0.009920):0.002340):0,(((16:0.006860,18:0.011460):0.007728,(((19:0,20:0):0.003029,26:0.003106):0.011626,(25:0.000211,27:0.001817):0.013968):0.004472):0.039654,((((21:0,22:0):0,23:0):0,24:0):0.046011,(28:0,29:0):0.041474):0.013986):0.007324);
+End;
+';
 
 	$obj = parse_nexus($str);
 	print_r($obj);
