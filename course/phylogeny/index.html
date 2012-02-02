@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css" title="text/css">
+	body
+	{
+		font-family: sans-serif;
+		margin:40px;
+	}
+	
+	.example
+	{
+		margin:20px;
+		padding:20px;
+		background-color: rgb(222,222,222);
+		-webkit-border-radius: 10px;
+	}
+</style>
+<title>Phylogeny</title>
+</head>
+<body>
+<a href="../">Home</a>
+
+<h1>Phylogeny</h1>
+
+
+<ul>
+<li><a href="#background">Background reading</a></li>
+<li><a href="#lecture">Lecture</a></li>
+<li><a href="#where">Where does this taxon fit in the tree of life?</a></li>
+<li><a href="#treebase">Where are the trees?</a></li>
+<li><a href="#visualisation">Visualising phylogeny</a></li>
+<li><a href="#next">Where next?</a></li>
+</ul>
+
+<h2><a name="background"/>Background reading</h2>
+
+<table>
+<tr><td><img src="images/blogger.jpeg" width="32"/></td><td><a href="http://iphylo.blogspot.com" target="_new">iPhylo</a></td></tr>
+
+<tr><td><img src="images/blogger.jpeg" width="32"/></td><td><a href="http://biophylo.blogspot.com/" target="_new">Phylogenetic data munging</a> (Rutger Vos)</td></tr>
+
+<tr><td><img src="images/blogger.jpeg" width="32"/></td><td><a href="http://phylogenomics.blogspot.com/" target="_new">The Tree of Life</a> (Jonathan Eisen)</td></tr>
+
+<tr><td><img src="images/61i4hmVkeGL._SL500_AA300_.jpg" width="100"/></td><td><a href="http://www.amazon.co.uk/Phylogenetic-Trees-Made-Easy-How-/dp/0878936068" target="_new">Phylogenetic Trees Made Easy: A How-To Manual</a></td></tr>
+
+<tr><td><img src="images/joe.png" height="100"/></td><td><a href="http://www.amazon.co.uk/Phylogenetic-Trees-Made-Easy-How-/dp/0878936068" target="_new">Joe Felsenstein's list of phylogeny programs</a></td></tr>
+
+<tr><td><img src="images/tree_preview.png" height="100"/></td><td>Page, R. D. M. (2011). Space, time, form: viewing the Tree of Life. Trends in Ecology & Evolution. <a href="http://dx.doi.org/10.1016/j.tree.2011.12.002" target="_new">http://dx.doi.org/10.1016/j.tree.2011.12.002</a></td></tr>
+
+</table>
+
+<h2><a name="lecture"/>Lecture</h2>
+
+<div style="width:425px" id="__ss_11385274"> <strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/rdmpage/phylogeny-11385274" title="Phylogeny" target="_blank">Phylogeny</a></strong> <iframe src="http://www.slideshare.net/slideshow/embed_code/11385274" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> <div style="padding:5px 0 12px"> View more <a href="http://www.slideshare.net/" target="_blank">presentations</a> from <a href="http://www.slideshare.net/rdmpage" target="_blank">Roderic Page</a> </div> </div>
+
+<p>Most courses on phylogenies focus on getting data and building a phylogeny. Here we are going to focus on the problem of finding an existing phylogeny for a group of organisms, or generating one quickly if we can't find one. The perenial topic of phylogeny visualisation will also be discussed.</p>
+
+<h2><a name="where"/>Where does this taxon fit in the tree of life?</h2>
+
+<p>Often in the exploratory phase of a study we want to get a sense of the phylogenetic relationships of an organism. For example, we may be doing a pilot study on parasites of an organism, and want to discover the nearest relatives of those parasites (perhaps with a view to finding the hosts of those species - are they related to our host organism, or to something totally different?).</p>
+
+<p>There is no easy way to find out what we know about the phylogeny of an organism. We may try to locate it various tools such as <a href="http://eol.org" targte="_new">EOL</a> or <a href="http://tolweb.org" target="_new">Tree of Life</a>, but often the quickets thing to do is search for the taxon in <a href="http://www.ncbi.nlm.nih.gov/nuccore" target="_new">GenBank</a> and look at the publications associated with any sequences we find. Or we we can pick a sequence and find what sequences it is similar to using BLAST.</p>
+
+<h3>From BLAST to a tree</h3>
+
+<p>As an alternative to the NCBI BLAST web interface we can use the web services NCBI provide to provide a simple tool that takes a GenBank sequence and produces a tree.</p>
+
+<div>
+<iframe src="http://player.vimeo.com/video/35895870?title=0&amp;byline=0&amp;portrait=0" width="398" height="244" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+</div>
+
+<div class="example">
+<b>Tree from a sequence</b>
+<p>The <a href="http://iphylo.org/~rpage/phyloinformatics/blast/" target="_new">BLAST to tree tool</a> takes a GenBank sequence accession number, searches NCBI for similar sequences, then displays the resulting tree. It make no claims to provide a rigourous phylogenetic analysis, simply a quick way of showing you the phylogenetic context of a sequence.</p>
+
+<p>Try the tool on sequences for an organism you know about (you can find sequences via the <a href="http://www.ncbi.nlm.nih.gov/taxonomy" target="_new">NCBI taxonomy browser</a>, or try the examples below).</p>
+
+<ul>
+<li>JN709930 (<i>Aerodramus fuciphagus amechanus</i>)</li>
+<li>HM371076 (<i>Apomys datae</i>)</li>
+</ul>
+</div>
+
+
+<p>We can also use BLAST to detect taxonomic synonyms in GenBank. As we discovered in the <a href="../taxonomy">Taxonomy</a> session, GenBank sometimes has sequences from the same taxon under different names. We can also uncover possible errors in GenBank sequences, or changes in name.</p>
+
+<div class="example">
+<b>GenBank synonyms and unidentified taxa</b>
+<p>Use the <a href="http://iphylo.org/~rpage/phyloinformatics/blast/" target="_new">BLAST to tree tool</a> to build trees for the following sequences:</p>
+
+<ul>
+<li>EU375506 (<i>Parathemisto gaudichaudi</i>)</li>
+<li>DQ502910 (<i>Colostethus brunneus</i> frog)</li>
+<li>GU594648 (Hyperiidea sp. AC-2010)</li>
+<li>EU399074 (<i>Trygonoptera imitata</i>)</li>
+<li>HM902602 (Rajiformes sp. BOLD:AAB7606)</li>
+</ul>
+
+</div>
+
+
+<h2><a name="treebase"/>Where are the trees?</h2>
+
+<img src="images/treebase.png" width="400"/>
+
+<p>Given that phylogenies are fundamental to comparative biology you'd hope there was a dataabse that stored them, so that if you needed a phylogeny for, say, birds, you could retrieve the lastest tree and use it. Unfortunately we are some way from this goal. <a href="http://www.treebase.org" target="_new">TreeBASE</a> is a database of phylogenies, but it contains only a small fraction of published evolutionary trees.</p>
+
+<p>This diagram shows the disparity been the number of papers published on molecular phylogeny each year and the number of phylogenies deposited in TreeBASE:</p>
+<div>
+<img src="images/wos.png" width="400"/>
+</div>
+
+<p>Another problem with TreeBASE is that its search interface is not terribly intuitive (see <a href="http://iphylo.blogspot.com/2010/05/treebase-ii-makes-me-pull-my-hair-out.html" target="_new">TreeBASE II makes me pull my hair out</a> for some examples).</p>
+
+<div class="example">
+<b>Finding trees in TreeBASE</b>
+<p>Go to <a href="http://www.treebase.org" target="_new">TreeBASE</a> and search for the phylogeny of a group of organisms. Did you find a tree for the taxa you are interested in?</p>
+</div>
+
+
+<h3>Browsing TreeBASE</h3>
+
+<p>One of the challenges posed by a database like TreeBASE is getting an overview of what it contains. If the data was geographic, for example, we could plot it on a map and see where the data came from, which parts of the world were well studied versus those that were underepresented, etc. How can we do this for phylogenies?</p>
+
+<p>I've put together demo of one approach to this problem. The demo uses the NCBI taxonomy as its reference classification, then takes a tree from TreeBASE and works out what the tree is mainly "about" (e.g., is it a tree of birds, frog, or fungi). It then places the tree in the appropriate place on the NCBI classiifcation. In this way we can quickly get a sense of the taxonomic coverage of TreeBASE.</p>
+
+
+<div class="example">
+<b>Browsing TreeBASE</b>
+<div>
+<img src="images/browser.png" width="400"/>
+</div>
+<p>Go to <a href="http://iphylo.org/~rpage/phyloinformatics/treebase/" target="_new">http://iphylo.org/~rpage/phyloinformatics/treebase/</a> and browse TreeBASE. If you mouse over a vertical line you will see the name of the study appear in a popup. Click on the vertical bar and you can see the tree.</p>
+
+<p>Some possible questions:</p>
+<ul>
+<li>How even is the the taxonomic coverage in TreeBASE?</li>
+<li>How many trees are available for your favourite group of organisms?</li>
+<li>What are the pros and cons of using the NCBI taxonomy as the backbone of the browser?</li>
+</ul>
+
+<p>Lastly, is this a useful visualisation? What is it missing? Are there other ways of browsing a database of trees that you'd like to see implemented?</p>
+
+</div>
+
+<h2><a name="visualisation"/>Visualising phylogeny</h2>
+
+<img src="images/wall.jpeg" width="400"/>
+
+<p>For a (somewhat biased) overview of phylogenetic visualisation see my talk at VIZBI (you should also check out the other VIZBI talks on Vimeo, see <a href="http://vimeo.com/vizbi" target="_new">http://vimeo.com/vizbi</a>).</p>
+
+<iframe src="http://player.vimeo.com/video/26210611?title=0&amp;byline=0&amp;portrait=0" width="398" height="224" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<!--
+<video width="400" controls="controls">
+  <source src="movies/ito.m4v" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+-->
+
+<h3>3D viewers</h3>
+
+<p>A number 3D phylogeny viewers have been developed, such as:</p>
+<ul>
+<li><a href="http://digitised.info/content/view/15/42/" target="_new">Phylo3D</a></li>
+<li><a href="http://loco.biosci.arizona.edu/paloverde/paloverde.html" target="_new">Paloverde</a></li>
+<li><a href="http://www.wellcometreeoflife.org/" target="_new">Wellcome Trust Tree of Life</a></li>
+</ul>
+<div>
+<video width="400" controls="controls">
+  <source src="movies/p.m4v" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+</div>
+<div>
+<video width="400" controls="controls">
+  <source src="movies/wellcome.mov" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+</div>
+
+<p>I'm skeptical about the utility 3D viewers, see for example <a href="http://iphylo.blogspot.com/2011/02/why-3d-phylogeny-viewers-don-work.html" target="_new">Why 3D phylogeny viewers don't work</a>. Matt Yoder has mounted a vigorous defense, see <a href="http://cyphy.blogspot.com/2011/02/you-are-in-maze-of-twisty-little.html" target="_new">You are in a maze of twisty little passages, all alike</a>).
+
+
+<h3>Future trends in viualisation</h3>
+
+<p>Viewing very large trees remains one of the great challenges in phylogeny visualisation. One direction that seems promising is the "tile and zoom" interface familiar to anyone using Google Maps. A naive approach is to zoom in and out of trees in the same way as a map, but this doesn't take into account the shape of the tree.</p>
+
+<div>
+<iframe src="http://player.vimeo.com/video/20379533?title=0&amp;byline=0&amp;portrait=0" width="398" height="363" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+</div>
+
+<p>If we constrain the way the tree is zoomed we get a better effect:</p>
+
+<div>
+<iframe src="http://player.vimeo.com/video/20477986?title=0&amp;byline=0&amp;portrait=0" width="398" height="491" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+</div>
+
+<p>Live versions of this viewer can be seen at <a href="http://iphylo.org/~rpage/deeptree/" target="_new">http://iphylo.org/~rpage/deeptree/</a></p>
+
+
+<p>Another promising direction is the use of touchscreen interfaces. Previously confined to research labs, the advent of the iPad and iPhone has made this technology ubiquitous.</p>
+<div>
+<video width="400" controls="controls">
+  <source src="movies/CollaborativeTreeComparison1.mp4" type="video/quicktime" />
+  Your browser does not support the video tag.
+</video>
+</div>
+
+
+<h2><a name="next"/>Where next?</h2>
+
+<p>We badly need a comprehensive, easy to use database of evolutionary trees.</p>
+
+<p>One strength of TreeBASE is that it makes its data avialble via an API. This means that people can write programs in their own favourite language. For example, if R is your thing, then this a package for TreeBASE (see the <a href="http://www.r-bloggers.com/treebase-in-r-a-first-tutorial/" target="_new">tutorial</a>, and you can get the package from <a href="http://cran.r-project.org/web/packages/treebase/" target="_new"> CRAN</a>).</p>
+
+<p>It is difficult to find the answers to very basic phylogenetic questions, such as "what is the phylogeny of taxon <i>x</i>?", or "where are the gaps in our phylogenetic knowledge?".</p>
+
+<p>Relatively few phylogenies end up in public databases. Why is this, and what can we do about it?</p>
+
+<p>Visualisation of phylogenies on the web is still unsatisfactory. There is also an opportunity to develop interactive displays of phylogenies within journal articles. Many trees are now too big to print on a single article page. Computer screens (in most cases) aren't any bigger, but the ability to zoom in and out of a tree, or distort the space in which it is drawn should enable us to explore the whole tree. The trick is to find a way of doing this that doesn't confuse more than it helps.</p>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'phyloinformatics'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>

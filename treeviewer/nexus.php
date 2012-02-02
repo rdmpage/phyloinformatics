@@ -325,7 +325,7 @@ class Scanner
 			}			
 			$this->pos++;
 		}
-
+		$this->pos--;
 		return true;
 	}
 	
@@ -519,23 +519,47 @@ function parse_nexus($str)
 						$treeblock->translations = new stdclass;
 					}
 					$treeblock->translations->translate = array();
-					$curnode = 0;
-					while ($nx->token != TokenTypes::SemiColon)
+					
+					$done = false;
+					while (!$done && ($nx->error == NexusError::ok))
 					{
 						$t = $nx->GetToken();
-						switch ($t)
+						
+						if (in_array($t, array(TokenTypes::Number, TokenTypes::String, TokenTypes::QuotedString)))
 						{
-							case TokenTypes::Number:
-								$curnode = $nx->buffer;
-								break;
-							case TokenTypes::String:
-							case TokenTypes::QuotedString:
-								$treeblock->translations->translate[$curnode] = $nx->buffer;
-								break;
-							default:
-								break;
+							$otu = $nx->buffer;
+							$t = $nx->GetToken();
+							
+							if (in_array($t, array(TokenTypes::Number, TokenTypes::String, TokenTypes::QuotedString)))
+							{
+								$treeblock->translations->translate[$otu] = $nx->buffer;
+								
+								$t = $nx->GetToken();
+								switch ($t)
+								{
+									case TokenTypes::Comma:
+										break;
+										
+									case TokenTypes::SemiColon:
+										$done = true;
+										break;
+										
+									default:
+										$nx->error = NexusError::syntax;
+										break;
+								}
+							}
+							else
+							{
+								$nx->error = NexusError::syntax;
+							}
 						}
-					}		
+						else
+						{
+							$nx->error = NexusError::syntax;
+						}
+					}					
+					
 					$command = $nx->GetCommand();
 					break;
 					
