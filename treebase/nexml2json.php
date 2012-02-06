@@ -21,7 +21,6 @@ function get_span(&$tree)
 	{
 		$tree->classification->span[] = (Integer)$v;
 	}
-	$tree->classification->span = array_values(array_unique($tree->classification->span));
 	
 	// What is tree about?
 	// Get majority rule taxon
@@ -84,7 +83,10 @@ function get_span(&$tree)
 		$lca = array_pop($stack);
 	}
 	
-	
+	// Now make span comprise just unique taxa. We don't do this above because we want to take
+	// the relavtive frequencies of each tax_id into account when computing majority_taxon
+	$tree->classification->span = array_values(array_unique($tree->classification->span));
+
 	
 		
 	$tree->classification->lca = $lca;
@@ -95,7 +97,7 @@ function get_span(&$tree)
 //--------------------------------------------------------------------------------------------------
 function parse_nexml($xml)
 {	
-	$xml = str_replace('xmlns="http://www.nexml.org/1.0"', '', $xml);
+	//$xml = str_replace('xmlns="http://www.nexml.org/1.0"', '', $xml);
 	$xml = str_replace('xmlns="http://www.nexml.org/2009"', '', $xml);
 	
 	
@@ -714,6 +716,7 @@ function nex2json($xml)
 		
 		// To SQL
 		
+		
 		if (isset($j->classification))
 		{
 			
@@ -728,12 +731,13 @@ function nex2json($xml)
 		
 			echo $sql;
 		}
+	
 	}
 
 }
 
 
-if (0)
+if (1)
 {
 	
 	
@@ -750,6 +754,9 @@ if (0)
 	
 	$filename = '/Users/rpage/Sites/nexml/nexml/S10135.xml'; // 0 taxids (sigh)
 	$filename = '/Users/rpage/Sites/nexml/nexml/S2108.xml'; //
+	$filename = '/Users/rpage/Sites/nexml/nexml/S2014.xml'; //
+	$filename = '/Users/rpage/Sites/nexml/nexml/S11742.xml'; //
+
 	
 	$xml = file_get_contents($filename);
 	
@@ -763,7 +770,7 @@ else
 	
 	foreach ($files as $filename)
 	{
-		if (preg_match('/S[6-9](.*)\.xml$/', $filename))
+		if (preg_match('/S1[1,2][0-9]{3}\.xml$/', $filename))
 		{	
 			$xml = file_get_contents($basedir . '/' . $filename);
 			

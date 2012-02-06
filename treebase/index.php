@@ -23,7 +23,7 @@ $tax_id = 8342; // anura
 $tax_id=40674; // mammals
 $tax_id=9722; // cetaceans
 $tax_id=32523; // tetrapods
-$tax_id=33316; // Coelomata
+$tax_id=41666; 
 
 
 if (isset($_GET['tax_id']))
@@ -84,8 +84,9 @@ echo '<!DOCTYPE html>
 					}
 					if (data.identifiers.treebase2)
 					{
-						html += \' <a href="http://purl.org/phylo/treebase/phylows/study/TB2:\' + data.identifiers.treebase2 + \'?format=html" target="_new">\' + data.identifiers.treebase2 + \'</a>\';
+						html += \' [<a href="http://purl.org/phylo/treebase/phylows/study/TB2:\' + data.identifiers.treebase2 + \'?format=html" target="_new">\' + data.identifiers.treebase2 + \'</a>]\';
 					}
+					html += \' [<a href="http://purl.org/phylo/treebase/phylows/study/TB2:\' + data.identifiers.treebase2 + \'?format=nexus" target="_new">NEXUS</a>]\';
 					$("#study").html(html);
 				}
 			}
@@ -119,7 +120,7 @@ echo '<!DOCTYPE html>
 
 // dimensions
 
-$tb_width = 600;
+$tb_width = 500;
 $tb_height = 500;
 
 // get span
@@ -159,10 +160,10 @@ if ($result->NumRows() == 1)
 	echo '<div style="position:relative;">';
 
 	
-	echo '<div style="width:' . $tb_width . 'px;height:' . $tb_height . 'px;background-color:whitesmoke;">';
+	echo '<div style="width:' . $tb_width . 'px;height:' . $tb_height . 'px;background-color:whitesmoke;border:1px solid rgb(128,128,128);overflow:auto;">';
 	
 	
-	
+	// NCBI tree
 	echo '<div id="' . $result->fields['tax_id'] . '" style="position:absolute;'
 		. 'left:0px;top:0px;width:30px;height:' . $tb_height . 'px;background-color:white;">';
 		
