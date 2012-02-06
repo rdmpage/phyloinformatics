@@ -1,0 +1,6 @@
+Accession	Organism	Host
+EF514921	Nematoda sp. Ortega B21-A5	Achatina fulica (giant African snail)
+EU283903	Leucoagaricus gongylophorus	Acromyrmex octospinosus ST040116-01
+FJ417069	Palliatus indecorus	Alepocephalus bairdii (Baird's smooth-head)
+EU180624	Toxoplasma gondii	Alaska Sea otter (Enhydra lutris kenyoni)
+EF120601	Candida maltosa	Alaus myops (Elateridae)

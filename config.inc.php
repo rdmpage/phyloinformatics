@@ -11,6 +11,8 @@
 
 global $config;
 
+// Date timezone
+date_default_timezone_set('Europe/London');
 
 // Proxy settings for connecting to the web---------------------------------------------------------
 
@@ -23,8 +25,7 @@ $config['proxy_port'] 	= '8080';
 
 // Keys---------------------------------------------------------------------------------------------
 $config['bing_appid'] 		= 'F83F42E3B9C6AF8DD04675AC16C481DB744AAD0A';
+$config['uBio_key'] 		='b751aac2219cf30bcf3190d607d7c9494d87b77c'; 
 
 
-
-	
 ?>
