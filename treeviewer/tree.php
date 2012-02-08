@@ -124,6 +124,18 @@ class Node
 	function GetLabel() { return $this->label; }	
 	
 	//----------------------------------------------------------------------------------------------
+	// If node is sibling get node immediately preceding it ("to the left")
+	function GetLeftSibling()
+	{
+		$q = $this->ancestor->child;
+		while ($q->sibling != $this)
+		{
+			$q = $q->sibling;
+		}
+		return $q;
+	}
+	
+	//----------------------------------------------------------------------------------------------
 	function GetRightMostSibling()
 	{
 		$p = $this;
@@ -138,6 +150,18 @@ class Node
 
 	//----------------------------------------------------------------------------------------------
 	function GetSibling() { return $this->sibling; }	
+	
+	//----------------------------------------------------------------------------------------------
+	function IsChild()
+	{
+		$is_child = false;
+		$q = $this->ancestor;
+		if ($q)
+		{
+			$is_child = ($q->child == $this);
+		}
+		return $is_child;
+	}
 	
 	//----------------------------------------------------------------------------------------------
 	function SetAncestor($p)
@@ -1603,7 +1627,8 @@ class PhylogramTreeDrawer extends RectangleTreeDrawer
 //-------------------------------------------------------------------------------------------------
 class KmlTreeDrawer extends RectangleTreeDrawer
 {
-	var $altitudeFactor = 20000.0;
+	var $altitudeFactor = 10000.0;
+	var $kml = '';
 	
 	
 	//----------------------------------------------------------------------------------------------
@@ -1614,8 +1639,15 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 
 		$lat2 = deg2rad($p->GetChild()->GetRightMostSibling()->GetAttribute('lat'));
 		$long2 = deg2rad($p->GetChild()->GetRightMostSibling()->GetAttribute('long'));
-		
-		$d = acos(sin($lat1)*sin($lat2)+cos($lat1)*cos($lat2)*cos($long1-$long2));
+				
+		if (($lat1 == $lat2) && ($long1 == $long2))
+		{
+			$d = 0.0;
+		}
+		else
+		{
+			$d = acos(sin($lat1)*sin($lat2)+cos($lat1)*cos($lat2)*cos($long1-$long2));
+		}
 	
 		if ($d == 0.0)
 		{
@@ -1648,8 +1680,6 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 		{
 			$p->SetAttribute('altitude', $p->GetAttribute('weight') * $this->altitudeFactor);
 		}
-		
-	
 	}
 	
 	//----------------------------------------------------------------------------------------------
@@ -1722,15 +1752,15 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 		{	
 			if ($curnode->GetChild())
 			{
-				echo "<Folder>\n";
+				$this->kml .= "<Folder>\n";
 				
 				if ($curnode == $this->t->GetRoot())
 				{
-					echo "<name>Tree</name>\n";
+					$this->kml .=  "<name>Tree</name>\n";
 				}
 				else if ($curnode->GetLabel())
 				{
-					echo "<name>" . $curnode->GetLabel() . "</name>\n";
+					$this->kml .=  "<name>" . $curnode->GetLabel() . "</name>\n";
 				}
 				
 				if ($curnode->IsLeaf())
@@ -1747,7 +1777,7 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 			}
 			else
 			{
-				echo "<Folder>\n";
+				$this->kml .=  "<Folder>\n";
 				if ($curnode->IsLeaf())
 				{	
 					$this->DrawLeaf($curnode);
@@ -1756,12 +1786,11 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 				{
 					$this->DrawInternal($curnode);
 				}
-				echo "</Folder>\n";	
-					
-					
+				$this->kml .=  "</Folder>\n";	
+										
 				while (!empty($stack) && ($curnode->GetSibling() == NULL))
 				{
-					echo "</Folder>\n";	
+					$this->kml .=  "</Folder>\n";	
 					$curnode = array_pop($stack);
 					
 				}
@@ -1780,28 +1809,90 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 	}
 	
 	//----------------------------------------------------------------------------------------------
+	// Code implicatly assumed tree is binary. If we have a polytomy we will have orphan nodes that
+	// have vertical lines that don't have a horizontal connection (the left and right children will
+	// be connected). Draw a line to connect these orphans to their ancestor
+	//
+	// Note use of !== to avoid "Nesting level too deep - recursive dependency?"
+	// see http://www.richardlord.net/blog/php-nesting-level-too-deep-recursive-dependency
+	//
+	function PolytomyFix($p)
+	{
+		$q = $p->GetAncestor();
+		if ($q)
+		{
+			if ($p !== $q->GetChild() && $p !==  $q->GetChild()->GetRightMostSibling())
+			{
+				// p is part of a polytomy, so we need to draw an additional arc connecting it to ancestor
+				
+				$lat1 = deg2rad($p->GetAttribute('lat'));
+				$long1 = deg2rad($p->GetAttribute('long'));
+		
+				$lat2 = deg2rad($q->GetAttribute('lat'));
+				$long2 = deg2rad($q->GetAttribute('long'));
+
+				if (($lat1 == $lat2) && ($long1 == $long2))
+				{
+					$d = 0.0;
+				}
+				else
+				{
+					$d = acos(sin($lat1)*sin($lat2)+cos($lat1)*cos($lat2)*cos($long1-$long2));
+				}
+			
+				if ($d == 0.0)
+				{
+					// do nothing
+				}
+				else
+				{
+					// arc from top of this node to bottom of ancestor node
+					for ($frac = 0.0; $frac <= 1.0; $frac+= 0.1)
+					{
+						$A =sin((1-$frac)*$d)/sin($d);
+						$B =sin($frac*$d)/sin($d);
+						$x = $A*cos($lat1)*cos($long1) +  $B*cos($lat2)*cos($long2);
+						$y = $A*cos($lat1)*sin($long1) +  $B*cos($lat2)*sin($long2);
+						$z = $A*sin($lat1)            +  $B*sin($lat2);
+						$lat=atan2($z,sqrt($x*$x+$y*$y));
+						$long=atan2($y,$x);
+						
+						$this->kml .=  rad2deg($long) . "," . rad2deg($lat) . "," . $q->GetAttribute('altitude') . "\n";
+					}
+				
+					
+				}				
+			}
+		}
+	
+	}
+	
+	//----------------------------------------------------------------------------------------------
 	function DrawLeaf($p)
 	{
-		echo "<Placemark>\n";
-		echo "<styleUrl>#treeLine</styleUrl>\n";
-		echo "<LineString>\n";
-		echo "<altitudeMode>absolute</altitudeMode>\n";
-		echo "<coordinates>\n";
-		echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
-		echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";
-		echo "</coordinates>\n";
-		echo "</LineString>\n";
-		echo "</Placemark>\n";
+		$this->kml .=  "<Placemark>\n";
+		$this->kml .=  "<styleUrl>#treeLine</styleUrl>\n";
+		$this->kml .=  "<LineString>\n";
+		$this->kml .=  "<altitudeMode>absolute</altitudeMode>\n";
+		$this->kml .=  "<coordinates>\n";
+		$this->kml .=  $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
+		$this->kml .=  $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";
+		
+		$this->PolytomyFix($p);		
+		
+		$this->kml .=  "</coordinates>\n";
+		$this->kml .=  "</LineString>\n";
+		$this->kml .=  "</Placemark>\n";
 	}
 
 	//----------------------------------------------------------------------------------------------
 	function DrawInternal($p)
 	{
-		echo "<Placemark>\n";
-		echo "<styleUrl>#treeLine</styleUrl>\n";
-		echo "<LineString>\n";
-		echo "<altitudeMode>absolute</altitudeMode>\n";
-		echo "<coordinates>\n";
+		$this->kml .=  "<Placemark>\n";
+		$this->kml .=  "<styleUrl>#treeLine</styleUrl>\n";
+		$this->kml .=  "<LineString>\n";
+		$this->kml .=  "<altitudeMode>absolute</altitudeMode>\n";
+		$this->kml .=  "<coordinates>\n";
 		
 		$lat1 = deg2rad($p->GetChild()->GetAttribute('lat'));
 		$long1 = deg2rad($p->GetChild()->GetAttribute('long'));
@@ -1809,13 +1900,21 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 		$lat2 = deg2rad($p->GetChild()->GetRightMostSibling()->GetAttribute('lat'));
 		$long2 = deg2rad($p->GetChild()->GetRightMostSibling()->GetAttribute('long'));
 		
-		$d = acos(sin($lat1)*sin($lat2)+cos($lat1)*cos($lat2)*cos($long1-$long2));
+		
+		if (($lat1 == $lat2) && ($long1 == $long2))
+		{
+			$d = 0.0;
+		}
+		else
+		{
+			$d = acos(sin($lat1)*sin($lat2)+cos($lat1)*cos($lat2)*cos($long1-$long2));
+		}
 	
 		if ($d == 0.0)
 		{
 			// descendants are on same spot
-			echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
-			echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";
+			$this->kml .=  $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
+			$this->kml .=  $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";
 		}
 		else
 		{
@@ -1829,7 +1928,7 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 				$lat=atan2($z,sqrt($x*$x+$y*$y));
 				$long=atan2($y,$x);
 				
-				echo rad2deg($long) . "," . rad2deg($lat) . "," . $p->GetAttribute('altitude') . "\n";
+				$this->kml .=  rad2deg($long) . "," . rad2deg($lat) . "," . $p->GetAttribute('altitude') . "\n";
 				
 				
 				if ($frac == 0.5)
@@ -1837,15 +1936,18 @@ class KmlTreeDrawer extends RectangleTreeDrawer
 					// Draw clade stem
 					if ($p->GetAncestor())
 					{
-						echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";					
-						echo $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
+						$this->kml .= $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAncestor()->GetAttribute('altitude') . "\n";					
+						$this->kml .= $p->GetAttribute('long') . "," . $p->GetAttribute('lat') . "," . $p->GetAttribute('altitude') . "\n";
 					}
 				}
 			}
 		}
-		echo "</coordinates>\n";
-		echo "</LineString>\n";
-		echo "</Placemark>\n";
+		
+		$this->PolytomyFix($p);
+		
+		$this->kml .=  "</coordinates>\n";
+		$this->kml .=  "</LineString>\n";
+		$this->kml .=  "</Placemark>\n";
 	}
 
 	//----------------------------------------------------------------------------------------------
