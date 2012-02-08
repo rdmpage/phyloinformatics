@@ -86,7 +86,7 @@ directed 1
 //--------------------------------------------------------------------------------------------------
 function extract_table ($table_text)
 {
-	$rows = explode("\n", $table_text);
+	$rows = explode("\n", trim($table_text));
 	
 	$format = 'csv';
 	
