@@ -21,16 +21,47 @@ $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 
 $id = $_GET['id'];
 
+$format = 'svg';
+
+if (isset($_GET['format']))
+{
+	$format = $_GET['format'];
+	
+	switch ($format)
+	{
+		case 'nexus':
+		case 'svg':
+			break;
+			
+		default:
+			$format = 'svg';
+			break;
+	}
+}
+
 $sql = 'SELECT tree FROM treebase WHERE id=' . $db->qstr($id) . ' LIMIT 1';
 
 $result = $db->Execute($sql);
 if ($result == false) die("failed [" . __FILE__ . ":" . __LINE__ . "]: " . $sql);
 
-$obj = parse_nexus($result->fields['tree']);
-$svg = tree2svg($obj, 600, 400, 300, 10, false, 'translate' );		
+$nexus = $result->fields['tree'];
 
-header('Content-type: image/svg+xml');
-echo $svg;
+switch ($format)
+{
+	case 'nexus':
+		header('Content-type: text/plain');
+		echo $nexus;	
+		break;
+		
+	case 'svg':
+	default:
+		$obj = parse_nexus($nexus);
+		$svg = tree2svg($obj, 600, 400, 300, 10, false, 'translate' );		
+		
+		header('Content-type: image/svg+xml');
+		echo $svg;
+		break;
+}
 
 
 ?>

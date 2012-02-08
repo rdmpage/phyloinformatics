@@ -87,6 +87,7 @@ echo '<!DOCTYPE html>
 						html += \' [<a href="http://purl.org/phylo/treebase/phylows/study/TB2:\' + data.identifiers.treebase2 + \'?format=html" target="_new">\' + data.identifiers.treebase2 + \'</a>]\';
 					}
 					html += \' [<a href="http://purl.org/phylo/treebase/phylows/study/TB2:\' + data.identifiers.treebase2 + \'?format=nexus" target="_new">NEXUS</a>]\';
+					html += \' [<a href="get_tree.php?id=\' + id + \'&format=nexus" target="_new">tree</a>]\';
 					$("#study").html(html);
 				}
 			}
