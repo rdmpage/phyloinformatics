@@ -19,30 +19,32 @@ function tree2kml($obj, $default_labels='taxa')
 	// raw labels (OTUs)
 //	$port->StartGroup('otu', (('otu' == $default_labels) || !isset($obj->translations)) );
 
+	$kml = '';
 
-	echo "<?xml version =\"1.0\" encoding=\"UTF-8\"?>\n";
-	echo "<kml xmlns=\"http://earth.google.com/kml/2.1\">\n";
-    echo "<Document>\n";
+	$kml .= "<?xml version =\"1.0\" encoding=\"UTF-8\"?>\n";
+	$kml .= "<kml xmlns=\"http://earth.google.com/kml/2.1\">\n";
+    $kml .= "<Document>\n";
 	
-	echo "<Style id=\"treeLine\">\n";
-    echo "<LineStyle><color>7fffffff</color><width>2</width></LineStyle>\n";
-	echo "</Style>\n";
+	$kml .= "<Style id=\"treeLine\">\n";
+    $kml .= "<LineStyle><color>7fffffff</color><width>2</width></LineStyle>\n";
+	$kml .= "</Style>\n";
 	
-	echo "<Style id=\"whiteBall\">\n";
-	echo "<IconStyle>\n";
-	echo "<Icon>\n";
-	echo "<href>http://iphylo.org/~rpage/phyloinformatics/images/whiteBall.png</href>\n";
-	echo "</Icon>\n";
-	echo "</IconStyle>\n";
-	echo "<LineStyle>\n";
-	echo "<width>2</width>\n";
-	echo "</LineStyle>\n";
-	echo "</Style>\n";
+	$kml .= "<Style id=\"whiteBall\">\n";
+	$kml .= "<IconStyle>\n";
+	$kml .= "<Icon>\n";
+	$kml .= "<href>http://iphylo.org/~rpage/phyloinformatics/images/whiteBall.png</href>\n";
+	$kml .= "</Icon>\n";
+	$kml .= "</IconStyle>\n";
+	$kml .= "<LineStyle>\n";
+	$kml .= "<width>2</width>\n";
+	$kml .= "</LineStyle>\n";
+	$kml .= "</Style>\n";
 	
 	$td->Draw(null);	
+	$kml .= $td->kml;
 
-	echo "<Folder>\n";
-	echo "<name>Labels</name>\n";
+	$kml .= "<Folder>\n";
+	$kml .= "<name>Labels</name>\n";
 	
 	// labels
 	$ni = new NodeIterator ($t->getRoot());
@@ -53,24 +55,26 @@ function tree2kml($obj, $default_labels='taxa')
 	{	
 		if ($q->IsLeaf ())
 		{
-			echo "<Placemark>\n";
-			echo "<name>" .  $q->Getlabel() . "</name>\n";
-			echo "<styleUrl>#whiteBall</styleUrl>\n";
-			echo "<Point>\n";
-			echo "<altitudeMode>absolute</altitudeMode>\n";
-			echo "<extrude>1</extrude>\n";
-			echo "<coordinates>\n";
-			echo $q->GetAttribute('long') . "," . $q->GetAttribute('lat') . "," . $q->GetAttribute('altitude') . "\n";
-			echo "</coordinates>\n";
-			echo "</Point>\n";
-			echo "</Placemark>\n";
+			$kml .= "<Placemark>\n";
+			$kml .= "<name>" .  $q->Getlabel() . "</name>\n";
+			$kml .= "<styleUrl>#whiteBall</styleUrl>\n";
+			$kml .= "<Point>\n";
+			$kml .= "<altitudeMode>absolute</altitudeMode>\n";
+			$kml .= "<extrude>1</extrude>\n";
+			$kml .= "<coordinates>\n";
+			$kml .= $q->GetAttribute('long') . "," . $q->GetAttribute('lat') . "," . $q->GetAttribute('altitude') . "\n";
+			$kml .= "</coordinates>\n";
+			$kml .= "</Point>\n";
+			$kml .= "</Placemark>\n";
 		}		
 		$q = $ni->Next();
 	}
-	echo "</Folder>\n";
+	$kml .= "</Folder>\n";
 	
-    echo "</Document>\n";
-    echo "</kml>\n";
+    $kml .= "</Document>\n";
+    $kml .= "</kml>\n";
+    
+    echo $kml;
 
 
 	
