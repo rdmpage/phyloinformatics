@@ -1,0 +1,12 @@
+Makefile
+Makefile.in
+configure
+config.status
+*.log
+aclocal*
+missing
+depcomp
+install-sh
+.deps/
+autom4te.cache/
+matching
