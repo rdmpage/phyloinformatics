@@ -1,0 +1,45 @@
+Lesson plan
+============
+
+-linking data
+
+-role of identifiers (DOI demo, say in Mendeley)
+
+-text mining (example from  FOA, WordTree)
+
+NCBI as host-parasite database
+
+
+
+
+
+Exercises
+=========
+
+Google Refine, demo of tool and reconcilaition, then get them to do it.
+
+Create example using host-parasite data from NCBI
+
+
+Regular expressions demo (get them to try some)
+
+Show specimen code extractor as example (maybe get them to write regyular expression to match specimens)
+
+
+Using regular expressions in Google Refine
+
+
+Get table of data from paper, edit in Google Refine (maybe via matching first)
+
+Create KML file
+
+
+Make word tree of paper titles
+
+
+
+
+
+
+
+

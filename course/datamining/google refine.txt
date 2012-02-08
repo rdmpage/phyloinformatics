@@ -1,0 +1,96 @@
+Google Refine
+=============
+
+
+1. Reconciliation service API now works
+
+2. To extract ids from cells go
+
+-click on reconciled column and choose Edit column->Add column based on this column
+-enter cell.recon.match.id into the "Expression" box
+-click OK
+
+the ids will apear in the new column
+
+(use cell.recon.match.name if you want the text match)
+
+
+
+Get table from Elsevier paper http://dx.doi.org/10.1016/j.ympev.2009.07.011
+
+Use Table download app
+
+Grab text and tweak
+
+Clean up and get lats longs
+
+Make KML tree [need tool to take taxa, lats and longs, and make tree]
+
+Copy from TreeBASE SVGS.
+
+Craugastor tabasarae MVUP 1720
+Craugastor cf. longirostris FMNH 257678
+Craugastor cf. longirostris FMNH 257561
+Craugastor cf. podiciferus FMNH 257672
+Craugastor cf. podiciferus MVZ 149813
+Craugastor cf. podiciferus UCR 16361
+Craugastor cf. podiciferus FMNH 257670
+Craugastor cf. podiciferus FMNH 257669
+Craugastor cf. podiciferus UCR 16355
+Craugastor cf. podiciferus UCR 16354
+Craugastor cf. podiciferus UCR 16353
+Craugastor cf. podiciferus FMNH 257671
+Craugastor cf. podiciferus FMNH 257673
+Craugastor cf. podiciferus UTA A 52449
+Craugastor cf. podiciferus UCR 16356
+Craugastor cf. podiciferus UCR 16358
+Craugastor cf. podiciferus UCR 16357
+Craugastor cf. podiciferus UCR 17462
+Craugastor cf. podiciferus UCR 17469
+Craugastor cf. podiciferus FMNH 257596
+Craugastor cf. podiciferus FMNH 257595
+Craugastor cf. podiciferus UCR 17439
+Craugastor cf. podiciferus UCR 17442
+Craugastor cf. podiciferus UCR 17441
+Craugastor cf. podiciferus UCR 17443
+Craugastor cf. podiciferus UCR 18062
+Craugastor cf. podiciferus MVZ 164825
+Craugastor cf. podiciferus FMNH 257653
+Craugastor cf. podiciferus FMNH 257550
+Craugastor cf. podiciferus FMNH 257757
+Craugastor cf. podiciferus FMNH 257756
+Craugastor cf. podiciferus FMNH 257652
+Craugastor cf. podiciferus FMNH 257651
+Craugastor cf. podiciferus FMNH 257755
+Craugastor cf. podiciferus FMNH 257758
+Craugastor cf. podiciferus UCR 16360
+Craugastor cf. podiciferus UCR 16359
+Craugastor sp. A USNM 563039
+Craugastor sp. A USNM 563040
+Craugastor sp. A AJC 0891
+Craugastor sp. A AJC 0890
+Craugastor sp. A FMNH 257689
+Craugastor sp. A FMNH 257562
+Craugastor stejnegerianus UCR 16332
+Craugastor bransfordii MVUP 1875
+Craugastor underwoodi UCR 16315
+Craugastor underwoodi USNM 56140
+
+split on comma
+
+regular expression to get latitude
+
+(toNumber(match(value,/\((\d+)°(\d+)(.*)[S|N]/)[0])
++ toNumber(match(value,/\((\d+)°(\d+)(.*)(S|N)/)[1])/60)
+* toNumber(if(match(value,/\((\d+)°(\d+)(.*)([S|N])/)[3] == 'N',1,-1))
+
+- longitude
+
+(toNumber(match(value,/\s(\d+)°(\d+)(.*)([W|E])(.*)/)[0])
++ toNumber(match(value,/\s(\d+)°(\d+)(.*)([W|E])(.*)/)[1])/60)
+* toNumber(if(match(value,/\s(\d+)°(\d+)(.*)([W|E])(.*)/)[3] == 'E',1,-1))
+
+----
+host-parasite name extraction?
+
+maybe to generate patterns of host-association connecting phrases... word tree....?

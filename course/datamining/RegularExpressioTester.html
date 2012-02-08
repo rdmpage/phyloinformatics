@@ -1,0 +1,362 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+	<HEAD>
+		<TITLE>Regular Expression Tester</TITLE>
+		<style type="text/css">
+			body {font-family:Verdana,sans-serif;font-size:smaller}
+			table {font-size:100%}
+			td {padding: 0em 1em 0em 1em}
+			pre {background-color:gray}
+			a.noUnderline {text-decoration:none}
+			.selected {background-color:blue;color:white;font-family:Lucida Console,Courier New,serif}
+			.notSelected {background-color:#e0e0e0;color:blue;font-family:Lucida Console,Courier New,serif}
+			.output {padding:5px;background-color:#e0e0e0}
+			.notdisplayed {display:none}
+			.valign {vertical-align:middle}
+			.floating {float:left}
+			.afterfloat {clear:left}
+			.invisible {visibility:hidden;vertical-align:middle}
+		</style>
+	</HEAD>
+	<BODY>
+		<form name="form1" method="post" action="regexp.aspx" id="form1">
+<input type="hidden" name="__VIEWSTATE" value="dDwtNjU0MzcyMTk1Ozs+eDid/InONiI2kiwZ2IS38ANHsJo=" />
+
+			<H3>Regular Expression Tester</H3>
+			<p>This page uses the regular expression parser in your browser's
+				implementation of JavaScript.&#160; This page should work with any browser
+				that obeys the DOM, and Internet
+				Explorer.<a href="#apology" class="noUnderline">*</a>&#160; If you're looking
+				for a .NET Regex tester, there's a crackerjack one
+				<a href="http://www.dotnetcoders.com/web/Learning/Regex/RegexTester.aspx">
+				here</a>.</p>
+			<P>&#160;</P>
+			<P>Test String:<BR />
+				<INPUT id="TestStrBox" size="80" /></P>
+			<div>
+				<div class="floating">Pattern:<BR />
+					<strong>/</strong><INPUT id="PatternBox" size="60" />
+				</div>
+				<div class="floating">
+					Options:<br /><strong>/</strong><INPUT id="PatternOptionsBox" size="4" />
+				</div>
+			</div>
+			<br />
+			<div class="afterfloat">
+				<br /><INPUT type="button" value="Test" id="GoButton" onclick="Go();" />
+			</div>
+			<P>&#160;</P>
+			<div id="hideme" class="notdisplayed">
+				Original string:<br /><br />
+				<!-- This next line must not be broken, because the extra whitespace would
+				be undesirable. -->
+				<span class="output"><span id="beforeText" class="notSelected"></span><span id="captureText" class="selected"></span><span id="afterText" class="notSelected"></span></span>
+				<br /><br /><br />
+				<div id="captureLabel"></div><br />
+				<div id="captureContainer"></div>
+			</div>
+			<P>&#160;</P>
+			<H3>Tips</H3>
+			<div>
+				<div style="width:43%;float:left">
+					<table border="1">
+						<tr valign="top">
+							<th>
+								Expression</th><th>Matches</th></tr>
+						<tr valign="top">
+							<td>[abc]</td>
+							<td>A single character: a, b, or c</td>
+						</tr>
+						<tr valign="top">
+							<td>[^abc]</td>
+							<td>Any single character <em>but</em> a, b, or c</td>
+						</tr>
+						<tr valign="top">
+							<td>[a-z]</td>
+							<td>Any character in the range a-z</td>
+						</tr>
+						<tr valign="top">
+							<td>[a-zA-Z]</td>
+							<td>Any character in the range a-z or A-Z (any alphabetical character)</td>
+						</tr>
+						<tr valign="top">
+							<td>\s</td>
+							<td>Any whitespace character [ \t\n\r\f\v]</td>
+						</tr>
+						<tr valign="top">
+							<td>\S</td>
+							<td>Any non-whitespace character [^ \t\n\r\f\v]</td>
+						</tr>
+						<tr valign="top">
+							<td>\d</td>
+							<td>Any digit [0-9]</td>
+						</tr>
+						<tr valign="top">
+							<td>\D</td>
+							<td>Any non-digit [^0-9]</td>
+						</tr>
+						<tr valign="top">
+							<td>\w</td>
+							<td>Any word character [a-zA-Z0-9_]</td>
+						</tr>
+						<tr valign="top">
+							<td>\W</td>
+							<td>Any non-word character [^a-zA-Z0-9_]</td>
+						</tr>
+						<tr valign="top">
+							<td>\b</td>
+							<td>A word boundary between \w and \W</td>
+						</tr>
+						<tr valign="top">
+							<td>\B</td>
+							<td>A position that is not a word boundary</td>
+						</tr>
+						<tr valign="top">
+							<td>|</td>
+							<td>Alternation: matches either the subexpression to the left or to the right</td>
+						</tr>
+						<tr valign="top">
+							<td>()</td>
+							<td>Grouping: group all together for repetition operators</td>
+						</tr>
+						<tr valign="top">
+							<td>^</td>
+							<td>Beginning of the string</td>
+						</tr>
+						<tr valign="top">
+							<td>$</td>
+							<td>End of the string</td>
+						</tr>
+					</table>
+				</div>
+				<div style="width:5%;float:left">&#160;</div>
+				<div style="width:43%;float:left">
+					<table border="1">
+						<tr valign="top">
+							<th>
+								Repetition&#160;Operator</th><th>Meaning</th></tr>
+						<tr valign="top">
+							<td>{n,m}</td>
+							<td>Match the previous item at least <em>n</em> times but no more than <em>m</em>
+								times</td>
+						</tr>
+						<tr valign="top">
+							<td>{n,}</td>
+							<td>Match the previous item <em>n</em> or more times</td>
+						</tr>
+						<tr valign="top">
+							<td>{n}</td>
+							<td>Match exactly <em>n</em> occurrences of the previous item</td>
+						</tr>
+						<tr valign="top">
+							<td>?</td>
+							<td>Match 0 or 1 occurrences of the previous item {0,1}</td>
+						</tr>
+						<tr valign="top">
+							<td>+</td>
+							<td>Match 1 or more occurrences of the previous item {1,}</td>
+						</tr>
+						<tr valign="top">
+							<td>*</td>
+							<td>Match 0 or more occurrences of the previous item {0,}</td>
+						</tr>
+					</table><br />
+					<table border="1">
+						<tr>
+							<th>Option</th><th>Description</th>
+						</tr>
+						<tr>
+							<td>g</td>
+							<td>"<u>G</u>lobal" -- find all matches in the string rather than
+								just the first</td>
+						</tr>
+						<tr>
+							<td>i</td>
+							<td>"case <u>I</u>nsensitive" -- ignore character case when matching</td>
+						</tr>
+						<tr>
+							<td>m</td>
+							<td>"<u>M</u>ultiline" -- search over more than one line if the
+								text contains line breaks</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<p class="afterfloat"><br/><br/><br/>
+			<a href="../technotes.aspx">Back to my Technical Notes</a></p>
+
+			<p>
+				<a href="http://validator.w3.org/check/referer"><img border="0"
+				src="http://www.w3.org/Icons/valid-html401"
+				alt="Valid HTML 4.01!" height="31" width="88"></a>
+				
+				<a href="http://jigsaw.w3.org/css-validator/check/referer">
+				<img style="border:0;width:88px;height:31px"
+				src="http://jigsaw.w3.org/css-validator/images/vcss" 
+				alt="Valid CSS!">
+				</a>
+				
+			</p>			
+
+			<p id="apology"><br /><br /><br /><br /><br /><br /><br /><br />
+				* The previous version of this page
+				worked only with Internet Explorer.&#160; I'm sorry if it caused you any
+				inconvenience.</p>
+			<SCRIPT type="text/javascript">
+//<!--
+
+function UnHide()
+{
+	var hiddenDiv = document.getElementById("hideme");
+	hiddenDiv.className = "";
+}
+
+function RemoveAllChildren(node)
+{
+	while (node.hasChildNodes())
+		node.removeChild(node.firstChild);	
+}
+			
+function Label(text)
+{
+	var theLabel = document.getElementById("captureLabel");
+	RemoveAllChildren(theLabel);
+	theLabel.appendChild(document.createTextNode(text));
+}
+
+function ShowCapture(start, length)
+{
+	var before = document.getElementById("TestStrBox").value.substr(0, start);
+	var capture = document.getElementById("TestStrBox").value.substr(start, length);
+	var after = document.getElementById("TestStrBox").value.substr(start + length);
+	var beforeNode = document.getElementById("beforeText");
+	var captureNode = document.getElementById("captureText");
+	var afterNode = document.getElementById("afterText");
+	RemoveAllChildren(beforeNode);
+	RemoveAllChildren(captureNode);
+	RemoveAllChildren(afterNode);
+	beforeNode.appendChild(document.createTextNode(before));
+	captureNode.appendChild(document.createTextNode(capture));
+	afterNode.appendChild(document.createTextNode(after));
+}
+
+function ClearRadioButtons()
+{
+	var container = document.getElementById("captureContainer");
+	RemoveAllChildren(container);
+}
+
+
+function AddCaptureRadioButton(text, isChecked, invisible, captureStart,
+captureLength)
+{
+	/* If invisible is set to true, an invisible radio button is drawn.  I did
+	this just to preserve the spacing.  Silly, I know...  */
+	
+	var valignDiv = document.createElement("div");
+	var container = document.getElementById("captureContainer");
+	container.appendChild(valignDiv);
+	
+	var showcap = "ShowCapture(" + captureStart + ", " + captureLength + ");";
+
+	var button0;
+	var ieStr = "<input type=\"radio\" name=\"capturebuttons\" "
+		+ "onclick=\"" + showcap + "\" class=\"";
+	if (invisible)
+		ieStr += "invisible";
+	else
+		ieStr += "valign";
+	ieStr += "\"";
+	if (isChecked)
+		ieStr += " checked";
+	ieStr += ">";
+	
+	// This is a really ugly hack necessary for Internet Explorer
+	button0 = document.createElement(ieStr);
+	if ("undefined" == typeof(button0.type))
+	{
+		// This is how it works in every truly DOM-compliant browser
+		button0 = document.createElement("input");
+		button0.type = "radio";
+		button0.name = "capturebuttons";
+		var onClickAttr = document.createAttribute("onclick");
+		onClickAttr.nodeValue = showcap;
+		button0.setAttributeNode(onClickAttr);
+		if (invisible)
+			button0.className = "invisible";
+		else
+			button0.className = "valign";
+		button0.checked = isChecked;
+	}
+	valignDiv.appendChild(button0);
+	
+	var textSpan = document.createElement("span");
+	valignDiv.appendChild(textSpan);
+	textSpan.className = "valign";
+	textSpan.appendChild(document.createTextNode(text));
+	
+}  // AddCaptureRadioButton()
+
+
+function Go()
+{
+	UnHide();
+	ClearRadioButtons();
+	
+	try
+	{
+		var Pattern = new RegExp(document.getElementById("PatternBox").value,
+			document.getElementById("PatternOptionsBox").value);
+		var match = Pattern.exec(document.getElementById("TestStrBox").value);
+	}
+	catch (e)
+	{
+		alert("Exception caught: your regular expression contains an error.");
+	}
+
+	var iMatchCount = 0;
+	if (null != match)
+	{
+		iMatchCount += 1;
+		ShowCapture(match.index, match[0].length);
+	}
+	else
+		ShowCapture(0, 0);
+	
+	while (null != match)
+	{
+		AddCaptureRadioButton("Match " + iMatchCount, (1 == iMatchCount), false,
+			match.index, match[0].length);
+		for (var i = 1; i < match.length; i++)
+		{
+			// String.fromCharCode(160, 160, 160) is three non-breaking spaces.
+			var groupStr = String.fromCharCode(160, 160, 160) + "Group " + i + ": \""
+				+ match[i].replace(/"/g, "\\\"") + "\"";
+			AddCaptureRadioButton(groupStr, false, true, 0, 0);
+		}
+		
+		// Another hack required for IE
+		if (Pattern.global)
+			match = Pattern.exec(document.getElementById("TestStrBox").value);
+		else
+			match = null;
+			
+		if (null != match)
+			iMatchCount += 1;
+	}
+
+	if (1 == iMatchCount)
+		Label("1 match found.");
+	else
+		Label("" + iMatchCount + " matches found.");
+	
+}  // Go()
+
+//-->
+			</SCRIPT>
+		</form>
+	</BODY>
+</HTML>
+

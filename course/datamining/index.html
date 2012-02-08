@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css" title="text/css">
+	body
+	{
+		font-family: sans-serif;
+		margin:40px;
+	}
+	
+	.example
+	{
+		margin:20px;
+		padding:20px;
+		background-color: rgb(222,222,222);
+		-webkit-border-radius: 10px;
+	}
+	
+			a.noUnderline {text-decoration:none}
+			.selected {background-color:blue;color:white;font-family:Lucida Console,Courier New,serif}
+			.notSelected {background-color:#e0e0e0;color:blue;font-family:Lucida Console,Courier New,serif}
+			.output {padding:5px;background-color:#e0e0e0}
+			.notdisplayed {display:none}
+			.valign {vertical-align:middle}
+			.floating {float:left}
+			.afterfloat {clear:left}
+			.invisible {visibility:hidden;vertical-align:middle}
+	
+	
+</style>
+<title>Data mining and data linking</title>
+</head>
+<body>
+<a href="../">Home</a>
+
+<h1>Data mining</h1>
+
+<ul>
+<li><a href="#background">Background reading</a></li>
+<li><a href="#lecture">Lecture</a></li>
+<li><a href="#regexp">Regular expressions</a></li>
+<li><a href="#elsevier">Getting data from a paper</a></li>
+<li><a href="#cleaning">Taxonomic name cleaning using Google Refine</a></li>
+<li><a href="#wordtrees">Wordtrees</a></li>
+<li><a href="#linkeddata">Linked data</a></li>
+<li><a href="#next">Where next?</a></li>
+</ul>
+
+<h2><a name="background"/>Background reading</h2>
+
+<table>
+<tr><td><img src="images/blogger.jpeg" width="32"/></td><td><a href="http://iphylo.blogspot.com" target="_new">iPhylo</a></td></tr>
+<tr><td><img src="images/facts_are_sacred_ebook_cover_140x187.jpg" width="100"/></td><td><a href="http://www.amazon.co.uk/Facts-are-Sacred-Guardian-ebook/dp/B006PI9PQG/" target="_new">Facts are Sacred: The power of data (Guardian Shorts)</a> [Kindle and iBooks]</td></tr>
+<tr><td></td><td><a href="http://iphylo.org/~rpage/challenge/" target="_new">Elsevier Challenge entry</a></td></tr>
+</table>
+
+<h2><a name="lecture"/>Lecture</h2>
+
+<p>The themes of this lecture are extracting information from (often messy) data, and the challenge of linking data together.</p>
+
+<div style="width:425px" id="__ss_11479214"> <strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/rdmpage/data-mining-and-data-linking" title="Data mining and data linking" target="_blank">Data mining and data linking</a></strong> <iframe src="http://www.slideshare.net/slideshow/embed_code/11479214" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> <div style="padding:5px 0 12px"> View more <a href="http://www.slideshare.net/thecroaker/death-by-powerpoint" target="_blank">PowerPoint</a> from <a href="http://www.slideshare.net/rdmpage" target="_blank">Roderic Page</a> </div> </div>
+
+<!--
+<iframe src="http://player.vimeo.com/video/36306273?title=0&amp;byline=0&amp;portrait=0" width="398" height="277" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+-->
+
+<h2><a name="regexp"/>Regular expressions</h2>
+
+<p>The first step in any data analysis is to get the data into a form you can analyse. Often the data isn't quite in the right format, and requires a little massaging before you can work with it. In many cases simple tools like "search and replace" are sufficient, but sometimes you need more powerful tools, such as <a href="http://en.wikipedia.org/wiki/Regular_expression" target="_new">regular expressions</a>.</p>
+
+<p>Regular expressions are rules for matching strings, for example:</p>
+
+<table border="1" cellpadding="2">
+<tr><th>Pattern</th><th>Example that pattern matches</th><th>Comment</th></tr>
+<tr><td>\d</td><td>1</td><td>single digit</td></tr>
+<tr><td>\d+</td><td>12</td><td>one or more digits</td></tr>
+<tr><td>[0-9]{4}</td><td>2012</td><td>four digit number (e.g., a year)</td></tr>
+<tr><td>\w+</td><td>abc</td><td>word</td></tr>
+<tr><td>[A-Z][A-Z]\d+</td><td>FJ559180</td><td>string starting with two capital letters followed by numbers</td></tr>
+<tr><td>[W|E]</td><td>W</td><td>match either W or E</td></tr>
+<tr><td>\d+°\d+'[W|E]</td><td>10°36'E</td><td>longitude</td></tr>
+</table>
+
+<p>Armed with regular expressions like these we can develop tools to extract information from text, such as the <a href="services/specimenparser.php">specimen parser</a> which finds museum specimen codes.</p>
+
+<div class="example">
+
+<b>Regular expressions</b>
+
+<p>Using the <a href="#regexptester"/>Regular Expression Tester</a> below, create regular expressions for the following tasks:</p>
+
+<ul>
+<li>Two words, e.g., "hosted by"</i></li>
+<li>A species name, e.g., <i>Homo sapiens</i></li>
+<li>A species name with a subgenus, e.g., <i>Varanus (Euprepiosaurus) rainerguentheri</i></li>
+<li>A museum specimen code, e.g. "USNM 100895"</li>
+<li>A latitude, e.g. 10°02'N (remember to handle both the northern and southern hemispheres)</li>
+</ul>
+
+</div>
+
+<!-- ------------------------------------------------------------------------------------------- -->
+
+			<h3><a name="regexptester"/>Regular Expression Tester</h3>
+			
+			
+			
+			<p>This regular expression tester (from <a href="http://www.roblocher.com/technotes/regexp.aspx" target="_new">Rob Locher's web site</a>) uses the regular expression parser in your browser's implementation of JavaScript.</p>
+		
+			<P>Test String:<BR />
+				<INPUT id="TestStrBox" size="80" /></P>
+			<div>
+				<div class="floating">Pattern:<BR />
+					<strong>/</strong><INPUT id="PatternBox" size="60" />
+				</div>
+				<div class="floating">
+					Options:<br /><strong>/</strong><INPUT id="PatternOptionsBox" size="4" />
+				</div>
+			</div>
+			<br />
+			<div class="afterfloat">
+				<br /><INPUT type="button" value="Test" id="GoButton" onclick="Go();" />
+			</div>
+			<P>&#160;</P>
+			<div id="hideme" class="notdisplayed">
+				Original string:<br /><br />
+				<!-- This next line must not be broken, because the extra whitespace would
+				be undesirable. -->
+				<span class="output"><span id="beforeText" class="notSelected"></span><span id="captureText" class="selected"></span><span id="afterText" class="notSelected"></span></span>
+				<br /><br /><br />
+				<div id="captureLabel"></div><br />
+				<div id="captureContainer"></div>
+			</div>
+			<P>&#160;</P>
+			<H3>Tips</H3>
+			<div>
+				<div style="width:43%;float:left">
+					<table border="1">
+						<tr valign="top">
+							<th>
+								Expression</th><th>Matches</th></tr>
+						<tr valign="top">
+							<td>[abc]</td>
+							<td>A single character: a, b, or c</td>
+						</tr>
+						<tr valign="top">
+							<td>[^abc]</td>
+							<td>Any single character <em>but</em> a, b, or c</td>
+						</tr>
+						<tr valign="top">
+							<td>[a-z]</td>
+							<td>Any character in the range a-z</td>
+						</tr>
+						<tr valign="top">
+							<td>[a-zA-Z]</td>
+							<td>Any character in the range a-z or A-Z (any alphabetical character)</td>
+						</tr>
+						<tr valign="top">
+							<td>\s</td>
+							<td>Any whitespace character [ \t\n\r\f\v]</td>
+						</tr>
+						<tr valign="top">
+							<td>\S</td>
+							<td>Any non-whitespace character [^ \t\n\r\f\v]</td>
+						</tr>
+						<tr valign="top">
+							<td>\d</td>
+							<td>Any digit [0-9]</td>
+						</tr>
+						<tr valign="top">
+							<td>\D</td>
+							<td>Any non-digit [^0-9]</td>
+						</tr>
+						<tr valign="top">
+							<td>\w</td>
+							<td>Any word character [a-zA-Z0-9_]</td>
+						</tr>
+						<tr valign="top">
+							<td>\W</td>
+							<td>Any non-word character [^a-zA-Z0-9_]</td>
+						</tr>
+						<tr valign="top">
+							<td>\b</td>
+							<td>A word boundary between \w and \W</td>
+						</tr>
+						<tr valign="top">
+							<td>\B</td>
+							<td>A position that is not a word boundary</td>
+						</tr>
+						<tr valign="top">
+							<td>|</td>
+							<td>Alternation: matches either the subexpression to the left or to the right</td>
+						</tr>
+						<tr valign="top">
+							<td>()</td>
+							<td>Grouping: group all together for repetition operators</td>
+						</tr>
+						<tr valign="top">
+							<td>^</td>
+							<td>Beginning of the string</td>
+						</tr>
+						<tr valign="top">
+							<td>$</td>
+							<td>End of the string</td>
+						</tr>
+					</table>
+				</div>
+				<div style="width:5%;float:left">&#160;</div>
+				<div style="width:43%;float:left">
+					<table border="1">
+						<tr valign="top">
+							<th>
+								Repetition&#160;Operator</th><th>Meaning</th></tr>
+						<tr valign="top">
+							<td>{n,m}</td>
+							<td>Match the previous item at least <em>n</em> times but no more than <em>m</em>
+								times</td>
+						</tr>
+						<tr valign="top">
+							<td>{n,}</td>
+							<td>Match the previous item <em>n</em> or more times</td>
+						</tr>
+						<tr valign="top">
+							<td>{n}</td>
+							<td>Match exactly <em>n</em> occurrences of the previous item</td>
+						</tr>
+						<tr valign="top">
+							<td>?</td>
+							<td>Match 0 or 1 occurrences of the previous item {0,1}</td>
+						</tr>
+						<tr valign="top">
+							<td>+</td>
+							<td>Match 1 or more occurrences of the previous item {1,}</td>
+						</tr>
+						<tr valign="top">
+							<td>*</td>
+							<td>Match 0 or more occurrences of the previous item {0,}</td>
+						</tr>
+					</table><br />
+					<table border="1">
+						<tr>
+							<th>Option</th><th>Description</th>
+						</tr>
+						<tr>
+							<td>g</td>
+							<td>"<u>G</u>lobal" -- find all matches in the string rather than
+								just the first</td>
+						</tr>
+						<tr>
+							<td>i</td>
+							<td>"case <u>I</u>nsensitive" -- ignore character case when matching</td>
+						</tr>
+						<tr>
+							<td>m</td>
+							<td>"<u>M</u>ultiline" -- search over more than one line if the
+								text contains line breaks</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<SCRIPT type="text/javascript">
+//<!--
+
+function UnHide()
+{
+	var hiddenDiv = document.getElementById("hideme");
+	hiddenDiv.className = "";
+}
+
+function RemoveAllChildren(node)
+{
+	while (node.hasChildNodes())
+		node.removeChild(node.firstChild);	
+}
+			
+function Label(text)
+{
+	var theLabel = document.getElementById("captureLabel");
+	RemoveAllChildren(theLabel);
+	theLabel.appendChild(document.createTextNode(text));
+}
+
+function ShowCapture(start, length)
+{
+	var before = document.getElementById("TestStrBox").value.substr(0, start);
+	var capture = document.getElementById("TestStrBox").value.substr(start, length);
+	var after = document.getElementById("TestStrBox").value.substr(start + length);
+	var beforeNode = document.getElementById("beforeText");
+	var captureNode = document.getElementById("captureText");
+	var afterNode = document.getElementById("afterText");
+	RemoveAllChildren(beforeNode);
+	RemoveAllChildren(captureNode);
+	RemoveAllChildren(afterNode);
+	beforeNode.appendChild(document.createTextNode(before));
+	captureNode.appendChild(document.createTextNode(capture));
+	afterNode.appendChild(document.createTextNode(after));
+}
+
+function ClearRadioButtons()
+{
+	var container = document.getElementById("captureContainer");
+	RemoveAllChildren(container);
+}
+
+
+function AddCaptureRadioButton(text, isChecked, invisible, captureStart,
+captureLength)
+{
+	/* If invisible is set to true, an invisible radio button is drawn.  I did
+	this just to preserve the spacing.  Silly, I know...  */
+	
+	var valignDiv = document.createElement("div");
+	var container = document.getElementById("captureContainer");
+	container.appendChild(valignDiv);
+	
+	var showcap = "ShowCapture(" + captureStart + ", " + captureLength + ");";
+
+	var button0;
+	var ieStr = "<input type=\"radio\" name=\"capturebuttons\" "
+		+ "onclick=\"" + showcap + "\" class=\"";
+	if (invisible)
+		ieStr += "invisible";
+	else
+		ieStr += "valign";
+	ieStr += "\"";
+	if (isChecked)
+		ieStr += " checked";
+	ieStr += ">";
+	
+	// This is a really ugly hack necessary for Internet Explorer
+	button0 = document.createElement(ieStr);
+	if ("undefined" == typeof(button0.type))
+	{
+		// This is how it works in every truly DOM-compliant browser
+		button0 = document.createElement("input");
+		button0.type = "radio";
+		button0.name = "capturebuttons";
+		var onClickAttr = document.createAttribute("onclick");
+		onClickAttr.nodeValue = showcap;
+		button0.setAttributeNode(onClickAttr);
+		if (invisible)
+			button0.className = "invisible";
+		else
+			button0.className = "valign";
+		button0.checked = isChecked;
+	}
+	valignDiv.appendChild(button0);
+	
+	var textSpan = document.createElement("span");
+	valignDiv.appendChild(textSpan);
+	textSpan.className = "valign";
+	textSpan.appendChild(document.createTextNode(text));
+	
+}  // AddCaptureRadioButton()
+
+
+function Go()
+{
+	UnHide();
+	ClearRadioButtons();
+	
+	try
+	{
+		var Pattern = new RegExp(document.getElementById("PatternBox").value,
+			document.getElementById("PatternOptionsBox").value);
+		var match = Pattern.exec(document.getElementById("TestStrBox").value);
+	}
+	catch (e)
+	{
+		alert("Exception caught: your regular expression contains an error.");
+	}
+
+	var iMatchCount = 0;
+	if (null != match)
+	{
+		iMatchCount += 1;
+		ShowCapture(match.index, match[0].length);
+	}
+	else
+		ShowCapture(0, 0);
+	
+	while (null != match)
+	{
+		AddCaptureRadioButton("Match " + iMatchCount, (1 == iMatchCount), false,
+			match.index, match[0].length);
+		for (var i = 1; i < match.length; i++)
+		{
+			// String.fromCharCode(160, 160, 160) is three non-breaking spaces.
+			var groupStr = String.fromCharCode(160, 160, 160) + "Group " + i + ": \""
+				+ match[i].replace(/"/g, "\\\"") + "\"";
+			AddCaptureRadioButton(groupStr, false, true, 0, 0);
+		}
+		
+		// Another hack required for IE
+		if (Pattern.global)
+			match = Pattern.exec(document.getElementById("TestStrBox").value);
+		else
+			match = null;
+			
+		if (null != match)
+			iMatchCount += 1;
+	}
+
+	if (1 == iMatchCount)
+		Label("1 match found.");
+	else
+		Label("" + iMatchCount + " matches found.");
+	
+}  // Go()
+
+//-->
+			</SCRIPT>
+<!-- ------------------------------------------------------------------------------------------- -->
+
+<div style="clear:both;"></div>
+
+
+<div style="float:right;"><img src="images/icon.png"/></div>
+<h2><a name="elsevier"/>Getting data from a paper</h2>
+
+<p>Some journals are trying to make data in papers more accessible. For example, Elsevier's "Article of the Future" project includes tools to extract data from the tables in a paper. If you go to a paper such as <a href="http://dx.doi.org/10.1016/j.ympev.2009.07.011" target="_new">http://dx.doi.org/10.1016/j.ympev.2009.07.011</a> you will see a panel labelled <b>Table download</b>. This tool will find tables in the article and make them available for download.</p>
+
+<p>If you download the tables for the paper <a href="http://dx.doi.org/10.1016/j.ympev.2009.07.011" target="_new">http://dx.doi.org/10.1016/j.ympev.2009.07.011</a> you will seem something like this:</p>
+
+<pre>
+Taxon and institutional vouchera,Locality ID,Collection locality,Geographic coordinates/approximate location,Elevation (m),GenBank accession number 12S,16S,COI,c-myc
+1. UTA A-52449,1,"Puntarenas, CR","(10°18′N, 84°48′W)",1520,EF562312,EF562365,None,EF562417
+2. MVZ 149813,2,"Puntarenas, CR","(10°18′N, 84°42′W)",1500,EF562319,EF562373,EF562386,EF562430
+3. FMNH 257669,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562320,EF562372,EF562380,EF562432
+4. FMNH 257670,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562317,EF562336,EF562376,EF562421
+5. FMNH 257671,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562314,EF562374,EF562409,None
+6. FMNH 257672,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562318,None,EF562382,None
+</pre>
+
+
+
+<div>
+<img src="images/table.png">
+</div>
+
+<p>While this makes the data easy to get, it might not be in the form we need. But because it is available in a widely used format (CSV) we can load it into a spreadsheet or a tool like Google Refine and clean it. </p>
+
+<!-- to do add tool to create KML files -->
+<div class="example">
+<b>Extracting data to create a visualisation</b>
+
+<p>Once we've got the data from a paper, we can create some new visualisations that might not have been available to the paper's authors. For example, with a little data cleaning and regular expressions we can create a geophylogeny.</p>
+
+<p>Go to <a href="../../kml" target="_new">Create KML tree</a> and paste in the tree below, then data from the paper. You should get a KML tree back (if you have the <a href="http://www.google.com/earth/explore/products/plugin.html" target="_new">Google Earth Plug-in</a> you should see the tree displayed on Google Earth embedded in the web page.</p>
+
+<textarea rows="15" cols="60" readonly="readonly">
+#NEXUS
+BEGIN TREES;
+	TRANSLATE
+		Tl254954 'Craugastor cf. podiciferus FMNH 257672',
+		Tl254956 'Craugastor cf. podiciferus FMNH 257653',
+		Tl254965 'Craugastor cf. podiciferus UCR 16356',
+		Tl254960 'Craugastor sp. A USNM 563039',
+		Tl254938 'Craugastor sp. A USNM 563040',
+		Tl254945 'Craugastor cf. podiciferus UCR 16360',
+		Tl254928 'Craugastor cf. podiciferus UCR 17439',
+		Tl254959 'Craugastor cf. podiciferus UCR 17462',
+		Tl254951 'Craugastor cf. podiciferus FMNH 257596',
+		Tl254967 'Craugastor sp. A FMNH 257689',
+		Tl254934 'Craugastor cf. podiciferus UCR 16355',
+		Tl254964 'Craugastor cf. podiciferus FMNH 257671',
+		Tl254963 'Craugastor cf. podiciferus UCR 16358',
+		Tl254952 'Craugastor cf. podiciferus UCR 18062',
+		Tl254926 'Craugastor cf. podiciferus UCR 17442',
+		Tl254968 'Craugastor sp. A FMNH 257562',
+		Tl254939 'Craugastor cf. podiciferus UCR 17441',
+		Tl254946 'Craugastor cf. podiciferus FMNH 257757',
+		Tl254942 'Craugastor cf. podiciferus MVZ 149813',
+		Tl254961 'Craugastor cf. podiciferus FMNH 257595',
+		Tl254969 'Craugastor cf. podiciferus UCR 17469',
+		Tl254932 'Craugastor cf. podiciferus MVZ 164825',
+		Tl254970 'Craugastor sp. A AJC 0891',
+		Tl254943 'Craugastor cf. podiciferus UCR 16357',
+		Tl254929 'Craugastor cf. podiciferus FMNH 257673',
+		Tl254950 'Craugastor cf. podiciferus FMNH 257756',
+		Tl254944 'Craugastor cf. podiciferus FMNH 257652',
+		Tl254953 'Craugastor cf. podiciferus UCR 16359',
+		Tl254931 'Craugastor cf. podiciferus UCR 17443',
+		Tl254940 'Craugastor stejnegerianus UCR 16332',
+		Tl254935 'Craugastor underwoodi UCR 16315',
+		Tl254958 'Craugastor cf. podiciferus UCR 16354',
+		Tl254966 'Craugastor sp. A AJC 0890',
+		Tl254949 'Craugastor cf. podiciferus FMNH 257758',
+		Tl254933 'Craugastor cf. podiciferus UCR 16361',
+		Tl254962 'Craugastor cf. podiciferus FMNH 257651',
+		Tl254948 'Craugastor cf. podiciferus FMNH 257670',
+		Tl254971 'Craugastor cf. podiciferus FMNH 257669',
+		Tl254936 'Craugastor cf. podiciferus FMNH 257550',
+		Tl254957 'Craugastor underwoodi USNM 561403',
+		Tl254947 'Craugastor cf. podiciferus FMNH 257755',
+		Tl254927 'Craugastor cf. podiciferus UCR 16353',
+		Tl254925 'Craugastor bransfordii MVUP 1875',
+		Tl254930 'Craugastor cf. podiciferus UTA A 52449',
+		Tl254955 'Craugastor tabasarae MVUP 1720',
+		Tl254941 'Craugastor cf. longirostris FMNH 257678',
+		Tl254937 'Craugastor cf. longirostris FMNH 257561'		;
+	TREE 'Fig. 2' = ((Tl254955,(Tl254941,Tl254937)),(((((Tl254954,Tl254942,Tl254933,Tl254948,Tl254971),((Tl254934,Tl254958,Tl254927),((Tl254964,Tl254929),Tl254930))),(((Tl254965,(Tl254963,Tl254943)),(Tl254959,Tl254969),(Tl254951,Tl254961)),((Tl254928,Tl254926,Tl254939,Tl254931),(Tl254952,Tl254932)))),((((Tl254956,Tl254936),Tl254946,Tl254950,(Tl254944,Tl254962),Tl254947),Tl254949),(Tl254945,Tl254953))),((((Tl254960,Tl254938),(Tl254970,Tl254966)),(Tl254967,Tl254968)),((Tl254940,Tl254925),(Tl254935,Tl254957)))));
+END;
+</textarea>
+
+<textarea rows="15" cols="60" readonly="readonly">
+Taxon and institutional vouchera,Locality ID,Collection localityb,Geographic coordinates/approximate location,Elevation (m),GenBank accession number12S,16S,COI,c-myc
+1. UTA A-52449,1,"Puntarenas, CR","(10°18′N, 84°48′W)",1520,EF562312,EF562365,None,EF562417
+2. MVZ 149813,2,"Puntarenas, CR","(10°18′N, 84°42′W)",1500,EF562319,EF562373,EF562386,EF562430
+3. FMNH 257669,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562320,EF562372,EF562380,EF562432
+4. FMNH 257670,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562317,EF562336,EF562376,EF562421
+5. FMNH 257671,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562314,EF562374,EF562409,None
+6. FMNH 257672,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562318,None,EF562382,None
+7. FMNH 257673,1,"Puntarenas, CR","(10°18′N, 84°47′W)",1500,EF562311,EF562343,EF562392,None
+8. UCR 16361,3,"Alejuela, CR","(10°13′ N, 84°22′W)",1930,EF562321,EF562371,EF562375,EF562431
+9. UCR 16353,4,"Heredia, CR","(10°12′N, 84°09′W)",1500,EF562313,EF562349,None,EF562420
+10. UCR 16354,4,"Heredia, CR","(10°12′N, 84°09′W)",1500,EF562315,EF562363,None,EF562418
+11. UCR 16355,4,"Heredia, CR","(10°12′N, 84°09′W)",1500,EF562316,EF562366,None,EF562419
+12. UCR 18062,6,"Heredia, CR","(10°10′N, 84°06′W)",1900,EF562302,EF562342,EF562395,None
+13. UCR 17439,5,"Heredia, CR","(10°09′N, 84°09′W)",2000,EF562298,EF562341,EF562387,EF562427
+14. UCR 17441,5,"Heredia, CR","(10°09′N, 84°09′W)",2000,EF562299,EF562345,EF562388,EF562429
+15. UCR 17442,5,"Heredia, CR","(10°09′N, 84°09′W)",2000,EF562300,EF562337,EF562385,EF562422
+16. UCR 17443,5,"Heredia, CR","(10°09′N, 84°09′W)",2000,EF562301,EF562340,EF562384,EF562428
+17. UCR 17462,5,"Heredia, CR","(10°09′N, 84°09′W)",2000,EF562309,EF562355,EF562406,EF562440
+18. UCR 17469,5,"Heredia, CR","(10°09′N, 84°09′W)",2000,EF562310,EF562334,EF562405,EF562414
+19. MVZ 164825,7,"Heredia, CR","(10° 05′N, 84° 04′W)",2100,EF562303,EF562346,EF562381,EF562423
+20. UCR 16357,8,"San José, CR","(10°02′N, 83°57′W)",1600,EF562306,EF562339,EF562400,EF562433
+21. UCR 16358,8,"San José, CR","(10°02′N, 83°57′W)",1600,EF562307,EF562370,EF562412,EF562415
+22. UCR 16356,8,"San José, CR","(10°01′N, 83°56′W)",1940,EF562308,EF562329,None,None
+23. UCR 16359,10,"San José, CR","(9°26′N, 83°41′W)",1313,EF562297,EF562369,EF562396,None
+24. UCR 16360,10,"San José, CR","(9°26′N, 83°41′W)",1313,EF562296,EF562368,None,EF562434
+25. FMNH 257595,9,"Cartago, CR","(9°44′N, 83°46′W)",1600,EF562304,EF562338,EF562408,None
+26. FMNH 257596,9,"Cartago, CR","(9°44′N, 83°46′W)",1600,EF562305,EF562335,None,EF562416
+27. FMNH 257550,11,"Puntarenas, CR","(8°47′N, 82°59′W)",1350,EF562294,EF562330,EF562393,EF562443
+28. FMNH 257651,11,"Puntarenas, CR","(8°47′N, 82°59′W)",1350,EF562291,EF562367,EF562402,EF562435
+29. FMNH 257652,11,"Puntarenas, CR","(8°47′N, 82°59′W)",1350,EF562288,EF562364,EF562390,None
+30. FMNH 257653,11,"Puntarenas, CR","(8°47′N, 82°59′W)",1350,EF562292,EF562354,EF562392,EF562438
+31. FMNH 257755,11,"Puntarenas, CR","(8°46′N, 82°59′W)",1410,EF562289,EF562344,EF562379,None
+32. FMNH 257756,11,"Puntarenas, CR","(8°46′N, 82°59′W)",1410,EF562290,EF562347,EF562377,EF562413
+33. FMNH 257757,11,"Puntarenas, CR","(8°46′N, 82°59′W)",1410,EF562293,EF562352,EF562383,EF562437
+34. FMNH 257758,11,"Puntarenas, CR","(8°46′N, 82°59′W)",1410,EF562295,EF562348,EF562397,EF562436
+35. USNM 563039,12,"Chiriquí, PA","(8°48′N, 82°24′W)",1663,EF562284,EF562356,EF562389,EF562445
+36. USNM 563040,12,"Chiriquí, PA","(8°48′N, 82°24′W)",1663,EF562285,EF562350,EF562391,EF562439
+37. AJC 0890,12,"Chiriquí, PA","(8°48′N, 82°24′W)",1663,EF562282,EF562351,EF562398,EF562444
+38. MVUP 1880,12,"Chiriquí, PA","(8°48′N, 82°24′W)",1663,EF562283,EF562358,EF562399,EF562442
+39. FMNH 257689,12,"Chiriquí, PA","(8°45′N, 82°13′W)",1100,EF562287,EF562353,EF562407,EF562446
+40. FMNH 257562,12,"Chiriquí, PA","(8°45′N, 82°13′W)",1100,EF562286,EF562357,EF562410,EF562441
+41. USNM 561403,N/A,"Heredia, CR","(10°24′N, 84°03′W)",800,EF562323,EF562361,EF562378,None
+42. UCR 16315,N/A,"Alejuela, CR","(10°13′N, 84°35′W)",960,EF562322,EF562362,EF562394,None
+43. UCR 16332,N/A,"San José, CR","(9°18′N, 83°46′W)",900,EF562325,EF562360,EF562411,AY211320
+44. MVUP 1875 fitzingeri group,N/A,"BDT, PA","(9°24′N, 82°17′W)",50,EF562324,EF562359,None,AY211304
+45. MVUP 1720,N/A,"Coclé, PA","(8°40′N, 80°35′W)",800,EF562326,EF562332,EF562401,EF562424
+46. FMNH 257561,N/A,"Chiriquí, PA","(8°45′N, 82°13′W)",1100,EF562327,EF562331,None,EF562426
+47. FMNH 257678,N/A,"Chiriquí, PA","(8°45′N, 82°13′W)",1100,EF562328,EF562333,EF562404,EF562425
+</textarea>
+
+
+
+</div>
+
+
+<div style="float:right;"><img src="images/refine.png"/></div>
+<h2><a name="cleaning"/>Taxonomic name cleaning using Google Refine</h2>
+<p><a href="http://code.google.com/p/google-refine/" target="_new">Google Refine</a> is an elegant tool for data cleaning. One of its most powerful features is the ability to call "Reconciliation Services" to help clean data, for example by matching names to external identifiers. Google Refine comes with the ability to use <a href="http://www.freebase.com/">Freebase</a> as well as other external services.</p>
+
+<p>For this course I've implemented the following services:</p>
+<ul><li><a href="http://www.eol.org">EOL</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_eol.php</li><li><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/">NCBI taxonomy</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_ncbi.php</li><li><a href="http://www.ubio.org/tools/recognize.php">uBio FindIT</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_ubio.php</li><li><a href="http://www.marinespecies.org/">WORMS</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_worms.php</li><li><a href="http://www.gbif.org">GBIF</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_gbif.php</li></ul>
+
+<p>To use these you need to add the URLs above to Google Refine (see example below). The EOL, NCBI and WORMS do a basic name lookup. The uBio FindIT service extracts a taxonomic name from a string, and can be viewed as a "taxonomic name cleaner".</p>
+
+<div class="example">
+<b>How to use reconciliation services</b>
+
+<p>Start a Google Refine session. Save the names below to a text file and open it as a new project.</p>
+
+<pre>
+Names
+Achatina fulica (giant African snail)
+Acromyrmex octospinosus ST040116-01
+Alepocephalus bairdii (Baird's smooth-head)
+Alaska Sea otter (Enhydra lutris kenyoni)
+Toxoplasma gondii
+Leucoagaricus gongylophorus
+Pinnotheres
+Themisto gaudichaudii
+Hyperiidae
+</pre>
+
+<p>You should see something like this:
+<img style="display:block; margin-left:auto; margin-right:auto;" src="http://lh5.ggpht.com/-PqIRaUwZy40/Ty_fhvgf87I/AAAAAAAABHo/ZbMluFovHYc/refine1.png?imgmax=800" alt="Refine1" border="0" width="359" height="311" /></p>
+
+<p>Click on the column header <b>Names</b> and choose <b>Reconcile</b> → <b>Start reconciling</b>. </p>
+
+<img style="display:block; margin-left:auto; margin-right:auto;" src="http://lh6.ggpht.com/-rDs2S-YG-V8/Ty_fiitowGI/AAAAAAAABHw/rJ3Uf6RcVQ8/refine2.png?imgmax=800" alt="Refine2" border="0" width="415" height="436" />
+
+<p>A dialog will popup asking you to select a service. </p>
+
+<img style="display:block; margin-left:auto; margin-right:auto;" src="http://lh4.ggpht.com/-iMMUwS6tmc8/Ty_fjxRZnRI/AAAAAAAABH4/rLVPLLyDVKs/refine3.png?imgmax=800" alt="Refine3" border="0" width="415" height="285" />
+
+<p>If you've already added a service it will be in the list on the left. If not, click the <b>Add Standard Services...</b> button at the bottom left and paste in the URL (in this case <code>http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_ubio.php</code>).</p>
+
+<p>Once the service has loaded click on <b>Start Reconciling</b>. Once it has finished you should see most of the names linked to uBio (click on a name to check this):<p>
+
+<img style="display:block; margin-left:auto; margin-right:auto;" src="http://lh6.ggpht.com/-hG9-5E4YaDY/Ty_fkxZnckI/AAAAAAAABIA/IaAbrXWzPv4/refine4.png?imgmax=800" alt="Refine4" border="0" width="343" height="438" />
+
+<p>Sometimes there may be more than one possible match, in which case these will be listed in the cell. Once you have reconciled the data you may want to do something with the reconciliation. For example, if you want to get the ids for the names you've just matched you can create a new column based on the reconciliation. Click on the <b>Names</b> column header and choose <b>Edit column</b> → <b>Add column based on this column...</b>. A dialog box will be displayed:</p>
+
+<img style="display:block; margin-left:auto; margin-right:auto;" src="http://lh6.ggpht.com/-T9cbG-OY8KA/Ty_fmKBujbI/AAAAAAAABII/R-rkj8Lj3w4/refine6.png?imgmax=800" alt="Refine6" border="0" width="415" height="307" />
+
+<p>In the box labelled <b>Expression</b> enter <code>cell.recon.match.id</code> and give the column a name (e.g., "NamebankID"). You will now have a column of uBio NamebankIDs for the names:</p>
+
+<img style="display:block; margin-left:auto; margin-right:auto;" src="http://lh6.ggpht.com/-5gd07QAHzWY/Ty_fnobAUtI/AAAAAAAABIQ/fx6W_iTy-B8/refine7.png?imgmax=800" alt="Refine7" border="0" width="378" height="439" />
+
+<p>You could also get the names uBio extracted by creating a column based on the values of <code>cell.recon.match.name</code>. To compare this with the original values, click on the <b>Names</b> column header and choose <b>Reconcile</b> → <b>Actions</b> → <b>Clear reconciliation data</b>. Now you can see the original input names, and the string uBio extracted from each name:</p>
+
+<img style="display:block; margin-left:auto; margin-right:auto;" src="http://lh5.ggpht.com/-WfFkd_MxqXc/Ty_foWnMx2I/AAAAAAAABIY/7NYNqO0qx7o/refine8.png?imgmax=800" alt="Refine8" border="0" width="415" height="217" />
+
+</div>
+
+
+
+
+
+<div style="float:right;"><img src="images/3f9f1d2a-ad5c-11dd-8dc1-000255111976.gif"/></div>
+<h2><a name="wordtrees" />Wordtrees</h2>
+
+<p>In the lecture we saw an example of article titles which contain information about host-parasite relationships:</p>
+<ul>
+<li>Morphological and molecular description of <i>Haematoloechus meridionalis</i> n. sp. (Digenea: Plagiorchioidea: Haematoloechidae) from <i>Rana vaillanti brocchi</i> of Guanacaste, Costa Rica</li>
+<li><i>Halipegus eschi</i> n. sp. (Digenea: Hemiuridae) in <i>Rana vaillanti</i> from Guanacaste Province, Costa Rica</li>
+<li><i>Haematoloechus danbrooksi</i> n. sp. (Digenea: Plagiorchioidea) from <i>Rana vaillanti</i> from Los Tuxtlas, Veracruz, Mexico</li>
+</ul>
+
+<p>These titles have a similar structure, which suggests were could develop a tool to parse these titles and extract the host-parasite associations. To explore this further we can use a tool like Many Eyes Wordtrees.</p>
+
+
+<p>IBM's <a href="http://www-958.ibm.com/" target="_new">Many Eyes</a> contains tools for creating visualisation (login required, you will also need Java). We will use the Wordtree visualisation to explore the structure of the following sentences:</p>
+
+<pre>
+Eimeria azul sp. n. (Protozoa: Eimeriidae) from the eastern cottontail, Sylvilagus floridanus, in Pennsylvania
+Mirandula parva gen. et sp. nov. (Cestoda, Dilepididae) from the long-nosed Bandicoot (Perameles nasuta Geoff.)
+Hysterothylacium carutti n. sp. (Nematoda: Anisakidae) from the marine fish Johnius carutta Bloch of Bay of Bengal (Visakhapatnam)
+Ctenascarophis lesteri n. sp. and Prospinitectus exiguus n. sp. (Nematoda: Cystidicolidae) from the skipjack tuna, Katsuwonus pelamis
+Buticulotrema stenauchenus n. gen. n. sp. (Digenea: Opecoelidae) from Malacocephalus occidentalis and Nezumia aequalis (Macrouridae) from the Gulf of Mexico
+Nubenocephalus nebraskensis n. gen., n. sp. (Apicomplexa: Actinocephalidae) from adults of Argia bipunctulata (Odonata: Zygoptera)
+Studies on Stenoductus penneri gen. n., sp. n. (Cephalina: Monoductidae) from the spirobolid millipede, Floridobolus penneri Causey 1957
+Species of Cloacina Linstow, 1898 (Nematoda: Strongyloidea) from the black-tailed wallaby, Wallabia bicolor (Desmarest, 1804) from eastern Australia
+A new marine Cercaria (Digenea: Aporocotylidae) from the southern quahog Mercenaria campechiensis
+A new species of Breinlia (Breinlia) (Nematoda: Filarioidea) from the south Indian flying squirrel Petaurista philippensis (Elliot)
+</pre>
+
+<a href='http://www-958.ibm.com/me/visualizations/titles-of-articles-describing-new-/comments/77af1b24510611e1982f000255111976' style='margin: 0pt; padding: 0pt;'>  <img alt="Titles of articles describing new parasite species" src="http://www-958.ibm.com/me/files/thumbnails/77822d30-5106-11e1-815e-000255111976.png?size=200x150" style="border: 1px solid #6898C8; margin: 0; padding-top: 10px; padding-bottom: 15px;" title="Titles of articles describing new parasite species" />  <img alt="Many Eyes" src="http://www-958.ibm.com/me/images/blog_this_caption.jpg" style="border: 0pt none ; margin: 0pt; padding: 0pt; display: block; position: relative; top: -9px;" title="Many Eyes" /></a>
+
+<h2><a name="linkeddata" />Linked data</h2>
+<p>The holy grail of data linking is to be able to seamlessly navigate a web of data (in much the same we the World Wide Web enables us to navigate through documents). For example, we could start with a museum specimen and navigate through all the connected data elements (DNA sequences, publications, phylogenies, taxonomic names, ecological data, etc.). Or, more correctly, we could have computers do this for us. Linked data is aimed at making data computer-readable so that we can treat the web as a giant database.</p>
+
+<img src="images/links.jpg" />
+
+<p>This is the vision of <b><a href="http://en.wikipedia.org/wiki/Linked_data" target = "_new">linked data</a></b> (see TED talk by Tim Berners-Lee below).</p>
+
+<object width="526" height="374">
+<param name="movie" value="http://video.ted.com/assets/player/swf/EmbedPlayer.swf"></param>
+<param name="allowFullScreen" value="true" />
+<param name="allowScriptAccess" value="always"/>
+<param name="wmode" value="transparent"></param>
+<param name="bgColor" value="#ffffff"></param>
+<param name="flashvars" value="vu=http://video.ted.com/talk/stream/2009/Blank/TimBernersLee_2009-320k.mp4&su=http://images.ted.com/images/ted/tedindex/embed-posters/TimBerners-Lee-2009.embed_thumbnail.jpg&vw=512&vh=288&ap=0&ti=484&lang=&introDuration=15330&adDuration=4000&postAdDuration=830&adKeys=talk=tim_berners_lee_on_the_next_web;year=2009;theme=what_s_next_in_tech;event=TED2009;tag=business;tag=communication;tag=design;tag=invention;tag=technology;tag=web;&preAdTag=tconf.ted/embed;tile=1;sz=512x288;" />
+<embed src="http://video.ted.com/assets/player/swf/EmbedPlayer.swf" pluginspace="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" bgColor="#ffffff" width="526" height="374" allowFullScreen="true" allowScriptAccess="always" flashvars="vu=http://video.ted.com/talk/stream/2009/Blank/TimBernersLee_2009-320k.mp4&su=http://images.ted.com/images/ted/tedindex/embed-posters/TimBerners-Lee-2009.embed_thumbnail.jpg&vw=512&vh=288&ap=0&ti=484&lang=&introDuration=15330&adDuration=4000&postAdDuration=830&adKeys=talk=tim_berners_lee_on_the_next_web;year=2009;theme=what_s_next_in_tech;event=TED2009;tag=business;tag=communication;tag=design;tag=invention;tag=technology;tag=web;&preAdTag=tconf.ted/embed;tile=1;sz=512x288;"></embed>
+</object>
+
+
+
+<p>For this to happen requires at least three things:</p>
+
+<ol>
+<li>We need to use <b>globally unique identifiers</b> for the same thing (so you and I know we are talking about the same thing)</li>
+<li>These identifiers need to be <b>resolvable</b>, that is, I can use a tool such as a web browser and get some information about the thing with that identifier.</li>
+<li>The information you get back about an object uses a standard <b>vocabulary</b> to describe that information. For example, if the information is about a person,  any source of information should use the same terms to describe the name. If one source uses, say "surname" and the other uses "lastname" to describe the last part of a Western-style name, then we will struggle to integrate that data.</li>
+</ol>
+
+<p>In theory, linked data is a very powerful idea. In practice, there are significant hurdles at each of the three steps above, and we are some way from realising the linked data vision. For example, major providers of bibliographic data have managed to create linked data for the same papers with virtually no overlap (see <a href="http://iphylo.blogspot.com/2011/09/linked-data-that-isn-failings-of-rdf.html" target="_new">Linked data that isn't: the failings of RDF</a>).</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'phyloinformatics'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</body>
+</html>
