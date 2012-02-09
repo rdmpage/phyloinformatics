@@ -225,11 +225,31 @@ function get_taxa_from_tree($obj)
 {
 	$taxa = array();
 	
+	
 	if (isset($obj->translations->translate))
 	{
+		// get labels from translation table
 		foreach ($obj->translations->translate as $k => $v)
 		{
 			$taxa[] = $v;
+		}
+	}
+	else
+	{
+		// get labels from tree
+		$t = new Tree();
+		$t->Parse($obj->tree->newick);
+		
+		$ni = new NodeIterator ($t->GetRoot());
+				
+		$q = $ni->Begin();
+		while ($q != NULL)
+		{	
+			if ($q->IsLeaf ())
+			{
+				$taxa[] = $q->GetLabel();
+			}
+			$q = $ni->Next();
 		}
 	}
 	
@@ -273,7 +293,7 @@ function tree2kml($t)
 	$kml .=  "<name>Labels</name>\n";
 	
 	// labels
-	$ni = new NodeIterator ($t->getRoot());
+	$ni = new NodeIterator ($t->GetRoot());
 	
 	$q = $ni->Begin();
 	while ($q != NULL)
@@ -320,6 +340,10 @@ function main()
 		$taxa = get_taxa_from_tree($obj);
 		$newick = $obj->tree->newick;
 		
+		//echo $newick;
+		
+		//print_r($obj);
+		
 		$t = new Tree();
 		$t->Parse($newick);
 		
@@ -338,6 +362,8 @@ function main()
 			$q = $ni->Next();
 		}
 		$newick = $t->WriteNewick();	
+		
+		//echo $newick;
 		
 		$have_tree = true;
 	}
