@@ -162,7 +162,7 @@
 						html += '<tr>';
 						
 						html += '<td>';
-						html += data.sequences[i].accession;
+						html += '<a href="http://www.ncbi.nlm.nih.gov/nuccore/' + data.sequences[i].accession + '" target="_new">' + data.sequences[i].accession + '</a>'
 						html += '</td>';
 						
 						html += '<td>';
