@@ -3,6 +3,8 @@
   <head>
     <style type="text/css">
       body { margin: 20px; font-family:sans-serif;}
+      thead { font-size:10px;}
+      tbody { font-size:10px;}      
     </style>
     
     <script type="text/javascript"
@@ -35,6 +37,10 @@
     function blast()
     {
       	var query = $('#gi').val();
+      	
+		// Clear details
+		$("#hits").html('');
+		$("#map").html('');      	
       	
       	if (query == '')
       	{
@@ -109,6 +115,9 @@
 				{
 					$("#output").html('Making tree...');
 					maketree(rid);
+					
+					// display info on sequences
+					showhits(rid);					
 				}				
 			}
 		);
@@ -136,21 +145,114 @@
 		$('#output').load('../services/tree_url_svg.php?url=' + url);
 	}
 	
+    //----------------------------------------------------------------------------------------------
+    function showhits(rid)
+    {
+       	$.getJSON('get_hits.php?rid=' + rid + "&callback=?",
+			function(data){
+				if (data.sequences)
+				{
+					var html = '<table>';
+					html += '<thead>';
+					html += '<tr><th>Accession</th><th>Organism</th><th>Host</th><th>Reference</th><th>Coordinates</th></tr>';
+					html += '</thead>';
+					html += '<tbody>';
+					for (var i in data.sequences)
+					{
+						html += '<tr>';
+						
+						html += '<td>';
+						html += data.sequences[i].accession;
+						html += '</td>';
+						
+						html += '<td>';
+						html += data.sequences[i].organism;
+						html += '</td>';
+						
+						if (data.sequences[i].source.host)
+						{
+							html += '<td>';
+							html += data.sequences[i].source.host;
+							html += '</td>';
+						}
+						else
+						{
+							html += '<td></td>';
+						}
+						
+						html += '<td>';
+						html += data.sequences[i].references[0].title;
+						
+						if (data.sequences[i].references[0].identifiers)
+						{
+							if (data.sequences[i].references[0].identifiers.doi)
+							{
+								html += ' <a href="http://dx.doi.org/' + data.sequences[i].references[0].identifiers.doi + '" target="_new">' + data.sequences[i].references[0].identifiers.doi + '</a>';
+							}
+							if (data.sequences[i].references[0].identifiers.pmid)
+							{
+								html += ' <a href="http://www.ncbi.nlm.nih.gov/pubmed/' + data.sequences[i].references[0].identifiers.pmid + '" target="_new">' + data.sequences[i].references[0].identifiers.pmid + '</a>';
+							}
+						}
+						
+						html += '</td>';
+						
+						if (data.sequences[i].source.latitude)
+						{
+							html += '<td>';
+							html += data.sequences[i].source.latitude;
+							html += ',';
+							html += data.sequences[i].source.longitude;
+							html += '</td>';						
+						}
+						else
+						{
+							html += '<td></td>';
+						}
+
+						
+						html += '</tr>';
+					}
+					html += '</tbody>';
+					html += '</table>';
+					$("#hits").html(html);
+					
+					//alert(JSON.stringify(data.geometry.coordinates));
+					
+					if (data.geometry.coordinates.length > 0)
+					{
+						//alert(JSON.stringify(data.geometry.coordinates));
+						
+						html = '<object id="mysvg" type="image/svg+xml" width="360" height="180" data="' + 'map.php?coordinates=' + encodeURIComponent(JSON.stringify(data.geometry.coordinates)) + '" />'
+								+ '</object>';
+								
+						//alert(html);
+						
+						$("#map").html(html);
+					}
+				}
+				
+			}
+		);
+    }
+	
+	
     </script>
   </head>
   <body>
   	<h1>BLAST sequence and make tree</h1>
   	<p>Construct a tree from the sequences most similar to known sequence in GenBank.</p>
-   	<div style="position:relative;">
+   	<div style="position:relative;height:500px;">
   		<p>Enter accession number or GI of target sequence:</p>
   		<input type="text" id="gi" value="" placeholder="FJ559186"> 		
   		<button onclick="blast();">BLAST</button>
-   	      	    
-		<div id="output" style="width:700px;height:700px;top:0px;float:right;overflow:auto;">
+   	 	<div id="map" style="position:absolute;left:0px;top:100px;width:360px;height:180px;"></div>
+  	    
+		<div id="output" style="position:absolute;width:700px;height:500px;top:0px;left:400px;overflow:auto;">
   	   
   	   </div>
   	</div>
-  
+  	<div id="hits" style=""></div>
   	
   </body>
 </html>
