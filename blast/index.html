@@ -154,7 +154,7 @@
 				{
 					var html = '<table>';
 					html += '<thead>';
-					html += '<tr><th>Accession</th><th>Organism</th><th>Host</th><th>Reference</th><th>Coordinates</th></tr>';
+					html += '<tr><th>Accession</th><th>Organism</th><th>Voucher</th><th>Host</th><th>Reference</th><th>PMID</th><th>DOI</th><th>Coordinates</th></tr>';
 					html += '</thead>';
 					html += '<tbody>';
 					for (var i in data.sequences)
@@ -168,6 +168,18 @@
 						html += '<td>';
 						html += data.sequences[i].organism;
 						html += '</td>';
+						
+						if (data.sequences[i].source.specimen_voucher)
+						{
+							html += '<td>';
+							html += data.sequences[i].source.specimen_voucher;
+							html += '</td>';
+						}
+						else
+						{
+							html += '<td></td>';
+						}
+						
 						
 						if (data.sequences[i].source.host)
 						{
@@ -185,15 +197,29 @@
 						
 						if (data.sequences[i].references[0].identifiers)
 						{
-							if (data.sequences[i].references[0].identifiers.doi)
-							{
-								html += ' <a href="http://dx.doi.org/' + data.sequences[i].references[0].identifiers.doi + '" target="_new">' + data.sequences[i].references[0].identifiers.doi + '</a>';
-							}
 							if (data.sequences[i].references[0].identifiers.pmid)
 							{
-								html += ' <a href="http://www.ncbi.nlm.nih.gov/pubmed/' + data.sequences[i].references[0].identifiers.pmid + '" target="_new">' + data.sequences[i].references[0].identifiers.pmid + '</a>';
+								html += '<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/' + data.sequences[i].references[0].identifiers.pmid + '" target="_new">' + data.sequences[i].references[0].identifiers.pmid + '</a></td>';
+							}
+							else
+							{
+								html += '<td></td>';
+							}
+							if (data.sequences[i].references[0].identifiers.doi)
+							{
+								html += '<td><a href="http://dx.doi.org/' + data.sequences[i].references[0].identifiers.doi + '" target="_new">' + data.sequences[i].references[0].identifiers.doi + '</a></td>';
+							}
+							else
+							{
+								html += '<td></td>';
 							}
 						}
+						else
+						{
+							html += '<td></td>';
+							html += '<td></td>';
+						}
+						
 						
 						html += '</td>';
 						
