@@ -40,7 +40,8 @@
       	
 		// Clear details
 		$("#hits").html('');
-		$("#map").html('');      	
+		$("#map").html(''); 
+		$("#about_tree").html('');      	
       	
       	if (query == '')
       	{
@@ -133,6 +134,13 @@
 				if (data.tree_url)
 				{
 					showtree('http://iphylo.org/~rpage/phyloinformatics/blast/' + data.tree_url);
+					
+					var html = '';
+					html += '<a href="tmp/' + rid + '.nex" target="_new"><img src="images/nexus.png" border="0" align="middle"> Alignment</a>';
+					html += '<a href="tmp/' + rid + '.tre" target="_new"><img src="images/treeview.png" border="0" align="middle"> Tree</a>';
+					html += '<a href="../services/tree_url_svg.php?url=http://iphylo.org/~rpage/phyloinformatics/blast/' + data.tree_url + '" target="_new"><img src="images/inkscape.png" border="0" align="middle">SVG</a>';
+					$('#about_tree').html(html);
+					
 				}
 				
 			}
@@ -142,7 +150,7 @@
     //----------------------------------------------------------------------------------------------
 	function showtree(url)
 	{
-		$('#output').load('../services/tree_url_svg.php?url=' + url);
+		$('#output').load('../services/tree_url_svg.php?url=' + url);		
 	}
 	
     //----------------------------------------------------------------------------------------------
@@ -274,7 +282,8 @@
   		<button onclick="blast();">BLAST</button>
    	 	<div id="map" style="position:absolute;left:0px;top:100px;width:360px;height:180px;"></div>
   	    
-		<div id="output" style="position:absolute;width:700px;height:500px;top:0px;left:400px;overflow:auto;">
+  	    <div id="about_tree" style="position:absolute;width:700px;height:40px;top:00px;left:400px;text-align:right;"></div>
+		<div id="output" style="position:absolute;width:700px;height:500px;top:40px;left:400px;overflow:auto;">
   	   
   	   </div>
   	</div>
