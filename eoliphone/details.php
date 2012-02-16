@@ -33,6 +33,9 @@ echo'
 
 	<link rel="stylesheet" href="../css/jquery.mobile-1.0.css" />
 	<link rel="stylesheet"  href="jquery.mobile.scrollview.css" />
+	<link rel="stylesheet"  href="jquery-mobile.css" />
+	<link rel="stylesheet"  href="photoswipe.min.css" />
+	
 	
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/jquery.mobile-1.0.js"></script>
@@ -40,6 +43,27 @@ echo'
 	<script src="jquery.easing.1.3.js"></script>
 	<script src="jquery.mobile.scrollview.js"></script>
 	<script src="scrollview.js"></script>
+	
+
+	<script src="klass.min.js"></script>
+	<script src="code.photoswipe.jquery-3.0.4.min.js"></script>
+	
+	<script type="text/javascript">
+		
+		//jQuery version
+			$(document).ready(function() {
+				try {
+					var myPhotoSwipe = $(\'ul.gallery a\').photoSwipe({
+						enableMouseWheel : false,
+						enableKeyboard : false
+					});
+				} catch(err) {
+					console.log(\'unabled to load photoswipe\');
+				}
+			});
+		
+	</script>
+	
 	
 </head> 
 
@@ -54,6 +78,7 @@ echo'
 	</div><!-- /header -->
 
 	<div id="content" data-role="content" data-scroll="true">';
+	
 	
 	echo '<h1>' .  $obj->scientificName . '</h1>';
 	
@@ -82,47 +107,25 @@ echo'
 		echo '</ul>';
 	}
 	
-	echo'
-	<div class="ui-grid-d">';
 	
 	if (isset($obj->dataObjects))
 	{
 		echo '<h2>Images</h2>';
-		$count = 0;
+		
+		echo '<ul class="gallery" id="Gallery">';
 		foreach ($obj->dataObjects as $dataObject)
 		{
 			if (isset($dataObject->eolThumbnailURL))
 			{
-				switch ($count)
-				{
-					case 0:
-						echo '<div class="ui-block-a">';
-						break;
-					case 1:
-						echo '<div class="ui-block-b">';
-						break;
-					case 2:
-						echo '<div class="ui-block-c">';
-						break;
-					case 3:
-						echo '<div class="ui-block-d">';
-						break;
-					case 4:
-						echo '<div class="ui-block-e">';
-						break;
-				}		
-				$count++;
-				if ($count == 5)
-				{
-					$count = 0;
-				}
-			
+				echo '<li>';
+				echo '<a href="' . $dataObject->eolMediaURL . '" rel="external">';
 				echo '<img src="' . $dataObject->eolThumbnailURL . '"></img>';
-				echo '</div>';
+				echo '</a>';
+				echo '</li>';
 			}
 		}
+		echo '</ul>';
 	}
-echo  '</div><!-- /grid-b -->';
 	
 echo '
 	</div><!-- /content -->

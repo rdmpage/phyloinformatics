@@ -1,0 +1,15 @@
+.gallery { list-style: none; padding: 0; margin: 0; }
+.gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.gallery li { float: left; width: 33.33333333%; }
+.gallery li a { display: block; margin: 5px; border: 1px solid #3c3c3c; }
+.gallery li img { display: block; width: 100%; height: auto; }
+#Gallery1 .ui-content, #Gallery2 .ui-content { overflow: hidden; }
+.ui-content-mapping {padding:8px;}
+
+
+#imageList { list-style: none; padding: 0; margin: 0; }
+.imageCreator { clear:right; font-size:10px; } 
+.imageRights { clear:right; font-size:10px; }
+.searchResultHdr { margin: 0 0 .6em 0; } 
+.ui-field-contain { padding: .4em; }
+.speciesSearchForm {margin-bottom:30px; }
