@@ -78,11 +78,12 @@
     //----------------------------------------------------------------------------------------------
     function get_results(rid)
     {
+    	//$("#output").html('<img src="images/indicator.gif" align="absmiddle" /> Checking status…');
        	$.getJSON('poll_blast_results.php?rid=' + rid + "&callback=?",
 			function(data){
 				if (data.status)
 				{
-					$("#output").html(data.status);
+					$("#output").html('<img src="images/indicator.gif" align="absmiddle" /> ' + data.status);
 					
 					switch (data.status)
 					{
@@ -109,12 +110,12 @@
     //----------------------------------------------------------------------------------------------
     function get_xml(rid)
     {
-    	$("#output").html('Fetching BLAST results from NCBI...');
+    	$("#output").html('<img src="images/arrows.gif" align="absmiddle" />Fetching BLAST results from NCBI…');
        	$.getJSON('get_blast_results.php?rid=' + rid + "&callback=?",
 			function(data){
 				if (data.xmlfile)
 				{
-					$("#output").html('Making tree...');
+					$("#output").html('<img src="images/paupcursor.gif" align="absmiddle" /> Making tree…');
 					maketree(rid);
 					
 					// display info on sequences
@@ -136,9 +137,9 @@
 					showtree('http://iphylo.org/~rpage/phyloinformatics/blast/' + data.tree_url);
 					
 					var html = '';
-					html += '<a href="tmp/' + rid + '.nex" target="_new"><img src="images/nexus.png" border="0" align="middle"> Alignment</a>';
-					html += '<a href="tmp/' + rid + '.tre" target="_new"><img src="images/treeview.png" border="0" align="middle"> Tree</a>';
-					html += '<a href="../services/tree_url_svg.php?url=http://iphylo.org/~rpage/phyloinformatics/blast/' + data.tree_url + '" target="_new"><img src="images/inkscape.png" border="0" align="middle">SVG</a>';
+					html += '<a href="tmp/' + rid + '.nex" target="_new"><img src="images/nexus.png" border="0" align="absmiddle" />Alignment</a> ';
+					html += '<a href="tmp/' + rid + '.tre" target="_new"><img src="images/treeview.png" border="0" align="absmiddle" />Tree</a> ';
+					html += '<a href="../services/tree_url_svg.php?url=http://iphylo.org/~rpage/phyloinformatics/blast/' + data.tree_url + '" target="_new"><img src="images/inkscape.png" border="0" align="absmiddle">SVG</a>';
 					$('#about_tree').html(html);
 					
 				}
