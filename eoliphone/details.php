@@ -2,7 +2,7 @@
 
 require_once('../lib.php');
 
-$max_images=24;
+$max_images=20;
 
 $id = $_GET['id'];
 
@@ -128,7 +128,8 @@ $html = '
 			
 				$html .= '<li>';
 				$html .= '<a href="' . $dataObject->eolMediaURL . '" rel="external">';
-				$html .= '<img src="eolthumbnail.php?url=' . urlencode($dataObject->eolThumbnailURL) . '" alt = "' . $caption . '"></img>';
+//				$html .= '<img src="eolthumbnail.php?url=' . urlencode($dataObject->eolThumbnailURL) . '" alt = "' . $caption . '"></img>';
+				$html .= '<img src="eolthumbnail.php?url=' . urlencode($dataObject->eolMediaURL) . '" alt = "' . $caption . '"></img>';
 				$html .= '</a>';
 				$html .= '</li>';
 			}

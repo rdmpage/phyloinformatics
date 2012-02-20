@@ -4,7 +4,7 @@ require_once (dirname(dirname(__FILE__)) . '/lib.php');
 
 $convert = true;
 
-$thumbnail_size = 128;
+$thumbnail_size = 200;
 
 $url = $_GET['url'];
 
