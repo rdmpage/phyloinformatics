@@ -10,7 +10,7 @@ function extract_specimen_codes($t)
 	// (allowing for a prefix before [number]
 	$acronyms = array(
 		'ABTC','AMCC','AMNH','ANSP','ANWC','AMS','ANSP','ASIZB','ASU',
-		'BMNHE','BNHS','BPBM',
+		'BM', 'BMNHE','BNHS','BPBM',
 		'CAS','CASENT','CFBH','CMK','CWM',
 		'DHMECN',
 		'FMNH',
@@ -20,7 +20,7 @@ function extract_specimen_codes($t)
 		'KFBG','KU','KUHE',
 		'LACM','LSUMZ',		
 		'MACN','MACN-Ict','MCP','MCNU', 'MCZ','MFA-ZV-I','MHNCI','MNCN','MHNUC','MNRJ','MPEG','MRAC','MRT','MUJ','MVUP','MVZ','MZUFV','MZUSP',
-		'NRM','NSV','NT','NTM',
+		'NHMV','NMB','NRM','NSV','NT','NTM',
 		'OMNH',
 		'PNGNM',
 		'QCAZ','QM','QMJ',
@@ -71,14 +71,58 @@ function extract_specimen_codes($t)
 	}
 	
 	// Special cases -------------------------------------------------------------------------------
+	// Acronyms separated by dots
+	$dots = array();
+	foreach ($acronyms as $a)
+	{
+		$s = str_split($a);
+		$dots[] = join(".", $s) . '.';		
+	}
+	
+	//print_r($dots);
+	
+	if (preg_match_all(
+		'/
+		(?<code>
+		'
+		. join("|", $dots)
+		. '
+		)
+		\s*
+		(:|_|\-)?
+		(?<number>((?<prefix>(J|R|A[\.|\s]?|A\-))?[0-9]{3,}))
+		
+		(
+			(\-|–|­|—)
+			(?<end>[0-9]{2,})
+		)?		
+		
+		/x',  
+		
+		$t, $out, PREG_PATTERN_ORDER))
+	{
+		//print_r($out);
+		$found = true;
+		
+		for ($i = 0; $i < count($out[0]); $i++)
+		{
+			$s = new stdClass;
+			$s->code = $out['code'][$i];
+			$s->prefix = $out['prefix'][$i];
+			$s->number = $out['number'][$i];
+			$s->end = $out['end'][$i];
+			array_push($specimens, $s);
+		}
+	}
+	
 
 	// ---------------------------------------------------------------------------------------------
 	// BMNH, e.g. BMNH1947.2.26.89
 	if (preg_match_all(
 		'/
-		(?<code>BMNH)
+		(?<code>(BMNH|B\.M\.))
 		\s*
-		(?<number>([0-9]{4}(\.[0-9]+)+) )
+		(?<number>([0-9]{2,4}(\.[0-9]+)+) )
 		
 		(
 			(\-|–|­|—)
@@ -303,6 +347,8 @@ function extract_specimen_codes($t)
 		{
 			$z->code = 'USNMENT';
 		}
+		
+		$z->code = preg_replace('/([A-Z])\./', '$1', $z->code);
 	
 		if ($z->end == '')
 		{

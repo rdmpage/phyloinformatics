@@ -756,6 +756,7 @@ if (1)
 	$filename = '/Users/rpage/Sites/nexml/nexml/S2108.xml'; //
 	$filename = '/Users/rpage/Sites/nexml/nexml/S2014.xml'; //
 	$filename = '/Users/rpage/Sites/nexml/nexml/S11742.xml'; //
+	$filename = '/Users/rpage/Sites/nexml/nexml/S11988.xml'; // Pristimantis (big)
 
 	
 	$xml = file_get_contents($filename);

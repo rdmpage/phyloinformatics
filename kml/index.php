@@ -408,9 +408,11 @@ function main()
 			
 			$data = extract_table($table);
 			
+			//print_r($data);
+			
 			if (count($taxa) != count($data))
 			{
-				'<html>
+				echo '<html>
 	<head>
 	<meta charset="utf-8" />
 			<style type="text/css" title="text/css">
