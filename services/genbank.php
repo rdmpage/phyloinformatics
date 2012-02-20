@@ -5,6 +5,40 @@
 require_once (dirname(dirname(__FILE__)) . '/lib.php');
 
 //--------------------------------------------------------------------------------------------------
+/**
+ * @brief Format an arbitrary date as YYYY-MM-DD
+ *
+ * @param date A string representation of a date
+ *
+ * @return Date in YYYY-MM-DD format
+ */
+function format_date($date)
+{
+	$formatted_date = '';
+	
+	// Dates like 2006-8-7T15:47:36.000Z break PHP strtotime, so
+	// replace the T with a space.
+	$date = preg_replace('/-([0-9]{1,2})T([0-9]{1,2}):/', '-$1 $2:', $date);
+	
+	if (PHP_VERSION < 5.0)
+	{
+		if (-1 != strtotime($date))
+		{
+			$formatted_date = date("Y-m-d", strtotime($date));
+		}		
+	}
+	else
+	{
+		if (false != strtotime($date))
+		{
+			$formatted_date = date("Y-m-d", strtotime($date));
+		}
+	}
+	return $formatted_date;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 function process_lat_lon(&$sequence)
 {
 	if (!isset($sequence->source->lat_lon))
@@ -399,6 +433,9 @@ function fetch_sequences($ids)
 		$json = str_replace('"GBSeq_feature-table"', 		'"GBSeq_feature_table"', $json);
 		$json = str_replace('"GBSeq_primary-accession"', 	'"GBSeq_primary_accession"', $json);
 		$json = str_replace('"GBSeq_other-seqids"', 		'"GBSeq_other_seqids"', $json);
+		$json = str_replace('"GBSeq_create-date"', 			'"GBSeq_create_date"', $json);
+		$json = str_replace('"GBSeq_update-date"', 			'"GBSeq_update_date"', $json);
+
 			
 		$sequences = json_decode($json);
 	
@@ -407,7 +444,11 @@ function fetch_sequences($ids)
 			$genbank_sequence = new stdclass;
 			$genbank_sequence->accession = $GBSet->GBSeq_primary_accession;
 			$genbank_sequence->organism = $GBSet->GBSeq_organism;
-			
+
+
+			$genbank_sequence->created 	= format_date($GBSet->GBSeq_create_date);
+			$genbank_sequence->updated = format_date($GBSet->GBSeq_update_date);
+						
 			foreach ($GBSet->GBSeq_other_seqids as $seqids)
 			{
 				if (preg_match('/gi\|(?<gi>\d+)$/', $seqids, $m))
