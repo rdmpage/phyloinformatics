@@ -48,12 +48,15 @@ function degrees2decimal($degrees, $minutes=0, $seconds=0, $hemisphere='N')
 function IsLatitude($str, &$latitude)
 {
 	$result = false;
-
+	$str = trim($str);
 	$str = str_replace("−", "-", $str);
+	
+	//echo "|$str|<br/>";
 	
 	if (is_numeric($str))
 	{
 		$latitude = (double)$str;
+		//echo "x";
 		return true;
 	}
 
@@ -177,6 +180,7 @@ function IsLongitude($str, &$longitude)
 {
 	$result = false;
 	
+	$str = trim($str);
 	$str = str_replace("−", "-", $str);
 	
 	if (is_numeric($str))

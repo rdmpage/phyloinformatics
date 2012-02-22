@@ -169,6 +169,7 @@ function extract_table ($table_text)
 		$n = count($row);
 		for ($i=1;$i<$n;$i++)
 		{
+			//echo "i=" . $i . ' ' . $column_types[$i] . "<br/>";
 			switch ($column_types[$i])
 			{
 				case TYPE_LATITUDE_LONGITUDE:
@@ -179,7 +180,6 @@ function extract_table ($table_text)
 					break;
 
 				case TYPE_LATITUDE:
-					
 					if (IsLatitude($row[$i], $latitude))
 					{
 						if (!isset($otu->latlong))
@@ -212,7 +212,6 @@ function extract_table ($table_text)
 	
 	/*
 	echo '<pre>';
-	
 	print_r($data);
 	echo '</pre>';
 	*/
