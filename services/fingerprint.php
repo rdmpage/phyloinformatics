@@ -1,5 +1,9 @@
 <?php
 
+// convert string to Google Refine-style finger print, based on 
+// https://gist.github.com/1374639#file_fingerprint.rb
+// by https://github.com/jpmckinney
+
 function finger_print ($str)
 {
 	// Convert accented characters
