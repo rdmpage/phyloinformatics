@@ -416,6 +416,7 @@ function extract_specimen_codes($t)
 		}
 	}
 	
+	$ids = array_unique($ids);
 	sort($ids);
 	
 	return $ids;

@@ -14,6 +14,10 @@ global $config;
 // Date timezone
 date_default_timezone_set('Europe/London');
 
+$config['db_user']		= 'root';
+$config['db_passwd']	= '';
+$config['db_name']		= 'gbif';
+
 // Proxy settings for connecting to the web---------------------------------------------------------
 
 // Set these if you access the web through a proxy server

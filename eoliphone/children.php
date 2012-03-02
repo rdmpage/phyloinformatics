@@ -77,8 +77,8 @@ echo '" data-transition="slide" data-direction="reverse" data-icon="arrow-l">' .
 		<a href="details.php?id=' . $obj->taxonConceptID . '&taxonID=' . $obj->taxonID . '" data-icon="grid">Details</a>
 		</div><!-- /header -->
 
-	<div id="content" data-role="content" data-scroll="true">
-	<ul data-role="listview" >';
+	<div id="content" data-role="content" data-scroll="true" >
+	<ul data-role="listview">';
 	
 	foreach ($obj->children as $child)
 	{
