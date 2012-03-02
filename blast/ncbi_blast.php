@@ -20,7 +20,7 @@ function post($url, $postfields)
 	curl_setopt ($ch, CURLOPT_URL, $url); 	
 	curl_setopt ($ch, CURLOPT_POST, TRUE);
 	
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postfields));
 	$curl_result = curl_exec ($ch); 
 	
 	//echo $curl_result;
