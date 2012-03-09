@@ -24,9 +24,9 @@ class EolService extends ReconciliationService
 		
 		$view_url = 'http://eol.org/pages/{{id}}';
 
-		$preview_url = '';	
-		$width = 430;
-		$height = 300;
+		$preview_url = 'http://iphylo.org/~rpage/phyloinformatics/eoliphone/preview.php?id={{id}}';	
+		$width = 300;
+		$height = 200;
 		
 		if ($view_url != '')
 		{
