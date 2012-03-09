@@ -214,6 +214,12 @@ if ($code != '')
 	{
 		$catalognumber .= ' ' . $parts[$i];
 	}
+	
+	if (preg_match('/^CASENT (?<cat>.*)$/', $code, $m))
+	{
+		$institutioncode = 'casent';
+		$catalognumber = 'casent' . $m['cat'];
+	}
 }
 
 if (isset($_GET['callback']))
