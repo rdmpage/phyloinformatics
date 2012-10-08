@@ -29,3 +29,7 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# tmp folders
+eoliphone/tmp
+blast/tmp
