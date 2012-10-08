@@ -16,7 +16,6 @@ $url = 'http://eol.org/api/hierarchy_entries/1.0/' . $id . '.json';
 $json = get($url);
 $obj = json_decode($json);
 
-
 echo'
 <!DOCTYPE html> 
 <html> 

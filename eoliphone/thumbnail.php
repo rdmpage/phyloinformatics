@@ -30,7 +30,15 @@ if (!file_exists($filename))
 				if ($convert)
 				{
 					file_put_contents('tmp/' . $taxonConceptID, $img);
+					
+					// more recent versions
 					$command = "/usr/local/bin/convert -thumbnail '80x80^' -gravity center -extent 80x80 " . 'tmp/' . $taxonConceptID . ' ' . $filename;
+
+					// ImageMagick 6.3.1 
+					$command = "/usr/local/bin/convert -resize '80x80' -gravity center -extent 80x80 " . 'tmp/' . $taxonConceptID . ' ' . $filename;
+					
+					//echo $command . "\n";
+					
 					system($command);
 				}
 				else
@@ -43,6 +51,7 @@ if (!file_exists($filename))
 		
 	}
 }
+
 
 if (file_exists($filename))
 {
