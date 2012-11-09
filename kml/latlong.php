@@ -316,7 +316,7 @@ function IsLatLong($str, &$latlong)
 	$str = str_replace("′", "'", $str);
 		
 	$str = trim($str, '(');
-	$str = trim($str, ')');
+	$str = rtrim($str, ')');
 		
 	// 115.59E/37.64N
 	if (!$result)
@@ -397,7 +397,7 @@ function IsLatLong($str, &$latlong)
 	
 	if (!$result)
 	{
-		if (preg_match('/(?<degreesLatitude>\d+)°(\s*(?<minutesLatitude>\d+(.\d+)?)\')?((?<secondsLatitude>\d+)\'\')?\s*(?<hemisphereLatitude>[S|N])(;|,|–|\/)?\s*(?<degreesLongitude>\d+)°(\s*(?<minutesLongitude>\d+(.\d+)?)\')?((?<secondsLongitude>\d+)\'\')?\s*(?<hemisphereLongitude>[W|E])/', $str, $matches)) 
+		if (preg_match('/(?<degreesLatitude>\d+)°(\s*(?<minutesLatitude>\d+(.\d+)?)\')?((?<secondsLatitude>\d+(.\d+)?)(\'\'|"))?\s*(?<hemisphereLatitude>[S|N])(;|,|–|\/)?\s*(?<degreesLongitude>\d+)°(\s*(?<minutesLongitude>\d+(.\d+)?)\')?((?<secondsLongitude>\d+(.\d+)?)(\'\'|"))?\s*(?<hemisphereLongitude>[W|E])/', $str, $matches)) 
 //		if (preg_match('/(?<degreesLatitude>\d+)°((?<minutesLatitude>\d+(.\d+)?)\')((?<secondsLatitude>\d+)\'\')?(.*)/', $str, $matches)) 
 		{
 			$result = true;
