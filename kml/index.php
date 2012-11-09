@@ -151,13 +151,14 @@ function extract_table ($table_text)
 	// By assumption
 	$column_types[0] = TYPE_OTU;
 	
-	/*
-	echo '<pre>';
-	print_r($headings);
-	print_r($column_types);
-	print_r($content);
-	echo '</pre>';
-	*/
+	if (0)
+	{
+		echo '<pre>';
+		print_r($headings);
+		print_r($column_types);
+		print_r($content);
+		echo '</pre>';
+	}
 	
 	$data = array();
 	
@@ -494,15 +495,16 @@ function main()
 			
 			$match = json_decode($json);
 			
-			/*
-			echo '<pre>';
-			$n = count($taxa);
-			foreach ($match->matching as $pair)
+			if (0)
 			{
-				echo $taxa[$pair[0]]  . "|\t" . $b[$pair[1] - $n] . "\n";
-			}
-			echo '</pre>';
-			*/
+				echo '<pre>';
+				$n = count($taxa);
+				foreach ($match->matching as $pair)
+				{
+					echo $taxa[$pair[0]]  . "|\t" . $b[$pair[1] - $n] . "\n";
+				}
+				echo '</pre>';
+			}			
 			
 			// Mapping between tree labels and table labels
 			$match_by_label = array();
@@ -572,7 +574,7 @@ function main()
          
          $k = join(" ", $kml_lines);
          echo "'" . $k . "'";
-		 echo ');
+		 echo ');	
          ge.getFeatures().appendChild(treeDoc);
          
       }
@@ -652,7 +654,7 @@ function main()
 				<input name="newick" type="hidden" value="' . $newick . '">
 				
 				<table>
-				<tr><th>Taxa in tree</th><th>Paste in table with taxa (in first column), and latitude and longitude</th></tr>
+				<tr><th>Taxa in tree</th><th>Paste in table with taxa (in first column), and latitude and longitude.<br/>The first row of the table must contain column headings.</th></tr>
 				<tr>
 				<td>
 				<textarea id="taxa" name="taxa" rows="30" cols="60" readonly="readonly">'			
