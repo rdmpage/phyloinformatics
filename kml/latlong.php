@@ -317,6 +317,8 @@ function IsLatLong($str, &$latlong)
 		
 	$str = trim($str, '(');
 	$str = rtrim($str, ')');
+	
+	//echo $str . '<br/>';
 		
 	// 115.59E/37.64N
 	if (!$result)

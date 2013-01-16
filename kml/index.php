@@ -138,6 +138,10 @@ function extract_table ($table_text)
 		{
 			$column_types[$i] = TYPE_LATITUDE_LONGITUDE;
 		}
+		if (preg_match('/latlong/i', $headings[$i]))
+		{
+			$column_types[$i] = TYPE_LATITUDE_LONGITUDE;
+		}
 		if (preg_match('/latitude/i', $headings[$i]))
 		{
 			$column_types[$i] = TYPE_LATITUDE;
