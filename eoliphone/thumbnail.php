@@ -35,11 +35,13 @@ if (!file_exists($filename))
 					$command = "/usr/local/bin/convert -thumbnail '80x80^' -gravity center -extent 80x80 " . 'tmp/' . $taxonConceptID . ' ' . $filename;
 
 					// ImageMagick 6.3.1 
-					$command = "/usr/local/bin/convert -resize '80x80' -gravity center -extent 80x80 " . 'tmp/' . $taxonConceptID . ' ' . $filename;
+					$command = "/usr/local/bin/convert -resize '120' -gravity center -extent 80x80 " . 'tmp/' . $taxonConceptID . ' ' . $filename;
 					
 					//echo $command . "\n";
 					
 					system($command);
+					
+					unlink('tmp/' . $taxonConceptID);
 				}
 				else
 				{

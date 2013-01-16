@@ -12,9 +12,13 @@ $hash = md5($url);
 
 $filename = 'tmp/' . $hash .  '.jpg';
 
+//echo $filename;
+
 if (!file_exists($filename))
 {
 	$image = $url;
+	
+	//echo $image;
 
 	// fetch and store				
 	$img = get($image);
@@ -23,13 +27,21 @@ if (!file_exists($filename))
 	{
 		file_put_contents('tmp/' . $hash, $img);
 		$command = "/usr/local/bin/convert -thumbnail '" . $thumbnail_size . "x" . $thumbnail_size . "^' -gravity center -extent " . $thumbnail_size . "x" . $thumbnail_size . " " . 'tmp/' . $hash . ' ' . $filename;
+
+		// ImageMagick 6.3.1 
+		$command = "/usr/local/bin/convert -resize '" . ($thumbnail_size+100) . "' -gravity center -extent " . $thumbnail_size . "x" . $thumbnail_size . " " . 'tmp/' . $hash . ' ' . $filename;
+		
+		//echo $command;
 		system($command);
+		
+		unlink('tmp/' . $hash);
 	}
 	else
 	{
 		file_put_contents($filename, $img);
 	}
 }
+
 
 if (file_exists($filename))
 {

@@ -117,7 +117,8 @@ $html = '
 		$html .= '<ul class="gallery" id="Gallery">';
 		foreach ($obj->dataObjects as $dataObject)
 		{
-			if (isset($dataObject->eolThumbnailURL))
+//			if (isset($dataObject->eolThumbnailURL))
+			if ($dataObject->dataType == 'http://purl.org/dc/dcmitype/StillImage')
 			{
 				$caption = '';
 				if (isset($dataObject->title))
