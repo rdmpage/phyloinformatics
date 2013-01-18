@@ -17,6 +17,16 @@
 
     <script>
     
+    //----------------------------------------------------------------------------------------------
+    // http://stackoverflow.com/a/7124052/9684
+	function htmlEscape(str) {
+		return String(str)
+				.replace(/&/g, '&amp;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#39;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;');
+	}    
     
     //----------------------------------------------------------------------------------------------
     function show_delay(rid, value)
@@ -187,7 +197,7 @@
 						if (data.sequences[i].source.specimen_voucher)
 						{
 							html += '<td>';
-							html += data.sequences[i].source.specimen_voucher;
+							html += htmlEscape(data.sequences[i].source.specimen_voucher);
 							html += '</td>';
 						}
 						else
