@@ -35,6 +35,7 @@
 <li><a href="#other">Other uses for maps</a></li>
 <li><a href="#geophylogenies">Geophylogenies</a></li>
 <li><a href="#next">Where next?</a></li>
+<li><a href="#reading">Reading</a></li>
 </ul>
 
 <h2><a name="background"/>Background</h2>
@@ -98,6 +99,15 @@ Error, browser must support "SVG"</p>
 </object>
 </div>
 
+<h3>Large scale cleaning</h3>
+<p>The examples above are fairly small scale, but GBIF is a huge database so cleaning it requires some impressiv eprocessing power. For details see <a href="http://gbif.blogspot.co.uk/2011/05/here-be-dragons-mapping-occurrence-data.html">Here be dragons - mapping occurrence data</a> which explains how the maps below were generated:
+
+<img src="images/us-verbatim.png" /><br />
+<p>Map 1: Verbatim (unprocessed) occurrence data coordinates for the USA</p>
+<img src="images/us-portal.png" /><br />
+<p>Map 2: Results of current data portal processing for occurrences in the USA</p>
+<img src="images/us-new.png" /><br />
+<p>Map 3: Results of new processing workflow for occurrences in the USA</p>
 
 <h2><a name="googleearth"/>Google Earth</h2>
 
@@ -129,7 +139,8 @@ Error, browser must support "SVG"</p>
 
 <p>Repeat this exercise for another organism that you can find on Flickr and in GBIF.</p>
 
-
+<p>For an example of exploring this further see <a href="http://iphylo.blogspot.co.uk/2012/06/where-is-in-crowdsourcing-mapping-eol.html" target="_new">Where is the "crowd" in crowdsourcing? Mapping EOL Flickr photos</a> (source code on <a href="https://github.com/rdmpage/flickreolmap" target="_new">GitHub</a>).</p>
+<img src="http://lh3.ggpht.com/-2-5iF4X1OlA/T-ws1DHSftI/AAAAAAAABcg/PHOuSWZU1bM/screenshot.png?imgmax=800" />
 </div>
 
 
@@ -252,13 +263,21 @@ END;
 </div>
 
 
-<h2><a name="next"/>What's next?</h2>
+<h2><a name="next"/>Where next?</h2>
 
-<p>In this session we've focussed on data that is georeferenced, that is, we know where on the Earth's surface it was located. For a lot of legacy data we will not have GPS coordinates. Tools such as <a href="http://www.biogeomancer.org" target="_new">BioGeomancer</a> aim to take a verbal description of where an observation was made (e.g., "5 mi NW of Glasgow") and convert that into latitude and longitude.</p>
+<p>In this session we've focussed on data that is georeferenced, that is, we know where on the Earth's surface it was located. For a lot of legacy data we will not have GPS coordinates. Tools such as <a href="http://www.biogeomancer.org" target="_new">BioGeomancer</a> (2012-01021 link seems to be broken, try <a href="https://sites.google.com/site/biogeomancerworkbench/" target="_new">https://sites.google.com/site/biogeomancerworkbench/</a>)aim to take a verbal description of where an observation was made (e.g., "5 mi NW of Glasgow") and convert that into latitude and longitude.</p>
 
 <p>Tools to create geophylogenies are in their infancy, and not widely used. It would be interesting to think about how to analyse geophylogenies, for example, can we make inferences about biogeographic processed base don how many lines cross particular geographic features? Can we compare heights of lines (a function, say, of molecular evolution) to infer whether geographic patterns are the same age?</p>
 
 <p>Creating geophylogeny files isn't terribly straightforward, it would be nice to have a tool that made this simpler, pehraps by being able to take a tree and a list of names and coordinates and automatically merging the two.</p>
+
+<h2><a name="reading"/>Reading</h2>
+<p>(see also <a href="http://www.mendeley.com/groups/1819171/phyloinformatics-course/" target="_new">Phyloinformatics Course on Mendeley</a>)</p>
+
+<ul>
+<li>Boakes, E. H., McGowan, P. J. K., Fuller, R. A., Chang-qing, D., Clark, N. E., O’Connor, K., & Mace, G. M. (2010). Distorted Views of Biodiversity: Spatial and Temporal Bias in Species Occurrence Data. PLoS Biology, 8(6), e1000385. <a href="http://dx.doi.org/10.1371/journal.pbio.1000385.g008" target="_new">	doi:10.1371/journal.pbio.1000385.g008</a></li>
+</ul>
+
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
