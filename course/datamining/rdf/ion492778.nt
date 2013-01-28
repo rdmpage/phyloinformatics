@@ -1,0 +1,9 @@
+<urn:lsid:organismnames.com:name:492778> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonName#TaxonName> .
+<urn:lsid:organismnames.com:name:492778> <http://purl.org/dc/elements/1.1/identifier> "urn:lsid:organismnames.com:name:492778" .
+<urn:lsid:organismnames.com:name:492778> <http://purl.org/dc/elements/1.1/creator> <http://www.organismnames.com> .
+<urn:lsid:organismnames.com:name:492778> <http://purl.org/dc/elements/1.1/Title> "Rana okaloosae" .
+<urn:lsid:organismnames.com:name:492778> <http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete> "Rana okaloosae" .
+<urn:lsid:organismnames.com:name:492778> <http://rs.tdwg.org/ontology/voc/TaxonName#nomenclaturalCode> <http://rs.tdwg.org/ontology/voc/TaxonName#ICZN> .
+<urn:lsid:organismnames.com:name:492778> <http://rs.tdwg.org/ontology/voc/Common#PublishedIn> "A new species of frog (Ranidae: Rana) from northwestern Florida. Copeia, 1985(2) 1985: 379-383.  379 [Zoological Record Volume 122]" .
+<urn:lsid:organismnames.com:name:492778> <http://rs.tdwg.org/ontology/voc/Common#microreference> "379" .
+<urn:lsid:organismnames.com:name:492778> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.organismnames.com/namedetails.htm?lsid=492778> .

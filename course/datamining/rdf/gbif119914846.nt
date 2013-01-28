@@ -1,0 +1,19 @@
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#TaxonOccurrence> .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#catalogNumber> "53964" .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#collectionCode> "Herpetology" .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#collector> "Paul E. Moler" .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#country> "United States" .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#institutionCode> "FLMNH" .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#stateProvince> "Florida" .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#county> "Okaloosa" .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#identifiedTo> _:node17hrh66apx1 .
+_:node17hrh66apx1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#Identification> .
+_:node17hrh66apx1 <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#taxon> <http://data.gbif.org/ws/rest/taxon/get/2427155> .
+<http://data.gbif.org/ws/rest/taxon/get/2427155> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept> .
+<http://data.gbif.org/ws/rest/taxon/get/2427155> <http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName> _:node17hrh66apx2 .
+_:node17hrh66apx2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonName#TaxonName> .
+_:node17hrh66apx2 <http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete> "Lithobates okaloosae" .
+_:node17hrh66apx2 <http://rs.tdwg.org/ontology/voc/TaxonName#specificEpithet> "okaloosae" .
+_:node17hrh66apx2 <http://rs.tdwg.org/ontology/voc/TaxonName#scientific> "true" .
+_:node17hrh66apx1 <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#taxonName> "Lithobates okaloosae" .
+<http://data.gbif.org/ws/rest/occurrence/get/119914846> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#gbifNotes> "Data from GBIF data index - original values." .

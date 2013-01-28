@@ -1,0 +1,19 @@
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2002/07/owl#sameAs> <http://purl.uniprot.org/taxonomy/190275> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2002/07/owl#sameAs> <http://bio2rdf.org/taxonomy:190275> .
+<http://bioguid.info/taxonomy:190275> <http://purl.org/dc/terms/created> "2002-03-19" .
+<http://bioguid.info/taxonomy:190275> <http://purl.org/dc/terms/modified> "2012-07-10" .
+<http://bioguid.info/taxonomy:190275> <http://purl.org/dc/terms/issued> "2003-04-03" .
+<http://bioguid.info/taxonomy:190275> <http://rs.tdwg.org/ontology/voc/TaxonConcept#nameString> "Rana okaloosae" .
+<http://bioguid.info/taxonomy:190275> <http://rs.tdwg.org/ontology/voc/TaxonConcept#rankString> "species" .
+<http://bioguid.info/taxonomy:190275> <http://purl.uniprot.org/core/commonName> "Florida bog frog" .
+<http://bioguid.info/taxonomy:190275> <http://purl.uniprot.org/core/synonym> "Lithobates okaloosae" .
+<http://bioguid.info/taxonomy:190275> <http://rs.tdwg.org/ontology/voc/Common#taxonomicPlacementFormal> "cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Chordata, Craniata, Vertebrata, Gnathostomata, Teleostomi, Euteleostomi, Sarcopterygii, Tetrapoda, Amphibia, Batrachia, Anura, Neobatrachia, Ranoidea, Ranidae, Rana, Aquarana" .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bioguid.info/taxonomy:121236> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://animaldiversity.ummz.umich.edu/accounts/rana/r._okaloosae> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://amphibiaweb.org/cgi-bin/amphib_query?where-scientific_name=Rana+okaloosae> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://research.amnh.org/herpetology/amphibia/names.php?taxon=Rana+okaloosae> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.catalogueoflife.org/annual-checklist/search/all/key/Rana%20okaloosae> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://data.gbif.org/search/Rana%20okaloosae> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://en.wikipedia.org/wiki/index.html?curid=4346365> .
+<http://bioguid.info/taxonomy:190275> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=173456> .

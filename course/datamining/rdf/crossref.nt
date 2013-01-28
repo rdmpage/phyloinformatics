@@ -1,0 +1,26 @@
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/dc/terms/identifier> "10.2307/1444847" .
+<http://dx.doi.org/10.2307/1444847> <http://www.w3.org/2002/07/owl#sameAs> <info:doi/10.2307/1444847> .
+<http://dx.doi.org/10.2307/1444847> <http://www.w3.org/2002/07/owl#sameAs> <doi:10.2307/1444847> .
+<http://dx.doi.org/10.2307/1444847> <http://prismstandard.org/namespaces/basic/2.1/doi> "10.2307/1444847" .
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/ontology/bibo/doi> "10.2307/1444847" .
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/dc/terms/date> "1985-05-03Z"^^<http://www.w3.org/2001/XMLSchema#date> .
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/ontology/bibo/volume> "1985" .
+<http://dx.doi.org/10.2307/1444847> <http://prismstandard.org/namespaces/basic/2.1/volume> "1985" .
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/ontology/bibo/pageStart> "379" .
+<http://dx.doi.org/10.2307/1444847> <http://prismstandard.org/namespaces/basic/2.1/startingPage> "379" .
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/dc/terms/title> "A New Species of Frog (Ranidae: Rana) from Northwestern Florida" .
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/dc/terms/publisher> "JSTOR" .
+<http://dx.doi.org/10.2307/1444847> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Article> .
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/dc/terms/isPartOf> <http://id.crossref.org/issn/0045-8511> .
+<http://dx.doi.org/10.2307/1444847> <http://purl.org/dc/terms/creator> <http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4> .
+<http://id.crossref.org/issn/0045-8511> <http://purl.org/dc/terms/title> "Copeia" .
+<http://id.crossref.org/issn/0045-8511> <http://purl.org/ontology/bibo/issn> "0045-8511" .
+<http://id.crossref.org/issn/0045-8511> <http://prismstandard.org/namespaces/basic/2.1/issn> "0045-8511" .
+<http://id.crossref.org/issn/0045-8511> <http://purl.org/dc/terms/hasPart> <http://dx.doi.org/10.2307/1444847> .
+<http://id.crossref.org/issn/0045-8511> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/ontology/bibo/Journal> .
+<http://id.crossref.org/issn/0045-8511> <http://www.w3.org/2002/07/owl#sameAs> <urn:issn:0045-8511> .
+<http://id.crossref.org/issn/0045-8511> <http://purl.org/dc/terms/identifier> "0045-8511" .
+<http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4> <http://xmlns.com/foaf/0.1/name> "Paul E. Moler" .
+<http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4> <http://xmlns.com/foaf/0.1/givenName> "Paul E." .
+<http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4> <http://xmlns.com/foaf/0.1/familyName> "Moler" .
+<http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> .

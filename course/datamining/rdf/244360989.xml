@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://data.gbif.org/ws/rest/occurrence/stylesheet"?>
+<gbif:gbifResponse xsi:schemaLocation="http://portal.gbif.org/ws/response/gbif http://data.gbif.org/ws/rest/occurrence/schema http://purl.org/dc/elements/1.1/ http://data.gbif.org/schema/dc.xsd http://purl.org/dc/terms/ http://data.gbif.org/schema/dcterms.xsd http://www.w3.org/1999/02/22-rdf-syntax-ns# http://data.gbif.org/schema/rdf.xsd http://www.w3.org/2002/07/owl# http://data.gbif.org/schema/owl.xsd http://rs.tdwg.org/ontology/voc/Common# http://data.gbif.org/schema/tcom.xsd http://rs.tdwg.org/ontology/voc/TaxonOccurrence# http://data.gbif.org/schema/TaxonOccurrence.xsd http://rs.tdwg.org/ontology/voc/TaxonConcept# http://data.gbif.org/schema/TaxonConcept.xsd http://rs.tdwg.org/ontology/voc/TaxonName# http://data.gbif.org/schema/TaxonName.xsd" xmlns:gbif="http://portal.gbif.org/ws/response/gbif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:to="http://rs.tdwg.org/ontology/voc/TaxonOccurrence#" xmlns:tc="http://rs.tdwg.org/ontology/voc/TaxonConcept#" xmlns:tn="http://rs.tdwg.org/ontology/voc/TaxonName#" xmlns:tcom="http://rs.tdwg.org/ontology/voc/Common#">
+ <gbif:header>
+  <gbif:help>http://data.gbif.org/ws/rest/occurrence/help
+</gbif:help>
+  <gbif:request>get</gbif:request>
+  <gbif:statements>-
+
+This document contains data shared through the GBIF Network - see http://data.gbif.org/ for more information.
+					
+All usage of these data must be in accordance with the GBIF Data Use Agreement - see http://www.gbif.org/DataProviders/Agreements/DUA
+
+Please cite these data as follows:
+
+National Museum of Natural History, Smithsonian Institution, NMNH Vertebrate Zoology Herpetology Collections (accessed through GBIF data portal, http://data.gbif.org/datasets/resource/1838, 2013-01-26)
+
+-
+</gbif:statements>
+  <gbif:stylesheet>http://data.gbif.org/ws/rest/occurrence/stylesheet</gbif:stylesheet>
+  <gbif:parameter name="request" value="get"/>
+  <gbif:parameter name="service" value="occurrence"/>
+  <gbif:parameter name="format" value="darwin"/>
+  <gbif:parameter name="key" value="244360989"/>
+  <gbif:parameter name="mode" value="raw"/>
+<gbif:summary start="0" totalMatched="1" totalReturned="1"/>
+ </gbif:header><gbif:dataProviders>
+ <gbif:dataProvider gbifKey="220" rdf:about="http://data.gbif.org/ws/rest/provider/get/220">
+  <gbif:name>National Museum of Natural History, Smithsonian Institution</gbif:name>
+   <gbif:dataResources>
+    <gbif:dataResource gbifKey="1838" rdf:about="http://data.gbif.org/ws/rest/resource/get/1838">
+     <gbif:name>NMNH Vertebrate Zoology Herpetology Collections</gbif:name>
+     <gbif:rights>See: http://www.mnh.si.edu/rc/db/2data_access_policy.html</gbif:rights>
+     <gbif:citation>Division of Amphibians and Reptiles, Research and Collections Information System, NMNH, Smithsonian Institution. See: http://www.mnh.si.edu/rc/db/2data_access_policy.html</gbif:citation>
+     <gbif:occurrenceRecords>
+      <to:TaxonOccurrence gbifKey="244360989" rdf:about="http://data.gbif.org/ws/rest/occurrence/get/244360989">
+         <to:basisOfRecordString>S</to:basisOfRecordString>
+          <to:catalogNumber>239420</to:catalogNumber>
+       <to:collectionCode>Vertebrate Zoology; Amphibians &amp; Reptiles</to:collectionCode>
+       <to:continent>North America</to:continent>
+     <to:country>United States</to:country>
+                    <to:institutionCode>USNM</to:institutionCode>
+       <to:stateProvince>Florida</to:stateProvince>
+       <to:county>Santa Rosa</to:county>
+       <to:earliestDateCollected>1983-07-19</to:earliestDateCollected>
+       <to:latestDateCollected>1983-07-19</to:latestDateCollected>
+       <to:identifiedTo>
+        <to:Identification>
+         <to:taxon>
+          <tc:TaxonConcept gbifKey="2427156" rdf:about="http://data.gbif.org/ws/rest/taxon/get/2427156">
+           <tc:hasName>
+            <tn:TaxonName>
+             <tn:nameComplete>Rana okaloosae</tn:nameComplete>
+             <tn:specificEpithet>okaloosae</tn:specificEpithet>
+             <tn:scientific>true</tn:scientific>
+            </tn:TaxonName>
+           </tc:hasName>
+          </tc:TaxonConcept>         
+         </to:taxon>
+         <to:taxonName>Rana okaloosae</to:taxonName>
+        </to:Identification>
+       </to:identifiedTo>
+       <to:locality>Harold, E of, Burnt Grocery Creek; T2N R26W Sec 20</to:locality>
+       <to:gbifNotes>Data from GBIF data index - original values.</to:gbifNotes>
+      </to:TaxonOccurrence>
+     </gbif:occurrenceRecords>
+    </gbif:dataResource>
+   </gbif:dataResources>
+  </gbif:dataProvider>
+ </gbif:dataProviders>
+</gbif:gbifResponse>

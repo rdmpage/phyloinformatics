@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:identifier xmlns:ns0="http://purl.org/dc/terms/">10.2307/1444847</ns0:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:sameAs xmlns:ns0="http://www.w3.org/2002/07/owl#" rdf:resource="info:doi/10.2307/1444847"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:sameAs xmlns:ns0="http://www.w3.org/2002/07/owl#" rdf:resource="doi:10.2307/1444847"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:doi xmlns:ns0="http://prismstandard.org/namespaces/basic/2.1/">10.2307/1444847</ns0:doi>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:doi xmlns:ns0="http://purl.org/ontology/bibo/">10.2307/1444847</ns0:doi>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:date xmlns:ns0="http://purl.org/dc/terms/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1985-05-03Z</ns0:date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:volume xmlns:ns0="http://purl.org/ontology/bibo/">1985</ns0:volume>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:volume xmlns:ns0="http://prismstandard.org/namespaces/basic/2.1/">1985</ns0:volume>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:pageStart xmlns:ns0="http://purl.org/ontology/bibo/">379</ns0:pageStart>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:startingPage xmlns:ns0="http://prismstandard.org/namespaces/basic/2.1/">379</ns0:startingPage>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:title xmlns:ns0="http://purl.org/dc/terms/">A New Species of Frog (Ranidae: Rana) from Northwestern Florida</ns0:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:publisher xmlns:ns0="http://purl.org/dc/terms/">JSTOR</ns0:publisher>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/Article"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:isPartOf xmlns:ns0="http://purl.org/dc/terms/" rdf:resource="http://id.crossref.org/issn/0045-8511"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dx.doi.org/10.2307/1444847">
+    <ns0:creator xmlns:ns0="http://purl.org/dc/terms/" rdf:resource="http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/issn/0045-8511">
+    <ns0:title xmlns:ns0="http://purl.org/dc/terms/">Copeia</ns0:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/issn/0045-8511">
+    <ns0:issn xmlns:ns0="http://purl.org/ontology/bibo/">0045-8511</ns0:issn>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/issn/0045-8511">
+    <ns0:issn xmlns:ns0="http://prismstandard.org/namespaces/basic/2.1/">0045-8511</ns0:issn>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/issn/0045-8511">
+    <ns0:hasPart xmlns:ns0="http://purl.org/dc/terms/" rdf:resource="http://dx.doi.org/10.2307/1444847"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/issn/0045-8511">
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/Journal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/issn/0045-8511">
+    <ns0:sameAs xmlns:ns0="http://www.w3.org/2002/07/owl#" rdf:resource="urn:issn:0045-8511"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/issn/0045-8511">
+    <ns0:identifier xmlns:ns0="http://purl.org/dc/terms/">0045-8511</ns0:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4">
+    <ns0:name xmlns:ns0="http://xmlns.com/foaf/0.1/">Paul E. Moler</ns0:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4">
+    <ns0:givenName xmlns:ns0="http://xmlns.com/foaf/0.1/">Paul E.</ns0:givenName>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4">
+    <ns0:familyName xmlns:ns0="http://xmlns.com/foaf/0.1/">Moler</ns0:familyName>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.crossref.org/contributor/paul-e-moler-1jal786m9m4y4">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </rdf:Description>
+</rdf:RDF>

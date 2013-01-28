@@ -683,6 +683,256 @@ A new species of Breinlia (Breinlia) (Nematoda: Filarioidea) from the south Indi
 
 <p>In theory, linked data is a very powerful idea. In practice, there are significant hurdles at each of the three steps above, and we are some way from realising the linked data vision. For example, major providers of bibliographic data have managed to create linked data for the same papers with virtually no overlap (see <a href="http://iphylo.blogspot.com/2011/09/linked-data-that-isn-failings-of-rdf.html" target="_new">Linked data that isn't: the failings of RDF</a>).</p>
 
+<h3>Answering a question using linked data</h3>
+
+<p>Given data from various sources, how can we combine that data to test hypotheses, gain insight, or discover patterns worth exploring further? If we use the same identifier to refer to the same  entities (e.g., taxon, publication, specimen, gene sequence) and the same terms ("vocabulary") to refer to attributes of those entities and their interrelationships, then we can combine data sets into a large graph of "<a href="http://en.wikipedia.org/wiki/Linked_data">linked data</a>". We can query that graph by tracing paths that connect the entities we are interested in.
+</p>
+
+<h4>Part 1: What data do we need to answer the question?</h3>
+<p>The first question is what kind of data would we need? To help answer this we can draw a "model" of the entities we are interested in and how they are related. For example, we may have specimens and the date they were collected, and taxonomic names and the date they were published, and taxonomic names are associated with type specimens. Can we sketch the relationships between these things?</p>
+
+<h4>Part 2: What data do we have?</h3>
+<p>Next we need to identify the sources of information about the entities in the diagram(s) we created above. What are they, and do they provide their data in a form that we can use?</p>
+
+<h4>Part 3: Can the data answer the question?</h3>
+<p>Once we have a model of the connections between the data that we need, we can now ask whether we can trace those connections in the data we have available. If not, what would we need to make these connections?
+</p>
+
+<h3>Linked data and SPARQL</h3>
+<p>Linked data can be visualised as a graph, where the nodes are things (or concepts) and the edges (links) are connections between those things. In order to query the data we need to formulate a path through the graph. For example, to ask the question "who publishes in the journal Nature?" we would follow the paths from author to article to journal the article was published in. We can represent this as:
+
+<pre>
+person authorOf article
+article partOf journal 
+</pre>
+
+This query resembles one written in <a href="http://en.wikipedia.org/wiki/SPARQL">SPARQL</a>, which is a simple way to describe paths in a graph in terms of pairs of nodes connected by a (labelled) edge.
+</p>
+
+<div class="example">
+<h3>Exercise</h3>
+<p>Given the frog species named <i>Rana okaloosae</i> we could ask some questions, such as:
+
+<ol>
+<li>When was this species described?</li>
+<li>Who described that species?</li>
+<li>When was this species sequenced?</li>
+<li>How much time elapsed between the collection of the specimens and the description of the species (a recent study suggests that this averages 21 years, see <a href="http://dx.doi.org/10.1016/j.cub.2012.10.029">doi:10.1016/j.cub.2012.10.029</a>)</li>
+</ol>
+</p>
+
+<p>To answer these questions we need some data and we need it in a form that computers can easily digest:</p>
+
+<table>
+<tr><th>Entity</th><th>Web page</th><th>RDF</th></tr>
+<tr><td><i>Rana okaloosae</i> in NCBI taxonomy</td><td><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=190275" target="_new">tax_id:190275</a></td><td><a href="http://bioguid.info/taxonomy:190275" target="_new">http://bioguid.info/taxonomy:190275</a> [<a href="rdf/ncbi190275.nt">local copy</a>]</td></tr>
+
+<tr><td>GenBank sequence</td><td><a href="http://www.ncbi.nlm.nih.gov/nucleotide/AY083283" target="_new">AY083283</a></td><td><a href="http://bioguid.info/genbank:AY083283" target="_new">http://bioguid.info/genbank:AY083283</a> [<a href="rdf/AY083283.nt">local copy</a>]</td></tr>
+
+<tr><td>Taxonomic name <i>Rana okaloosae</i></td><td><a href="http://www.organismnames.com/details.htm?lsid=492778" target="_new">ION 492778</a></td><td><a href="http://bioguid.info/urn:lsid:organismnames.com:name:492778" target="_new">urn:lsid:organismnames.com:name:492778</a> [<a href="rdf/ion492778.nt">local copy</a>]</td></tr>
+
+<tr><td>Publication of <i>Rana okaloosae</i></td><td><a href="http://dx.doi.org/10.2307/1444847" target="_new">doi:10.2307/1444847</a></td><td><a href="rdf/crossref.nt" target="_new">doi:10.2307/1444847</a></td></tr>
+
+<tr><td>Specimen USNM 239420 of <i>Rana okaloosae</i></td><td><a href="http://data.gbif.org/occurrences/244360989" target="_new">GBIF</a></td><td><a href="rdf/244360989.nt" target="_new">RDF</a></td></tr>
+
+</table>
+
+
+
+<!--
+
+
+<p>Rana okaloosae holotype UF 53964 = GBIF http://data.gbif.org/occurrences/119914846</p>
+http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=190275
+http://localhost/~rpage/gbif/index.php?q=UF%2053964
+
+
+1. Get name from GenBank
+2. When described?
+3. when sequenced
+4. lag
+5. who published?
+
+Name http://bioguid.info/taxonomy:190275
+Sequence http://bioguid.info/genbank:AY083283
+ION 492778
+DOI http://dx.doi.org/10.2307/1444847
+Specimen Holotype = UF53964 = FLMNH 53964 = http://data.gbif.org/occurrences/119914846 =  http://data.gbif.org/ws/rest/occurrence/get/119914846
+
+http://crosscite.org/cn/
+
+-->
+
+<h4>When was a specimen of the frog with NCBI tax_id 190275 collected?</h4>
+
+<pre>
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+PREFIX uniprot: &lt;http://purl.uniprot.org/core/&gt;
+PREFIX tcommon: &lt;http://rs.tdwg.org/ontology/voc/Common#&gt;
+PREFIX tc: &lt;http://rs.tdwg.org/ontology/voc/TaxonConcept#&gt;
+PREFIX tn: &lt;http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete&gt;
+PREFIX to: &lt;http://rs.tdwg.org/ontology/voc/TaxonOccurrence#&gt;
+
+SELECT * WHERE {
+	&lt;http://bioguid.info/taxonomy:190275&gt; tc:nameString ?n . 
+	?node to:taxonName ?n .
+	?occurrence to:identifiedTo ?node .
+	?occurrence to:identifiedTo ?node .
+	?occurrence to:institutionCode ?inst .
+	?occurrence to:catalogNumber ?cat .
+	OPTIONAL {
+	?occurrence to:earliestDateCollected ?date .
+	}
+}
+</pre>
+
+<!--
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX uniprot: <http://purl.uniprot.org/core/>
+
+SELECT * WHERE {
+ <http://bioguid.info/taxonomy:190275> uniprot:synonym ?n
+}
+
+
+<http://bioguid.info/taxonomy:190275> <http://purl.uniprot.org/core/commonName> "Florida bog frog" .
+<http://bioguid.info/taxonomy:190275> <http://purl.uniprot.org/core/synonym> "Lithobates okaloosae" .
+-->
+
+<h4>When was the DNA sequence from the frog with NCBI tax_id 190275 obtained?</h4>
+
+<pre>
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+
+SELECT * WHERE {
+  ?sequence dcterms:subject &lt;http://purl.uniprot.org/taxonomy/190275&gt; .
+  ?sequence dcterms:created  ?date
+
+} 
+</pre>
+
+<!--
+Example to get using synonyms as well
+
+<pre>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX uniprot: <http://purl.uniprot.org/core/>
+PREFIX tcommon: <http://rs.tdwg.org/ontology/voc/Common#>
+PREFIX tc: <http://rs.tdwg.org/ontology/voc/TaxonConcept#>
+PREFIX tn: <http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete>
+PREFIX to: <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#>
+
+
+SELECT * WHERE {
+
+<http://bioguid.info/taxonomy:190275> tc:nameString ?n . 
+?node to:taxonName ?n .
+?occurrence to:identifiedTo ?node .
+?occurrence to:identifiedTo ?node .
+?occurrence to:institutionCode ?inst .
+?occurrence to:catalogNumber ?cat .
+OPTIONAL {
+?occurrence to:earliestDateCollected ?date .
+}
+
+OPTIONAL {
+
+<http://bioguid.info/taxonomy:190275> uniprot:synonym ?synonym . 
+?snode to:taxonName ?synonym .
+?soccurrence to:identifiedTo ?snode .
+?soccurrence to:identifiedTo ?snode .
+?soccurrence to:institutionCode ?sinst .
+?soccurrence to:catalogNumber ?scat .
+OPTIONAL {
+?soccurrence to:earliestDateCollected ?sdate .
+}
+
+}
+
+
+ }
+</pre>
+-->
+
+<h4>What publication was the frog described in?</h4>
+
+<pre>
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+PREFIX uniprot: &lt;http://purl.uniprot.org/core/&gt;
+PREFIX tcommon: &lt;http://rs.tdwg.org/ontology/voc/Common#&gt;
+PREFIX tc: &lt;http://rs.tdwg.org/ontology/voc/TaxonConcept#&gt;
+PREFIX tn: &lt;http://rs.tdwg.org/ontology/voc/TaxonName#&gt;
+PREFIX to: &lt;http://rs.tdwg.org/ontology/voc/TaxonOccurrence#&gt;
+
+SELECT * WHERE {
+&lt;http://bioguid.info/taxonomy:190275&gt; tc:nameString ?name .
+?ion tn:nameComplete ?name .
+?ion tcommon:PublishedIn ?citation .
+}
+</pre>
+
+<h4>When was the frog described?</h4>
+
+<p>To answer this question we need to add some missing "glue" linking the publication string about to the DOI. Insert this triple into the triple store:
+
+<pre>
+&lt;urn:lsid:organismnames.com:name:492778&gt; &lt;http://rs.tdwg.org/ontology/voc/Common#PublishedInCitation&gt; &lt;http://dx.doi.org/10.2307/1444847&gt;  .
+</pre>
+
+<p>Now we can get the date:</p>
+<pre>
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+PREFIX uniprot: &lt;http://purl.uniprot.org/core/&gt;
+PREFIX tcommon: &lt;http://rs.tdwg.org/ontology/voc/Common#&gt;
+PREFIX tc: &lt;http://rs.tdwg.org/ontology/voc/TaxonConcept#&gt;
+PREFIX tn: &lt;http://rs.tdwg.org/ontology/voc/TaxonName#&gt;
+PREFIX to: &lt;http://rs.tdwg.org/ontology/voc/TaxonOccurrence#&gt;
+
+SELECT * WHERE {
+&lt;http://bioguid.info/taxonomy:190275&gt; tc:nameString ?name .
+?ion tn:nameComplete ?name .
+?ion tcommon:PublishedInCitation ?publication .
+?publication dcterms:date ?date .
+}
+</pre>
+
+<p>Based on these results answer the following questions:</p>
+
+<ol>
+<li>Was the DNA sequence used in discovering the new species?</li>
+<li>What was time interval between the specimen being collected and the description of the species it belongs to?</li>
+</ol>
+
+</div>
+
+<!--
+Rhacophorus catamitus
+doi 
+UTACV 53981
+http://data.gbif.org/occurrences/609493345
+
+http://localhost/~rpage/gbif/index.php?q=UTACV%2053981
+-->
+
+<h3>Reading</h3>
+<ul>
+<li>
+Fontaine, B., Perrard, A., & Bouchet, P. (2012). 21 years of shelf life between discovery and description of new species. Current Biology, 22(22), R943–R944. <a href="http://dx.doi.org/10.1016/j.cub.2012.10.029" target="_new">doi:10.1016/j.cub.2012.10.029</a>
+</li>
+</ul>
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

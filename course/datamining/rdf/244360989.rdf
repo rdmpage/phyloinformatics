@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:tn="http://rs.tdwg.org/ontology/voc/TaxonName#" xmlns:tc="http://rs.tdwg.org/ontology/voc/TaxonConcept#" xmlns:to="http://rs.tdwg.org/ontology/voc/TaxonOccurrence#" xmlns:tcom="http://rs.tdwg.org/ontology/voc/Common#" xmlns:gbif="http://portal.gbif.org/ws/response/gbif" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <to:TaxonOccurrence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" rdf:about="http://data.gbif.org/ws/rest/occurrence/get/244360989">
+         <to:basisOfRecordString>S</to:basisOfRecordString>
+          <to:catalogNumber>239420</to:catalogNumber>
+       <to:collectionCode>Vertebrate Zoology; Amphibians &amp; Reptiles</to:collectionCode>
+       <to:continent>North America</to:continent>
+     <to:country>United States</to:country>
+                    <to:institutionCode>USNM</to:institutionCode>
+       <to:stateProvince>Florida</to:stateProvince>
+       <to:county>Santa Rosa</to:county>
+       <to:earliestDateCollected>1983-07-19</to:earliestDateCollected>
+       <to:latestDateCollected>1983-07-19</to:latestDateCollected>
+       <to:identifiedTo>
+        <to:Identification>
+         <to:taxon>
+          <tc:TaxonConcept rdf:about="http://data.gbif.org/ws/rest/taxon/get/2427156">
+           <tc:hasName>
+            <tn:TaxonName>
+             <tn:nameComplete>Rana okaloosae</tn:nameComplete>
+             <tn:specificEpithet>okaloosae</tn:specificEpithet>
+             <tn:scientific>true</tn:scientific>
+            </tn:TaxonName>
+           </tc:hasName>
+          </tc:TaxonConcept>         
+         </to:taxon>
+         <to:taxonName>Rana okaloosae</to:taxonName>
+        </to:Identification>
+       </to:identifiedTo>
+       <to:locality>Harold, E of, Burnt Grocery Creek; T2N R26W Sec 20</to:locality>
+       <to:gbifNotes>Data from GBIF data index - original values.</to:gbifNotes>
+      </to:TaxonOccurrence>
+     </rdf:RDF>

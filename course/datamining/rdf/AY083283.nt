@@ -1,0 +1,13 @@
+<http://bioguid.info/genbank:AY083283> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.uniprot.org/core/Molecule> .
+<http://bioguid.info/genbank:AY083283> <http://www.w3.org/2002/07/owl#sameAs> <http://bio2rdf.org/genbank:AY083283> .
+<http://bioguid.info/genbank:AY083283> <http://www.w3.org/2002/07/owl#sameAs> <http://bioguid.info/gi:29408577> .
+<http://bioguid.info/genbank:AY083283> <http://purl.org/dc/terms/created> "2003-03-31" .
+<http://bioguid.info/genbank:AY083283> <http://purl.org/dc/terms/modified> "2004-08-13" .
+<http://bioguid.info/genbank:AY083283> <http://purl.org/dc/terms/title> "AY083283" .
+<http://bioguid.info/genbank:AY083283> <http://purl.org/dc/terms/description> "Rana okaloossae haplotype Roka1403 cytochrome b (cytb) gene, partial cds; mitochondrial gene for mitochondrial product" .
+<http://bioguid.info/genbank:AY083283> <http://purl.org/dc/terms/subject> <http://bioguid.info/taxonomy:190275> .
+<http://bioguid.info/genbank:AY083283> <http://purl.org/dc/terms/subject> <http://purl.uniprot.org/taxonomy/190275> .
+<http://bioguid.info/genbank:AY083283> <http://purl.org/dc/terms/isReferencedBy> <http://dx.doi.org/10.1111/j.1095-8312.2003.00259.x> .
+<http://bioguid.info/genbank:AY083283> <http://purl.org/dc/terms/relation> _:node17hrhglfqx1 .
+_:node17hrhglfqx1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#TaxonOccurrence> .
+_:node17hrhglfqx1 <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#identifiedToString> "Rana okaloosae" .

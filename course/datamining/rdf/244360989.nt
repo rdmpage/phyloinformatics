@@ -1,0 +1,23 @@
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#TaxonOccurrence> .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#basisOfRecordString> "S" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#catalogNumber> "239420" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#collectionCode> "Vertebrate Zoology; Amphibians & Reptiles" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#continent> "North America" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#country> "United States" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#institutionCode> "USNM" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#stateProvince> "Florida" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#county> "Santa Rosa" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#earliestDateCollected> "1983-07-19" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#latestDateCollected> "1983-07-19" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#identifiedTo> _:node17hrj15mjx1 .
+_:node17hrj15mjx1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#Identification> .
+_:node17hrj15mjx1 <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#taxon> <http://data.gbif.org/ws/rest/taxon/get/2427156> .
+<http://data.gbif.org/ws/rest/taxon/get/2427156> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept> .
+<http://data.gbif.org/ws/rest/taxon/get/2427156> <http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName> _:node17hrj15mjx2 .
+_:node17hrj15mjx2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rs.tdwg.org/ontology/voc/TaxonName#TaxonName> .
+_:node17hrj15mjx2 <http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete> "Rana okaloosae" .
+_:node17hrj15mjx2 <http://rs.tdwg.org/ontology/voc/TaxonName#specificEpithet> "okaloosae" .
+_:node17hrj15mjx2 <http://rs.tdwg.org/ontology/voc/TaxonName#scientific> "true" .
+_:node17hrj15mjx1 <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#taxonName> "Rana okaloosae" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#locality> "Harold, E of, Burnt Grocery Creek; T2N R26W Sec 20" .
+<http://data.gbif.org/ws/rest/occurrence/get/244360989> <http://rs.tdwg.org/ontology/voc/TaxonOccurrence#gbifNotes> "Data from GBIF data index - original values." .

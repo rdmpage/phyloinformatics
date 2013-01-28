@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:tn="http://rs.tdwg.org/ontology/voc/TaxonName#" xmlns:tc="http://rs.tdwg.org/ontology/voc/TaxonConcept#" xmlns:to="http://rs.tdwg.org/ontology/voc/TaxonOccurrence#" xmlns:tcom="http://rs.tdwg.org/ontology/voc/Common#" xmlns:gbif="http://portal.gbif.org/ws/response/gbif" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <to:TaxonOccurrence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" rdf:about="http://data.gbif.org/ws/rest/occurrence/get/119914846">
+          <to:catalogNumber>53964</to:catalogNumber>
+       <to:collectionCode>Herpetology</to:collectionCode>
+       <to:collector>Paul E. Moler</to:collector>
+     <to:country>United States</to:country>
+                    <to:institutionCode>FLMNH</to:institutionCode>
+       <to:stateProvince>Florida</to:stateProvince>
+       <to:county>Okaloosa</to:county>
+       <to:identifiedTo>
+        <to:Identification>
+         <to:taxon>
+          <tc:TaxonConcept rdf:about="http://data.gbif.org/ws/rest/taxon/get/2427155">
+           <tc:hasName>
+            <tn:TaxonName>
+             <tn:nameComplete>Lithobates okaloosae</tn:nameComplete>
+             <tn:specificEpithet>okaloosae</tn:specificEpithet>
+             <tn:scientific>true</tn:scientific>
+            </tn:TaxonName>
+           </tc:hasName>
+          </tc:TaxonConcept>         
+         </to:taxon>
+         <to:taxonName>Lithobates okaloosae</to:taxonName>
+        </to:Identification>
+       </to:identifiedTo>
+       <to:gbifNotes>Data from GBIF data index - original values.</to:gbifNotes>
+      </to:TaxonOccurrence>
+     </rdf:RDF>
