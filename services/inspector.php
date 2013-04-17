@@ -39,7 +39,9 @@ if ($url != '')
 	echo '<h2>Output</h2>';
 	echo '<div style="background-color:#eeeeee;padding:4px;border:1px solid rgb(128,128,128);overflow:auto;width:auto;height:600px;">';
 	
-	$content = get($url);
+	$content = get($url, 'iphylo');
+	
+	//echo $content;
 	
 	// classify
 	

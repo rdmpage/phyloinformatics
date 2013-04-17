@@ -654,6 +654,10 @@ A new species of Breinlia (Breinlia) (Nematoda: Filarioidea) from the south Indi
 
 <a href='http://www-958.ibm.com/me/visualizations/titles-of-articles-describing-new-/comments/77af1b24510611e1982f000255111976' style='margin: 0pt; padding: 0pt;'>  <img alt="Titles of articles describing new parasite species" src="http://www-958.ibm.com/me/files/thumbnails/77822d30-5106-11e1-815e-000255111976.png?size=200x150" style="border: 1px solid #6898C8; margin: 0; padding-top: 10px; padding-bottom: 15px;" title="Titles of articles describing new parasite species" />  <img alt="Many Eyes" src="http://www-958.ibm.com/me/images/blog_this_caption.jpg" style="border: 0pt none ; margin: 0pt; padding: 0pt; display: block; position: relative; top: -9px;" title="Many Eyes" /></a>
 
+<h3>Javascript Wordtrees</h3>
+
+<p>Jason Davies has created a <a href="http://www.jasondavies.com/wordtree/">Javascript-based version of word tree</a> that can also be used (and doesn't have the Java dependency of Many Eyes).</p>
+
 <h2><a name="linkeddata" />Linked data</h2>
 <p>The holy grail of data linking is to be able to seamlessly navigate a web of data (in much the same we the World Wide Web enables us to navigate through documents). For example, we could start with a museum specimen and navigate through all the connected data elements (DNA sequences, publications, phylogenies, taxonomic names, ecological data, etc.). Or, more correctly, we could have computers do this for us. Linked data is aimed at making data computer-readable so that we can treat the web as a giant database.</p>
 
@@ -883,11 +887,13 @@ SELECT * WHERE {
 
 <h4>When was the frog described?</h4>
 
-<p>To answer this question we need to add some missing "glue" linking the publication string about to the DOI. Insert this triple into the triple store:
+<p>To answer this question we need to add some missing "glue" linking the publication string about to the DOI. Insert this triple into the triple store:</p>
 
-<pre>
-&lt;urn:lsid:organismnames.com:name:492778&gt; &lt;http://rs.tdwg.org/ontology/voc/Common#PublishedInCitation&gt; &lt;http://dx.doi.org/10.2307/1444847&gt;  .
-</pre>
+<textarea readonly="readonly" cols="60" rows="4">
+&lt;urn:lsid:organismnames.com:name:492778&gt; 
+&lt;http://rs.tdwg.org/ontology/voc/Common#PublishedInCitation&gt; 
+&lt;http://dx.doi.org/10.2307/1444847&gt;  .
+</textarea>
 
 <p>Now we can get the date:</p>
 <pre>

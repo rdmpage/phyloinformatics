@@ -60,25 +60,55 @@ function IsLatitude($str, &$latitude)
 		return true;
 	}
 
-	// 23°03'44''N
-	if (preg_match('/(?<degrees>\d+)°((?<minutes>\d+)\')?((?<seconds>\d+)\'\')?(?<hemisphere>[S|N])/', $str, $matches)) 
-	{
-		$result = true;
-		
-		//print_r($matches);
+	
+	
+	if (!$result)
+	{	
+		// 30° 1'39.53"S
+		if (preg_match('/(?<degrees>\d+)°\s*(?<minutes>\d+)\'(?<seconds>\d+(\.\d+)?)"(?<hemisphere>[S|N])/', $str, $matches)) 
+		{
+			$result = true;
+			
+			//print_r($matches);
+	
+			$seconds = 0;
+			$minutes = 0;
+			$degrees = $matches['degrees'];
+			if (isset($matches['minutes']))
+			{
+				$minutes = $matches['minutes'];
+			}
+			if (isset($matches['seconds']))
+			{
+				$seconds = $matches['seconds'];
+			}
+			$latitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
+		}
+	}
+	
 
-		$seconds = 0;
-		$minutes = 0;
-		$degrees = $matches['degrees'];
-		if (isset($matches['minutes']))
+	if (!$result)
+	{	
+		// 23°03'44''N
+		if (preg_match('/(?<degrees>\d+)°((?<minutes>\d+)\')?((?<seconds>\d+)\'\')?(?<hemisphere>[S|N])/', $str, $matches)) 
 		{
-			$minutes = $matches['minutes'];
+			$result = true;
+			
+			//print_r($matches);
+	
+			$seconds = 0;
+			$minutes = 0;
+			$degrees = $matches['degrees'];
+			if (isset($matches['minutes']))
+			{
+				$minutes = $matches['minutes'];
+			}
+			if (isset($matches['seconds']))
+			{
+				$seconds = $matches['seconds'];
+			}
+			$latitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
 		}
-		if (isset($matches['seconds']))
-		{
-			$seconds = $matches['seconds'];
-		}
-		$latitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
 	}
 	if (!$result)
 	{	
@@ -127,6 +157,31 @@ function IsLatitude($str, &$latitude)
 			$latitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
 		}
 	}
+	
+	if (!$result)
+	{	
+		// // S 01°06.18
+		if (preg_match('/(?<hemisphere>[S|N])\s+(?<degrees>\d+)°(\s*(?<minutes>\d+(.\d+)?))?/', $str, $matches)) 
+		{
+			$result = true;
+			
+			//print_r($matches);
+	
+			$seconds = 0;
+			$minutes = 0;
+			$degrees = $matches['degrees'];
+			if (isset($matches['minutes']))
+			{
+				$minutes = $matches['minutes'];
+			}
+			if (isset($matches['seconds']))
+			{
+				$seconds = $matches['seconds'];
+			}
+			$latitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
+		}
+	}
+	
 	
 	
 /*	if (!$result)
@@ -189,27 +244,55 @@ function IsLongitude($str, &$longitude)
 		return true;
 	}
 	
-
-	// 23°03'44''N
-	if (preg_match('/(?<degrees>\d+)°((?<minutes>\d+)\')?((?<seconds>\d+)\'\')?(?<hemisphere>[W|E])/', $str, $matches)) 
-	{
-		$result = true;
-		
-		//print_r($matches);
-
-		$seconds = 0;
-		$minutes = 0;
-		$degrees = $matches['degrees'];
-		if (isset($matches['minutes']))
+	if (!$result)
+	{	
+		// 30° 1'39.53"S
+		if (preg_match('/(?<degrees>\d+)°\s*(?<minutes>\d+)\'(?<seconds>\d+(\.\d+)?)"(?<hemisphere>[W|E])/', $str, $matches)) 
 		{
-			$minutes = $matches['minutes'];
+			$result = true;
+			
+			//print_r($matches);
+	
+			$seconds = 0;
+			$minutes = 0;
+			$degrees = $matches['degrees'];
+			if (isset($matches['minutes']))
+			{
+				$minutes = $matches['minutes'];
+			}
+			if (isset($matches['seconds']))
+			{
+				$seconds = $matches['seconds'];
+			}
+			$longitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
 		}
-		if (isset($matches['seconds']))
-		{
-			$seconds = $matches['seconds'];
-		}
-		$longitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
 	}
+	
+	
+	if (!$result)
+	{	
+		// 23°03'44''N
+		if (preg_match('/(?<degrees>\d+)°((?<minutes>\d+)\')?((?<seconds>\d+)\'\')?(?<hemisphere>[W|E])/', $str, $matches)) 
+		{
+			$result = true;
+			
+			//print_r($matches);
+	
+			$seconds = 0;
+			$minutes = 0;
+			$degrees = $matches['degrees'];
+			if (isset($matches['minutes']))
+			{
+				$minutes = $matches['minutes'];
+			}
+			if (isset($matches['seconds']))
+			{
+				$seconds = $matches['seconds'];
+			}
+			$longitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
+		}
+	}
+	
 	if (!$result)
 	{
 		if (preg_match('/(?<hemisphere>[W|E])(?<degrees>\d+)°(\s*(?<minutes>\d+(.\d+)?)\')?/', $str, $matches)) 
@@ -233,6 +316,32 @@ function IsLongitude($str, &$longitude)
 		}
 	}
 	
+		
+	if (!$result)
+	{	
+		// // W 77°35.67
+		if (preg_match('/(?<hemisphere>[W|E])\s+(?<degrees>\d+)°(\s*(?<minutes>\d+(.\d+)?))?/', $str, $matches)) 
+		{
+			$result = true;
+			
+			//print_r($matches);
+	
+			$seconds = 0;
+			$minutes = 0;
+			$degrees = $matches['degrees'];
+			if (isset($matches['minutes']))
+			{
+				$minutes = $matches['minutes'];
+			}
+			if (isset($matches['seconds']))
+			{
+				$seconds = $matches['seconds'];
+			}
+			$longitude = degrees2decimal($degrees, $minutes, $seconds, $matches['hemisphere']);
+		}
+	}
+
+
 	
 	if (!$result)
 	{	
@@ -557,8 +666,14 @@ if (0)
 	
 //	array_push($tests, 'N 0°6\'41"; W 77°22\'28"');
 	
-	array_push($tests,'35° 56.218′ N');
-	array_push($tests,'117° 54.343′ W');
+	//array_push($tests,'35° 56.218′ N');
+	//array_push($tests,'117° 54.343′ W');
+	
+	//array_push($tests, 'S 01°06.18');
+	//array_push($tests, 'W 77°35.67');
+	
+	array_push($tests, '29°55\'21.62"N');
+	
 	
 	$ok = 0;
 	
@@ -566,7 +681,9 @@ if (0)
 	foreach ($tests as $str)
 	{
 		$latlong = array();
-		if (IsLongitude($str, $latlong))
+		if (IsLatitude($str, $latlong))
+		
+//		if (IsLongitude($str, $latlong))
 //		if (IsLatLong($str, $latlong))
 		{
 			print_r($latlong);	

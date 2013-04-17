@@ -31,5 +31,5 @@ Icon?
 Thumbs.db
 
 # tmp folders
-eoliphone/tmp
-blast/tmp
+eoliphone/tmp/
+blast/tmp/
