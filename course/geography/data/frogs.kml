@@ -6,7 +6,7 @@
         <description></description><Style id="whiteBall">	       
 <IconStyle>
 	<Icon>
-		<href>http://bioguid.info/images/whiteBall.png</href>
+		<href>http://iphylo.org/~rpage/phyloinformatics/images/whiteBall.png</href>
 	</Icon>
 </IconStyle>
 </Style><Placemark><styleUrl>#whiteBall</styleUrl><TimeStamp><when>2001</when></TimeStamp><name>Colostethus alessandroi</name><description><i>Colostethus alessandroi</i> Grant and Rodriguez 2001<br/>San Pedro, Cos√±ipata, Paucartambo, Departamento de Cuzco, Peru, GPS coordinates 13¬∞ 03 S, 71¬∞ 32 W, 1480 m . . . from atop a rock beside a stream<br/>Am. Mus. Novit., 3355<br/></description><Point><extrude>0</extrude><altitudeMode>absolute</altitudeMode><coordinates>-71.53333333,-13.05</coordinates></Point>
