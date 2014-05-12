@@ -29,33 +29,47 @@
 <p>The ideas below are designed to give you some idea of the sort of projects that you could do. Feel free to suggest your own topic.</p>
 
 <h3>Data cleaning</h3>
-<ul>
-<li>Can you find a dataset that would be useful but is not easy to access? For example, maybe there is a list of animal traits which is in a PDF and you want to convert it to a file for further analysis (maybe even make it available to others to use through, say, <a href="http://figshare.com">figshare</a>.</li>
-</ul>
+
+<h4>Getting data from a paper</h4>
+<p>One of the first steps in analysing data is to extract it from whatever format it is in. Can you find a dataset that would be useful but is not easy to access? For example, maybe there is a list of animal traits which is in a PDF and you want to convert it to a file for further analysis (maybe even make it available to others to use through, say, <a href="http://figshare.com">figshare</a>. Find a dataset, and use any available tools (e.g., <a href="http://iphylo.org/~rpage/phyloinformatics/course/datamining/index.html#tabula">Tabula</a>) to extract the data.</p>
+
+<h4>Cleaning a list of host names</h4>
+<p>GenBank has a lot of sequences with host information, but this if often recorded in an informal way. Can we clean these names and link them to external identifiers, such as EOL taxon ids? One approach would be to use Open Refine. If interested in this project, data will be provided.</p>
 
 <h3>Data mining</h3>
-<ul>
-<li>Analyse the titles of papers describing new parasites, how could you extract information on their host associations?<li>
-<li>There are tools to automatically find taxonomic names in text, e.g., <a href="http://gnrd.globalnames.org">http://gnrd.globalnames.org</a> and <a href="http://www.ubio.org/tools/recognize.php">http://www.ubio.org/tools/recognize.php</a>. Test how effective they are by appling them to examples of scientific text. You could use, for example, articles in the journal <a href="http://www.pensoft.net/journals/zookeys/">Zookeys</a> which has names already identified for you.</li>
-</ul>
+
+<h4>Can we extract host-parasite associations from the titles of papers?</h4>
+<p>Using the <a href="http://www.jasondavies.com/wordtree/?source=e05c0fbecd924215cd9c4a0afedb10b1&phrase-line=1&prefix=from">wordtree example</a> as a starting point, can we extract a list of host parasite associations from paper titles? For example, can you write one or more regular expressions that extract the associations? You could use the <a href="http://iphylo.org/~rpage/phyloinformatics/course/datamining/index.html#regexp">regular expression tester</a> to try out various regular expressions. </p>
+
+<h4>Evaluate the performance of taxon name finding tools</h4>
+<p>There are several tools to automatically find taxonomic names in text, e.g., <a href="http://gnrd.globalnames.org">http://gnrd.globalnames.org</a> and <a href="http://www.ubio.org/tools/recognize.php">http://www.ubio.org/tools/recognize.php</a>. Test how effective they are by appling them to examples of scientific text. You could use, for example, articles in the journal <a href="http://www.pensoft.net/journals/zookeys/">Zookeys</a> which has names already identified for you.</p>
 
 <h3>Visualisation</h3>
-<ul>
-<li>There are lots of ways to display taxonomic classifications, which do you think is most useful? How could you test this?</li>
-</ul>
+
+<h4>Navigating taxonomies on small screens</h4>
+<p>Find at least three smart phone apps (or webs sites designed for smart phones) that enable you to navigate through a taxonomic classification (e.g., <a href="https://itunes.apple.com/gb/app/field-guide-to-victorian-fauna/id423945031?mt=8">Field Guide to Victorian Fauna</a>). Comapre and contrast how easy it is to navigate using those apps.</p>
+
+
+<h3>Geophylogenies</h3>
+
+<h4>Construct a geophylogeny for a set of species</h4>
+<p>Can you create some geophylogenies (using, say the tools on this site, or <a href="http://kiwi.cs.dal.ca/GenGIS/Main_Page">GenGIS</a>) for a group of taxa? Can you use these tools to test a specific hypothesis of interest? Try alternative visualisations (e.g., Google Earth versus GenGIS), what are the strengths and weakness of each approach?</p>
 
 <h3>Taxonomy</h3>
-<ul>
-<li>There are an increasing number of tools to clean lists of taxonomic names, can you evaluate how useful these are?</li>
-<li>How fast do taxonomic names change? What are the implications of this for people using these names? For example, for a public museum such as the Hunterian Zoology museum, how many names on the displays have changed since the labels were printed?</li>
-</ul>
+
+<h4>Reconciling taxonomic names</h4>
+<p>There are an increasing number of tools to clean lists of taxonomic names, can you evaluate how useful these are? For example, create a list of taxonomic names and compare how each tool peforms with those names.</p>
+
+<h4>Name changes and obsolete labels</h4>
+<p>How fast do taxonomic names change? What are the implications of this for people using these names? For example, for a public museum such as the Hunterian Zoology museum, how many names for the animals exhibited have changed since the labels were printed?</p>
 
 <h3>Mapping</h3>
-<ul>
-<li>Can you test the hypothesis that for a given taxon most of the new species are being found in protected areas?</li>
-<li>Can you create some geophylogenies (using, say the tools on this site, or <a href="http://kiwi.cs.dal.ca/GenGIS/Main_Page">GenGIS</a>) for a group of taxa? Can you use these tools to test a specific hypothesis of interest?</li>
-<li>Can you write a regular expression to extract latitude and longitudes from a scientific paper? Can you use this to build a geographic database?</li>
-</ul>
+
+<h4>Where are new species being found?</h4>
+<p>Find a list of recently described species (for example, follow a journal like <a href="https://twitter.com/zootaxa">Zootaxa</a> on Twitter, or <a href="https://species.wikimedia.org/wiki/Category:New_species_2014">Wikispecies</a>, and locate as many on a map. Comapare this to the distribution of protected area on <a href="http://protectedplanet.net">http://protectedplanet.net</a>.</p>
+
+<h4>Extracting geographic data from papers</h4>
+<p>A lot of geographic information is locked up in scientific papers. Can you write a regular expression to extract latitude and longitudes from a paper? Can you add this information to Google Earth?</p>
 
 
 <div id="disqus_thread"></div>
