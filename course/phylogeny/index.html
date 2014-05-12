@@ -18,6 +18,12 @@
 	}
 </style>
 <title>Phylogeny</title>
+
+	<script src="jquery.js"></script>
+    <script src="jquery-svgpan.js"></script>
+	<script src="treelib.js"></script>	
+
+
 </head>
 <body>
 <a href="../">Home</a>
@@ -28,6 +34,7 @@
 <ul>
 <li><a href="#background">Background reading</a></li>
 <li><a href="#lecture">Lecture</a></li>
+<li><a href="#newick">Newick tree descriptions</a></li>
 <li><a href="#where">Where does this taxon fit in the tree of life?</a></li>
 <li><a href="#treebase">Where are the trees?</a></li>
 <li><a href="#other">Other databases</a></li>
@@ -47,7 +54,7 @@
 
 <tr><td><img src="images/61i4hmVkeGL._SL500_AA300_.jpg" width="100"/></td><td><a href="http://www.amazon.co.uk/Phylogenetic-Trees-Made-Easy-How-/dp/0878936068" target="_new">Phylogenetic Trees Made Easy: A How-To Manual</a></td></tr>
 
-<tr><td><img src="images/joe.png" height="100"/></td><td><a href="http://www.amazon.co.uk/Phylogenetic-Trees-Made-Easy-How-/dp/0878936068" target="_new">Joe Felsenstein's list of phylogeny programs</a></td></tr>
+<tr><td><img src="images/joe.png" height="100"/></td><td><a href="http://evolution.genetics.washington.edu/phylip/software.html" target="_new">Joe Felsenstein's list of phylogeny programs</a></td></tr>
 
 <tr><td><img src="images/tree_preview.png" height="100"/></td><td>Page, R. D. M. (2011). Space, time, form: viewing the Tree of Life. Trends in Ecology & Evolution. <a href="http://dx.doi.org/10.1016/j.tree.2011.12.002" target="_new">http://dx.doi.org/10.1016/j.tree.2011.12.002</a></td></tr>
 
@@ -58,6 +65,196 @@
 <div style="width:425px" id="__ss_11385274"> <strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/rdmpage/phylogeny-11385274" title="Phylogeny" target="_blank">Phylogeny</a></strong> <iframe src="http://www.slideshare.net/slideshow/embed_code/11385274" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> <div style="padding:5px 0 12px"> View more <a href="http://www.slideshare.net/" target="_blank">presentations</a> from <a href="http://www.slideshare.net/rdmpage" target="_blank">Roderic Page</a> </div> </div>
 
 <p>Most courses on phylogenies focus on getting data and building a phylogeny. Here we are going to focus on the problem of finding an existing phylogeny for a group of organisms, or generating one quickly if we can't find one. The perenial topic of phylogeny visualisation will also be discussed.</p>
+
+<h2><a names="newick">Newick format tree descriptions</h2>
+<p>Trees can be described using a simple nested-parernthese format known as the <a href="http://en.wikipedia.org/wiki/Newick_format">Newick format</a>. Use the viewer below to experiment with this format.</p>
+
+<div class="example">
+	<b>Newick Viewer</b>
+	
+	<p><b>Paste in a Newick format tree description</b></p>
+	<div>
+	<textarea id="newick" rows="10" cols=60" style="font-size:14px;">(orang,(gorilla,(chimp,human)));</textarea>
+	<br/>
+	<select id="style">
+		<option value="cladogram">Cladogram</option>
+		<option value="rectanglecladogram">Rectangular cladogram</option>
+		<option value="phylogram">Phylogram</option>
+		<option value="circle">Circle tree</option>
+		<option value="circlephylogram">Circle phylogram</option>
+	</select>
+	<button onclick="showtree('newick')">Show</button>
+	</div>
+
+	<p><span id="message"></span></p>
+	<div style="width:500px;height:500px;background-color:white;border:1px solid rgb(228,228,228);">
+	<svg id="svg" xmlns="http://www.w3.org/2000/svg" version="1.1" height="500" width="500">
+		<g id="viewport">
+		</g>
+	</svg>
+	</div>
+	
+<script>
+
+// http://stackoverflow.com/questions/498970/how-do-i-trim-a-string-in-javascript
+if (!String.prototype.trim)
+{
+	String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
+}
+
+function showtree(element_id)
+{
+    var t = new Tree();
+    var element = document.getElementById(element_id);
+    var newick = element.value;
+    newick = newick.trim(newick);
+	t.Parse(newick);
+
+	if (t.error != 0)
+	{
+		document.getElementById('message').innerHTML='Error parsing tree';
+	}
+	else
+	{
+		document.getElementById('message').innerHTML='Parsed OK';
+				
+		t.ComputeWeights(t.root);
+		
+		var td = null;
+		
+		var selectmenu = document.getElementById('style');
+		var drawing_type = (selectmenu.options[selectmenu.selectedIndex].value);
+		
+		switch (drawing_type)
+		{
+			case 'rectanglecladogram':
+				td = new RectangleTreeDrawer();
+				break;
+		
+			case 'phylogram':
+				if (t.has_edge_lengths)
+				{
+					td = new PhylogramTreeDrawer();
+				}
+				else
+				{
+					td = new RectangleTreeDrawer();
+				}
+				break;
+				
+			case 'circle':
+				td = new CircleTreeDrawer();
+				break;
+				
+			case 'circlephylogram':
+				if (t.has_edge_lengths)
+				{
+					td = new CirclePhylogramDrawer();
+				}
+				else
+				{
+					td = new CircleTreeDrawer();
+				}
+				break;
+				
+			case 'cladogram':
+			default:
+				td = new TreeDrawer();
+				break;
+		}
+		
+		// clear existing diagram, if any
+		var svg = document.getElementById('svg');
+		while (svg.hasChildNodes()) 
+		{
+			svg.removeChild(svg.lastChild);
+		}
+		
+		
+		var g = document.createElementNS('http://www.w3.org/2000/svg','g');
+		g.setAttribute('id','viewport');
+		svg.appendChild(g);
+		
+		
+		td.Init(t, {svg_id: 'viewport', width:500, height:500, fontHeight:10, root_length:0.1} );
+		
+		td.CalcCoordinates();
+		td.Draw();
+		
+		// font size
+		var cssStyle = document.createElementNS('http://www.w3.org/2000/svg','style');
+		cssStyle.setAttribute('type','text/css');
+		
+		var font_size = Math.floor(td.settings.height/t.num_leaves);
+		font_size = Math.max(font_size, 1);
+		
+		var style=document.createTextNode("text{font-size:" + font_size + "px;}");
+		cssStyle.appendChild(style);
+		
+		svg.appendChild(cssStyle);
+
+		// label leaves...
+		
+		var n = new NodeIterator(t.root);
+		var q = n.Begin();
+		while (q != null)
+		{
+			if (q.IsLeaf())
+			{
+				switch (drawing_type)
+				{
+					case 'circle':
+					case 'circlephylogram':
+						var align = 'left';
+						var angle = q.angle * 180.0/Math.PI;
+						if ((q.angle > Math.PI/2.0) && (q.angle < 1.5 * Math.PI))
+						{
+							align = 'right';
+							angle += 180.0;
+						}
+						drawRotatedText('viewport', q.xy, q.label, angle, align)
+						break;
+				
+					case 'cladogram':
+					case 'rectanglecladogram':
+					case 'phylogram':
+					default:				
+						drawText('viewport', q.xy, q.label);
+						break;
+				}
+			}
+			q = n.Next();
+		}
+		
+				
+		// Scale to fit window
+		var bbox = svg.getBBox();
+		
+		var scale = Math.min(td.settings.width/bbox.width, td.settings.height/bbox.height);
+		
+		
+		// move drawing to centre of viewport
+		var viewport = document.getElementById('viewport');
+		viewport.setAttribute('transform', 'scale(' + scale + ')');
+		
+		// centre
+		bbox = svg.getBBox();
+		if (bbox.x < 0)
+		{
+			viewport.setAttribute('transform', 'translate(' + -bbox.x + ' ' + -bbox.y + ')');
+		}
+		
+		
+		
+		// pan
+		$('svg').svgPan('viewport');
+	}
+	
+
+}
+
+</script>
+</div>
 
 <h2><a name="where"/>Where does this taxon fit in the tree of life?</h2>
 
@@ -147,12 +344,24 @@
 
 </div>
 
+<h3>Other ways to browse TreeBASE</h3>
+
+<div class="example">
+<b>PhyloCommons</b>
+<a href="http://www.phylocommons.org">PhyloCommons</a> is another way to browse TreeBASE. 
+</div>	
+
 <h2><a name="other"/>Other databases of trees</h2>
 TreeBASE is not the only phylogeny database. Another approach to databasing trees is to build them directly using sequences from GenBank. Mike Sanderson's lab has released two such databases, PhyLoTA and STBase.
 
 <h3>PhyLoTA</h3>
 <img src="images/PB_logo_large.gif" /><br />
 the PhyLoTa database is available from <a href="http://phylota.net/" target="_new">http://phylota.net/</a> and has been described in <a href="http://dx.doi.org/10.1080/10635150802158688" target="_new">doi:10.1080/10635150802158688</a>.
+
+<h3>BioNames</h3>
+<img src="images/b8e253dc3be3d84f2c69c51b0af86c03_bigger.png" /><br />
+<a href="http://bionames.org">BioNames</a> is a taxonomy and literature database, but includes phylogenies from PhyLoTA, for example <a href="http://bionames.org/trees/phylota/ti164860_cl0_db184">http://bionames.org/trees/phylota/ti164860_cl0_db184</a>.
+
 
 <h3>STBase: Phylogenetic species trees for comparative biology</h3>
 
