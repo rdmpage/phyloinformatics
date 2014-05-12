@@ -53,7 +53,7 @@ class ViafService extends ReconciliationService
 	// Handle an individual query
 	function OneQuery($query_key, $text, $limit = 1)
 	{
-		$url = 'http://viaf.org/viaf/search?query=' . urlencode('local.personalNames all ' . $text)
+		$url = 'http://viaf.org/viaf/search?query=' . urlencode('local.personalNames all "' . $text . '"')
 			. '&httpAccept=' . urlencode('application/rss+xml');
 			
 		//echo $url . "\n";
