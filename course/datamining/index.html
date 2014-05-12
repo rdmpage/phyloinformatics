@@ -41,6 +41,7 @@
 <li><a href="#lecture">Lecture</a></li>
 <li><a href="#regexp">Regular expressions</a></li>
 <li><a href="#elsevier">Getting data from a paper</a></li>
+<li><a href="#tabula">Extracting data from PDFs</a></li>
 <li><a href="#cleaning">Taxonomic name cleaning using Google Refine</a></li>
 <li><a href="#wordtrees">Wordtrees</a></li>
 <li><a href="#linkeddata">Linked data</a></li>
@@ -441,7 +442,7 @@ Taxon and institutional vouchera,Locality ID,Collection locality,Geographic coor
 <img src="images/table.png">
 </div>
 
-<p>While this makes the data easy to get, it might not be in the form we need. But because it is available in a widely used format (CSV) we can load it into a spreadsheet or a tool like Google Refine and clean it. </p>
+<p>While this makes the data easy to get, it might not be in the form we need. But because it is available in a widely used format (CSV) we can load it into a spreadsheet or a tool like OpenRefine (ex-Google Refine) and clean it. </p>
 
 <!-- to do add tool to create KML files -->
 <div class="example">
@@ -562,9 +563,14 @@ Taxon and institutional vouchera,Locality ID,Collection localityb,Geographic coo
 </div>
 
 
+<div style="float:right;"><img src="images/tabula.png"/></div>
+<h2><a name="tabula"/>Extracting data from PDFs</h2>
+<p>There are an increasing number of tools for extracting data from PDFs, such as <a href="http://tabula.nerdpower.org">Tabula</a>. Once you've downloaded and installed Tabula, point your web browser at <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a> and follow the instructions.</p>
+
+
 <div style="float:right;"><img src="images/refine.png"/></div>
-<h2><a name="cleaning"/>Taxonomic name cleaning using Google Refine</h2>
-<p><a href="http://code.google.com/p/google-refine/" target="_new">Google Refine</a> is an elegant tool for data cleaning. One of its most powerful features is the ability to call "Reconciliation Services" to help clean data, for example by matching names to external identifiers. Google Refine comes with the ability to use <a href="http://www.freebase.com/">Freebase</a> as well as other external services.</p>
+<h2><a name="cleaning"/>Taxonomic name cleaning using OpenRefine</h2>
+<p><a href="http://openrefine.org" target="_new">OpenRefine</a> is an elegant tool for data cleaning. One of its most powerful features is the ability to call "Reconciliation Services" to help clean data, for example by matching names to external identifiers. Google Refine comes with the ability to use <a href="http://www.freebase.com/">Freebase</a> as well as other external services.</p>
 
 <p>For this course I've implemented the following services:</p>
 <ul><li><a href="http://www.eol.org">EOL</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_eol.php</li><li><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/">NCBI taxonomy</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_ncbi.php</li><li><a href="http://www.ubio.org/tools/recognize.php">uBio FindIT</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_ubio.php</li><li><a href="http://www.marinespecies.org/">WORMS</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_worms.php</li><li><a href="http://www.gbif.org">GBIF</a> http://iphylo.org/~rpage/phyloinformatics/services/reconciliation_gbif.php</li></ul>
@@ -574,7 +580,7 @@ Taxon and institutional vouchera,Locality ID,Collection localityb,Geographic coo
 <div class="example">
 <b>How to use reconciliation services</b>
 
-<p>Start a Google Refine session. Save the names below to a text file and open it as a new project.</p>
+<p>Start an Open Refine session and go to <a href="http://127.0.0.1:3333/" target="_new">http://127.0.0.1:3333</a>. Save the names below to a text file and open it as a new project.</p>
 
 <pre>
 Names
