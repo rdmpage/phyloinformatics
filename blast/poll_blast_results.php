@@ -17,7 +17,7 @@ if (isset($_GET['callback']))
 	$callback = $_GET['callback'];
 }
 
-$url = "http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&RID=$rid";
+$url = "http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=$rid";
 sleep(2);
 
 $html = get($url);

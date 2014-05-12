@@ -2,7 +2,7 @@
 
 require_once (dirname(dirname(__FILE__)) . '/services/genbank.php');
 
-const NumSequences = 30;
+const NumSequences = 40;
 
 function main()
 {

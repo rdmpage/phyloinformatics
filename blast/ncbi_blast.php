@@ -57,7 +57,7 @@ function send_blast_job($gi)
 	"QUERY" 		=> $gi
 	);
 	
-	$html = post('http://www.ncbi.nlm.nih.gov/blast/Blast.cgi', $cmds);
+	$html = post('http://blast.ncbi.nlm.nih.gov/Blast.cgi', $cmds);
 	
 	if (preg_match('/^    RID = (?<rid>.*)$/m', $html, $m))
 	{

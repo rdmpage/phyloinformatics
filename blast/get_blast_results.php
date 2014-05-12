@@ -2,7 +2,7 @@
 
 require_once(dirname(__FILE__) . '/ncbi_blast.php');
 
-const NumSequences = 30;
+const NumSequences = 40;
 
 // Get BLAST results and convert to FASTA
 $rid = '';
@@ -12,7 +12,7 @@ if (isset($_GET['rid']))
 	$rid = $_GET['rid'];
 }
 
-$url = "http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&RID=$rid&FORMAT_TYPE=XML";
+$url = "http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Get&RID=$rid&FORMAT_TYPE=XML";
 $xml = get($url);
 
 $obj = new stdclass;
