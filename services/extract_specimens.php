@@ -20,11 +20,11 @@ function extract_specimen_codes($t)
 		'KFBG','KU','KUHE',
 		'LACM','LSUMZ',		
 		'MACN','MACN-Ict','MCP','MCNU', 'MCZ','MFA-ZV-I','MHNCI','MNCN','MHNUC','MNRJ','MPEG','MRAC','MRT','MUJ','MVUP','MVZ','MZUFV','MZUSP',
-		'NHMV','NMB','NRM','NSV','NT','NTM',
+		'NHM', 'NHMV','NMB','NRM','NSV','NT','NTM',
 		'OMNH',
 		'PNGNM',
 		'QCAZ','QM','QMJ',
-		'RAN','RMNH','ROM',
+		'RAN','RBINS\/MT', 'RMNH','ROM',
 		'SAMA','SIUC',
 		'TNHC','THNHM',
 		'UCR','UFMG','UMFS','UMMZ','UNT','USNM','USNMENT','USNM\sENT','UTA','UWBM',
@@ -45,8 +45,7 @@ function extract_specimen_codes($t)
 		)
 		\s*
 		(:|_|\-)?
-		(?<number>((?<prefix>(J|R|A[\.|\s]?|A\-))?[0-9]{3,}))
-		
+		(?<number>((?<prefix>(J|R|A[\.|\s]?|A\-))?[0-9]{3,})((\.[0-9]+)+)?)
 		(
 			(\-|–|­|—)
 			(?<end>[0-9]{2,})
