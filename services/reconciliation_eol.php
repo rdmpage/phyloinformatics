@@ -49,7 +49,7 @@ class EolService extends ReconciliationService
 		
 	//----------------------------------------------------------------------------------------------
 	// Handle an individual query
-	function OneQuery($query_key, $text, $limit = 1)
+	function OneQuery($query_key, $text, $limit = 1, $properties = null)
 	{
 		$url = 'http://eol.org/api/search/1.0/' . rawurlencode($text) . '.json';
 		

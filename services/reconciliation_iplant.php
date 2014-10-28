@@ -45,7 +45,7 @@ class iPlantService extends ReconciliationService
 		
 	//----------------------------------------------------------------------------------------------
 	// Handle an individual query
-	function OneQuery($query_key, $text, $limit = 1)
+	function OneQuery($query_key, $text, $limit = 1, $properties = null)
 	{
 		$url = 'http://tnrs.iplantc.org/tnrsm-svc/matchNames?retrieve=all&names=' . rawurlencode($text);
 		

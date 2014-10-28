@@ -115,7 +115,7 @@ class ReconciliationService
 
 	//----------------------------------------------------------------------------------------------
 	// Handle an individual query
-	function OneQuery($query_key, $text, $limit = 1)
+	function OneQuery($query_key, $text, $limit = 1, $properties = null)
 	{
 	
 	}
@@ -140,7 +140,13 @@ class ReconciliationService
 			}				
 			$this->result->${query_key}->result = array();
 			
-			$this->OneQuery($query_key, $text, $limit);
+			$properties = null;
+			if (isset($query->properties))
+			{
+				$properties = $query->properties;
+			}
+			
+			$this->OneQuery($query_key, $text, $limit, $properties);
 
 			if (count($this->result->${query_key}->result) == 0)
 			{
@@ -150,7 +156,9 @@ class ReconciliationService
 
 		}
 		
-		if (0)
+		// sort ?
+		
+		if (1)
 		{
 			file_put_contents('tmp/r.txt', "Return: \n" . print_r($this->result, true), FILE_APPEND);
 		}			

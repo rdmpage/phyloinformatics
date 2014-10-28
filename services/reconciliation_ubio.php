@@ -69,7 +69,7 @@ class UbioService extends ReconciliationService
 	
 	//----------------------------------------------------------------------------------------------
 	// Handle an individual query
-	function OneQuery($query_key, $text, $limit = 1)
+	function OneQuery($query_key, $text, $limit = 1, $properties = null)
 	{
 		$param = array(
 			'url' => '',

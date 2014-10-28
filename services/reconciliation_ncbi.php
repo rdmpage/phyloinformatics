@@ -50,7 +50,7 @@ class NCBITaxonomyService extends ReconciliationService
 		
 	//----------------------------------------------------------------------------------------------
 	// Handle an individual query
-	function OneQuery($query_key, $text, $limit = 1)
+	function OneQuery($query_key, $text, $limit = 1, $properties = null)
 	{
 		$url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=taxonomy" 
 			. "&tool=TNS"

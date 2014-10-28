@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="180" height="180" viewBox="0, 0, 180, 180">
+  <g id="viewport">
+    <g>
+      <path d="M120,90 L91.195,90" fill="#000000"/>
+      <path d="M120,90 L91.195,90" fill-opacity="0" stroke="#000000" stroke-width="10"/>
+    </g>
+    <g>
+      <path d="M115,163.264 L91.195,90" fill="#000000"/>
+      <path d="M115,163.264 L91.195,90" fill-opacity="0" stroke="#000000" stroke-width="10"/>
+    </g>
+    <g>
+      <path d="M45,126 L60.034,112.64" fill="#000000"/>
+      <path d="M45,126 L60.034,112.64" fill-opacity="0" stroke="#000000" stroke-width="10"/>
+    </g>
+    <g>
+      <path d="M9,34 L60.034,67.36" fill="#000000"/>
+      <path d="M9,34 L60.034,67.36" fill-opacity="0" stroke="#000000" stroke-width="10"/>
+    </g>
+    <g>
+      <path d="M115,16.736 L103.098,53.368" fill="#000000"/>
+      <path d="M115,16.736 L103.098,53.368" fill-opacity="0" stroke="#000000" stroke-width="10"/>
+    </g>
+    <g>
+      <path d="M60.034,67.36 L91.195,90" fill="#000000"/>
+      <path d="M60.034,67.36 L91.195,90" fill-opacity="0" stroke="#000000" stroke-width="10"/>
+    </g>
+    <path d="M60.034,112.64 C50.226,99.14 50.226,80.86 60.034,67.36 C69.842,53.86 87.228,48.211 103.098,53.368" fill-opacity="0" stroke="#000000" stroke-width="10" stroke-linecap="square"/>
+    <path d="M91.195,90" fill-opacity="0" stroke="#000000" stroke-width="10"/>
+    <g>
+      <path d="M91.195,90 L91.195,90" fill="#000000"/>
+      <path d="M91.195,90 L91.195,90" fill-opacity="0" stroke="#000000" stroke-width="10"/>
+    </g>
+  </g>
+  <defs/>
+</svg>

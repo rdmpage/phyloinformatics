@@ -47,7 +47,7 @@ class GniService extends ReconciliationService
 		
 	//----------------------------------------------------------------------------------------------
 	// Handle an individual query
-	function OneQuery($query_key, $text, $limit = 1)
+	function OneQuery($query_key, $text, $limit = 1, $properties = null)
 	{
 		$url = 'http://gni.globalnames.org/name_strings.json?search_term=' . rawurlencode($text);
 		

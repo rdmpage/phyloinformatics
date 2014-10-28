@@ -46,7 +46,7 @@ class GBIFTaxonomyService extends ReconciliationService
 		
 	//----------------------------------------------------------------------------------------------
 	// Handle an individual query
-	function OneQuery($query_key, $text, $limit = 1)
+	function OneQuery($query_key, $text, $limit = 1, $properties = null)
 	{
 		$url = 'http://data.gbif.org/ws/rest/taxon/list?scientificname=' . urlencode($text) . '&dataresourcekey=1';
 	

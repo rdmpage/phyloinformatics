@@ -72,7 +72,7 @@ class EnvoService extends ReconciliationService
 	
 	//----------------------------------------------------------------------------------------------
 	// Handle an individual query
-	function OneQuery($query_key, $text, $limit = 5)
+	function OneQuery($query_key, $text, $limit = 5, $properties = null)
 	{
 		$param = array(
 			'partialName' => $text, 

@@ -36,6 +36,7 @@ $nexus .="[PAUP block]\n";
 $nexus .="begin paup;\n";
 $nexus .="   [root trees at midpoint]\n";
 $nexus .="   set rootmethod=midpoint;\n";
+$nexus .="   set outroot=monophyl;\n";
 $nexus .="   [construct tree using neighbour-joining]\n";
 $nexus .="   nj;\n";
 $nexus .="   [ensure branch lengths are output as substituions per nucleotide]\n";
