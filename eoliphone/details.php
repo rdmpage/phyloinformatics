@@ -85,6 +85,8 @@ $html = '
 	$html .= '<h1>' .  $obj->scientificName . '</h1>';
 	
 	
+	/*
+	// Ignore classifications as EOL API returns multiple classifications for some providers and hence we can get the wrong id for linking 
 	if (isset($obj->taxonConcepts))
 	{
 		$html .= '<h2>Classifications</h2>';
@@ -108,8 +110,33 @@ $html = '
 		}
 		$html .= '</ul>';
 	}
+	*/
+	
+	// Text
+	if (isset($obj->dataObjects))
+	{
+		$text = '';
+		foreach ($obj->dataObjects as $dataObject)
+		{
+			if ($dataObject->dataType == 'http://purl.org/dc/dcmitype/Text')
+			{
+				if (isset($dataObject->description))
+				{
+					$text = $dataObject->description;
+				}
+			}
+		}
+		
+		if ($text != '')
+		{
+			$html .= '<h2>Description</h2>';
+			$html .= $text;
+		}
+	}
+			
 	
 	
+	// Images
 	if (isset($obj->dataObjects))
 	{
 		$html .= '<h2>Images</h2>';

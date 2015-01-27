@@ -14,7 +14,17 @@ $url = 'http://eol.org/api/hierarchy_entries/1.0/' . $id . '.json';
 
 //echo $url;
 $json = get($url);
+
+//echo $json;
+
 $obj = json_decode($json);
+
+/*
+echo '<pre>';
+print_r($obj);
+echo '</pre>';
+exit();
+*/
 
 echo'
 <!DOCTYPE html> 
@@ -22,7 +32,7 @@ echo'
 	<head> 
 	<title>EOL Classification</title> 
 	
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=0;"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"> 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 
 	<link rel="stylesheet" href="../css/jquery.mobile-1.0.css" />
@@ -54,15 +64,16 @@ echo'
 		switch ($obj->nameAccordingTo[0])
 		{
 			case 'WORMS Species Information (Marine Species)':
-				echo 'worms.html';
+				echo 'worms_root.php';
 				break;
 				
 			case 'Species 2000 & ITIS Catalogue of Life: Annual Checklist 2010':
-				echo 'col.html';
+			case 'Species 2000 & ITIS Catalogue of Life: April 2013':
+				echo 'col_root.php';
 				break;
 
 			case 'NCBI Taxonomy':
-				echo 'ncbi.html';
+				echo 'ncbi_root.php';
 				break;
 				
 			default:
