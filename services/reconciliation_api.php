@@ -138,6 +138,7 @@ class ReconciliationService
 			{
 				$limit = $query->limit;
 			}				
+			$this->result->${query_key} = new stdclass;
 			$this->result->${query_key}->result = array();
 			
 			$properties = null;

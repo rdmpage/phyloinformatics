@@ -195,6 +195,7 @@ function showtree(element_id)
 
 		// label leaves...
 		
+		
 		var n = new NodeIterator(t.root);
 		var q = n.Begin();
 		while (q != null)
@@ -232,6 +233,12 @@ function showtree(element_id)
 		
 		var scale = Math.min(td.settings.width/bbox.width, td.settings.height/bbox.height);
 		
+		if ((drawing_type == 'circle') || (drawing_type == 'circlephylogram')) {
+			//scale *= 0.2;
+		} else {
+			scale *= 0.8;
+		}
+		
 		
 		// move drawing to centre of viewport
 		var viewport = document.getElementById('viewport');
@@ -241,7 +248,7 @@ function showtree(element_id)
 		bbox = svg.getBBox();
 		if (bbox.x < 0)
 		{
-			viewport.setAttribute('transform', 'translate(' + -bbox.x + ' ' + -bbox.y + ')');
+			viewport.setAttribute('transform', 'translate(' + -bbox.x + ' ' + -bbox.y + ') scale(' + scale + ')');
 		}
 		
 		
@@ -373,7 +380,20 @@ the PhyLoTa database is available from <a href="http://phylota.net/" target="_ne
 <a href="http://birdtree.org/" target="_new">http://birdtree.org/</a> hosts a global phylogeny of birds, based on <a href="http://dx.doi.org/10.1038/nature11631" target="_new">doi:10.1038/nature11631</a>. The database stores multiple trees sampled from a Bayesian analysis, so you can download a set of trees for selected taxa. This enables you to see the effects of uncertainty on an analysis you make on those trees (in other words, how stable are your results across that set of trees?).
 
 
+<h3>Open Tree of Life</h3>
 
+The Open Tree of Life project is a large project to assemble a global tree of life. You can read about the project on <a href="http://blog.opentreeoflife.org">their blog</a>, view the <a href="https://github.com/OpenTreeOfLife">source code on github</a>, 
+and <a href="https://tree.opentreeoflife.org">view the tree.</a>.
+
+<div class="example">
+<b>Open Tree of Life</b>
+<a href="https://tree.opentreeoflife.org">Open Tree of Life</a> is a synthetic tree of all of life. Visit the site and search for a taxon you are interested in, or try one of the examples below.
+<ul>
+<li><a href="https://tree.opentreeoflife.org/opentree/otol.draft.22@3061961/Homo-sapiens"><i>Homo sapiens</i></li>
+<li><a href="https://tree.opentreeoflife.org/opentree/argus/ottol@534819/Aerodramus-genus-ncbi-46474-in-order-Apodiformes-"><i>Aerodramus</i></li>
+
+</ul>
+</div>	
 
 <h2><a name="time"/>Time</h2>
 <p>The rise of molecular methods, coupled with techniques for assigning dates to nodes based on fossils has resulted in numerous dated phylogenies being published. <a href="http://www.timetree.org" target="_new">TimeTree</a> is one syntheses a large number of tres to create a dated tree of life. Given two taxa you can query the database to retrieve estimates of when those taxa last shared a common ancestor.</p>

@@ -54,7 +54,8 @@ function send_blast_job($gi)
 	"CMD" 			=> "Put",
 	"PROGRAM" 		=> "blastn",
 	"DATABASE" 		=> "nr",
-	"QUERY" 		=> $gi
+	"QUERY" 		=> $gi,
+	"MEGABLAST"		=> "yes"
 	);
 	
 	$html = post('http://blast.ncbi.nlm.nih.gov/Blast.cgi', $cmds);
