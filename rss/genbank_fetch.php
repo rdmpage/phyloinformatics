@@ -223,6 +223,8 @@ function process_locality(&$sequence)
 
 		if (isset($sequence->source->locality))
 		{
+			$matched = false;
+			
 			// AY249471 Palmer Archipelago 64deg51.0'S, 63deg34.0'W 
 			if (preg_match("/(?<latitude_degrees>[0-9]{1,2})deg(?<latitude_minutes>[0-9]{1,2}(\.\d+)?)'\s*(?<latitude_hemisphere>[S|N]),\s*(?<longitude_degrees>[0-9]{1,3})deg(?<longitude_minutes>[0-9]{1,2}(\.\d+)?)'\s*(?<longitude_hemisphere>[W|E])/", $sequence->source->locality, $matches))
 			{	
@@ -372,7 +374,7 @@ function fetch_sequence($id)
 	$genbank_sequence = null;
 
 	// Query URL	
-	$url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id='
+	$url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id='
 		. $id
 		. '&rettype=gb&retmode=xml';
 	
@@ -615,6 +617,8 @@ function fetch_sequence($id)
 		
 	}
 	
+	//print_r($genbank_sequence);
+	
 	return $genbank_sequence;
 }
 
@@ -629,7 +633,7 @@ function fetch_one($id)
 	//print_r($sequence);
 }
 
-if (0)
+if (1)
 {
 	$id = 'DQ502910';
 	

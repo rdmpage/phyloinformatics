@@ -89,7 +89,7 @@ function	parse_name($fullname) {
 					}
 
 				if(in_array_norm($curr,$prefices)) {
-					if($out['last']) {
+					if(isset($out['last'])) {
 						$out['last']	.=	" $curr";
 						}
 					else {
@@ -99,7 +99,7 @@ function	parse_name($fullname) {
 					}
 
 				if($next == 'y' || $next == 'Y') {
-					if($out['last']) {
+					if(isset($out['last'])) {
 						$out['last']	.=	" $curr";
 						}
 					else {
@@ -108,12 +108,12 @@ function	parse_name($fullname) {
 					continue;
 					}
 
-				if($out['last']) {
+				if(isset($out['last'])) {
 					$out['last']	.=	" $curr";
 					continue;
 					}
 
-				if($out['middle']) {
+				if(isset($out['middle'])) {
 					$out['middle']		.=	" $curr";
 					}
 				else {
@@ -128,14 +128,23 @@ function	parse_name($fullname) {
 						$n_subp	=	count($subp);
 						for($i = 0; $i < $n_subp; $i++) {
 							$curr				=	trim($subp[$i]);
-							$next				=	trim($subp[$i+1]);
+							//$next				=	trim($subp[$i+1]);
+							if ($i < $n_subp - 1)
+							{
+								$next				=	trim($subp[$i+1]);
+							}
+							else
+							{
+								$next = '';
+							}
+							
 
 							if($i == 0 && in_array_norm($curr,$titles)) {
 								$out['title']	=	$curr;
 								continue;
 								}
 
-							if(!$out['first']) {
+							if(!isset($out['first'])) {
 								$out['first']	=	$curr;
 								continue;
 								}
@@ -170,12 +179,12 @@ function	parse_name($fullname) {
 								continue;
 								}
 	
-							if($out['last']) {
+							if(isset($out['last'])) {
 								$out['last']	.=	" $curr";
 								continue;
 								}
 
-							if($out['middle']) {
+							if(isset($out['middle'])) {
 								$out['middle']		.=	" $curr";
 								}
 							else {
@@ -189,7 +198,7 @@ function	parse_name($fullname) {
 						$n_subp	=	count($subp);
 						for($i = 0; $i < $n_subp; $i++) {
 							$curr				=	trim($subp[$i]);
-							//$next				=	trim($subp[$i+1]);
+							//$next				=	trim($subp[$i+1]);							
 							if ($i < $n_subp - 1)
 							{
 								$next				=	trim($subp[$i+1]);
@@ -197,7 +206,8 @@ function	parse_name($fullname) {
 							else
 							{
 								$next = '';
-							}							
+							}
+							
 
 							if($i == 0 && in_array_norm($curr,$titles)) {
 								$out['title']	=	$curr;
@@ -211,7 +221,7 @@ function	parse_name($fullname) {
 
 						if($i == $n_subp-2 && $next &&
 							in_array_norm($next,$suffices)) {
-							if($out['middle']) {
+							if(isset($out['middle'])) {
 								$out['middle']	.=	" $curr";
 								}
 							else {
@@ -226,7 +236,7 @@ function	parse_name($fullname) {
 							continue;
 							}
 
-						if($out['middle']) {
+						if(isset($out['middle'])) {
 							$out['middle']		.=	" $curr";
 							}
 						else {

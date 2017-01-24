@@ -58,7 +58,7 @@ function send_blast_job($gi)
 	"MEGABLAST"		=> "yes"
 	);
 	
-	$html = post('http://blast.ncbi.nlm.nih.gov/Blast.cgi', $cmds);
+	$html = post('https://blast.ncbi.nlm.nih.gov/Blast.cgi', $cmds);
 	
 	if (preg_match('/^    RID = (?<rid>.*)$/m', $html, $m))
 	{
@@ -67,6 +67,11 @@ function send_blast_job($gi)
 	if (preg_match('/^    RTOE = (?<rtoe>.*)$/m', $html, $m))
 	{
 		$job->rtoe = $m['rtoe'];
+	}
+	
+	if ($job->rtoe > 100)
+	{
+		$job->rtoe =20;
 	}
 
 	return $job;
@@ -82,7 +87,7 @@ function get_results($rid)
 	{
 		sleep(5);
 		
-		$url = "http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&RID=$rid";
+		$url = "https://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&RID=$rid";
 		
 		$html = get($url);
 		
@@ -109,7 +114,7 @@ function get_results($rid)
 		}
 	}
 	
-	$url = "http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&RID=$rid&FORMAT_TYPE=XML";
+	$url = "https://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&RID=$rid&FORMAT_TYPE=XML";
 	$result = get($url);
 	
 	return $result;
@@ -138,7 +143,7 @@ if (0)
 	"QUERY" 		=> $gi
 	);
 	
-	$html = post('http://www.ncbi.nlm.nih.gov/blast/Blast.cgi', $cmds);
+	$html = post('https://www.ncbi.nlm.nih.gov/blast/Blast.cgi', $cmds);
 	
 	//echo $html;
 	

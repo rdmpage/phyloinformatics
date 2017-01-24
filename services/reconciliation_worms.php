@@ -111,6 +111,23 @@ class WormsService extends ReconciliationService
 					$hit->match = ($hit->score == 100);					
 					$hit->id 	= $worms_result[0][$i]['AphiaID'];
 					$hit->name 	= $worms_result[0][$i]['scientificname'];
+					
+					
+					if (isset($worms_result[0][$i]['authority']))
+					{
+						$hit->authority 	= $worms_result[0][$i]['authority'];
+					}
+					
+					$keys = array('kingdom','phylum','class','order','family','genus');
+
+					foreach ($keys as $k)
+					{
+						if (isset($worms_result[0][$i][$k]))
+						{
+							$hit->{$k} = $worms_result[0][$i][$k];
+						}
+					}
+
 					$this->StoreHit($query_key, $hit); 
 				}
 			}

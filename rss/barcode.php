@@ -38,7 +38,7 @@ if (isset($_GET['taxon_id']))
 	$taxon_id = $_GET['taxon_id'];
 }
 
-$url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=barcode[keyword]+txid' . $taxon_id . '[Organism:exp]&retmax=10'; //&reldate=365&datetype=mdat';
+$url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=barcode[keyword]+txid' . $taxon_id . '[Organism:exp]&retmax=10'; //&reldate=365&datetype=mdat';
 
 
 $xml = get($url);
