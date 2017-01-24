@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>GeoRSS Layers</title>
+    <style>
+     body {  font-family: sans-serif; }
+    
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 90%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    
+    <script>
+    var map = null;
+    var georssLayer = null;
+    
+function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 49.496675, lng: -102.65625}
+        });
+      }
+      
+      function show() {    
+    
+    var feed = document.getElementById('feed').value;
+    
+    georssLayer = null;
+georssLayer = new google.maps.KmlLayer({
+          url: feed
+        });
+        georssLayer.setMap(map);    
+    }
+    
+    </script>
+    
+    
+  </head>
+  <body>
+  
+  	<div style="font-size:24px;height:10%;padding:10px;">
+  	<b>Display a GeoRSS feed on a map</b>
+			<input style="font-size:24px;" size="60" type="text" id="feed" value="http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss" placeholder="URL of feed">
+			<button style="font-size:24px;" id="find" onclick="show();">Show</button>
+
+  	</div>
+  
+    <div id="map"></div>
+    <script>
+      
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQvSxxYDgs7zt40H8dUftm4cOGC4GNI0Y&callback=initMap">
+    </script>
+  </body>
+</html>
