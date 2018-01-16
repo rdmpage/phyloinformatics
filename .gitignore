@@ -33,3 +33,6 @@ Thumbs.db
 # tmp folders
 eoliphone/tmp/*
 blast/tmp/
+
+course/.DS_Store
+course/introduction/.DS_Store
