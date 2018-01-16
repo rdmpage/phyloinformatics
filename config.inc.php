@@ -24,8 +24,8 @@ $config['db_name']		= 'gbif';
 $config['proxy_name'] 	= '';
 $config['proxy_port'] 	= '';
 
-$config['proxy_name'] 	= 'wwwcache.gla.ac.uk';
-$config['proxy_port'] 	= '8080';
+//$config['proxy_name'] 	= 'wwwcache.gla.ac.uk';
+//$config['proxy_port'] 	= '8080';
 
 // Keys---------------------------------------------------------------------------------------------
 $config['bing_appid'] 		= 'F83F42E3B9C6AF8DD04675AC16C481DB744AAD0A';
