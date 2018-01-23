@@ -1,0 +1,78 @@
+<html>
+<head>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+</head>
+<body>
+  	<div style="font-size:24px;height:10%;padding:10px;">
+  	<b>Display a local GeoRSS feed on a map</b>
+			<input style="font-size:24px;" size="60" type="text" id="feed" value="/~rpage/phyloinformatics/rss/barcode.php?taxon_id=8292" placeholder="URL of feed">
+			<button style="font-size:24px;" id="find" onclick="show();">Show</button>
+
+  	</div>
+
+
+
+    <div id="map" style="width: 100%; height: 500px"></div>
+
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <script>
+    	/* Much of this based on https://gis.stackexchange.com/questions/158885/georss-in-leaflet */
+        //var lat = 39;
+        //var lng = 17;
+        //var zoom = 2;
+        //var map = L.map('map').setView([lat,lng],zoom);
+        
+        
+		var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+		var osm1 = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});		
+	        
+       
+		var map = L.map('map', {
+			center: [0, 0],
+			zoom: 2,
+			maxZoom: 20,
+			layers: [osm1]
+		});
+             
+		/*
+        // set up the ajax call
+        function getXML(url) {
+            return $.get(url)
+        }
+        */
+        
+      function show() {    
+    
+   		 var url = document.getElementById('feed').value;
+    
+        
+
+        // fire and handle the result
+        $.get(url).done(function(xml){
+            var output = {}; // restructure the xml as an object
+            $(xml).find('entry').each(function() {
+                var nodes = $(this).children();
+                $.each(nodes, function(i,node){
+                    var name = node.tagName;
+                    var value = node.textContent;
+                    output[name] = value;
+                });
+                // build markers from the output and add to the map
+                console.log(JSON.stringify(output, null, 2));
+                
+                if (output['GEO:LAT']) {
+                var marker = L.marker([output['GEO:LAT'], output['GEO:LONG']]);
+                var popupContent = output.CONTENT; 
+                marker.bindPopup(popupContent)
+                marker.addTo(map);
+                }
+            });
+        })
+        }
+
+    </script>
+</body>
+</html>
