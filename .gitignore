@@ -32,4 +32,9 @@ Thumbs.db
 
 # tmp folders
 eoliphone/tmp/*
+
 blast/tmp/
+
+services/tmp
+
+rss/cookie.txt
