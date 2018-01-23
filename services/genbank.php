@@ -409,11 +409,16 @@ function fetch_sequences($ids)
 	$hits->geometry->coordinates = array();
 
 	// Query URL	
-	$url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id='
-		. join(",", $ids)
+	$url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id='
+		. preg_replace('/\s+/', '', join(",", $ids))
 		. '&rettype=gb&retmode=xml';
 	
+	
+	//echo $url . '<br/>';
+	
 	$xml = get($url);
+	
+	//echo $xml;
 
 	if ($xml != '')
 	{
@@ -427,6 +432,8 @@ function fetch_sequences($ids)
 		$xpath = new DOMXPath($dom);
 	
 		$json = $xp->transformToXML($dom);
+		
+		//echo $json;
 		
 	
 		// fix "-" in variable names
