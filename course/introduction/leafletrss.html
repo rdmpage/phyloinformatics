@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 </head>
 <body>
-  	<div style="font-size:24px;height:10%;padding:10px;">
+  	<div style="font-size:24px;height:20%;padding:10px;">
   	<b>Display a local GeoRSS feed on a map</b>
-			<input style="font-size:24px;" size="60" type="text" id="feed" value="/~rpage/phyloinformatics/rss/barcode.php?taxon_id=8292" placeholder="URL of feed">
+			<input style="font-size:24px;" size="60" type="text" id="feed" value="http://api.flickr.com/services/feeds/geo/?g=806927@N20&lang=en-us&format=rss_200" placeholder="URL of feed">
 			<button style="font-size:24px;" id="find" onclick="show();">Show</button>
 
   	</div>
@@ -46,8 +46,8 @@
         
       function show() {    
     
-   		 var url = document.getElementById('feed').value;
-    
+  		 var url = 'proxy.php?url=' + document.getElementById('feed').value;
+     
         
 
         // fire and handle the result
