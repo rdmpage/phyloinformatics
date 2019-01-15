@@ -73,14 +73,14 @@
 <p><img src="images/AubrechtG_EarthzineEcosystems_Fig1.jpg" width="400"/></p>
 
 
-<p>To get an idea of the impact of GBIF data you can browse the Mendeley group "GBIF Public Library":</p>
+<p><del>To get an idea of the impact of GBIF data you can browse the Mendeley group "GBIF Public Library":</del></p>
 
-<iframe src="http://www.mendeley.com/groups/1068301/_/widget/29/3/" frameborder="0" allowTransparency="true" style="width:260px;height:550px;"></iframe><p style="width:260px"><a href="http://www.mendeley.com/groups/1068301/gbif-public-library/" title="GBIF Public Library on Mendeley">GBIF Public Library</a> is a group in <a href="http://www.mendeley.com/groups/biological-sciences/" title="Biological Sciences on Mendeley">Biological Sciences</a> on <a href="http://www.mendeley.com/" title="Mendeley">Mendeley</a>.</p>
+<!-- <iframe src="http://www.mendeley.com/groups/1068301/_/widget/29/3/" frameborder="0" allowTransparency="true" style="width:260px;height:550px;"></iframe><p style="width:260px"><a href="http://www.mendeley.com/groups/1068301/gbif-public-library/" title="GBIF Public Library on Mendeley">GBIF Public Library</a> is a group in <a href="http://www.mendeley.com/groups/biological-sciences/" title="Biological Sciences on Mendeley">Biological Sciences</a> on <a href="http://www.mendeley.com/" title="Mendeley">Mendeley</a>.</p> -->
 
 
 <h2><a name="errors"/>Georeferencing errors</h2>
 
-<p>A side effect of aggregating and displaying huge amounts of geographic data, for example, in <a href="http://data.gbif.org" target="_new">GBIF</a> is the discovery of errors. Although errors can be frustrating, exposing them means they can be fixed. For example, in 2008 <a href="http://iphylo.blogspot.com/2008/06/more-gbif-errors-courtesy-of-fishbase.html" target="_new">I discovered errors in the GBIF map for <i>Pagellus erythrinus</i></a>). The map below shows two sets of points. The <img src="images/dot2.png" width="16"/> points were the localities displayed by GBIF, which seemed odd given that this is a Mediterranean fish. However, all that is needed to move the fish to where it might be expected (<img src="images/dot1.png" width="16"/> symbols) is to swap the latitude and longitudes.
+<p>A side effect of aggregating and displaying huge amounts of geographic data, for example, in <a href="https://www.gbif.org" target="_new">GBIF</a> is the discovery of errors. Although errors can be frustrating, exposing them means they can be fixed. For example, in 2008 <a href="http://iphylo.blogspot.com/2008/06/more-gbif-errors-courtesy-of-fishbase.html" target="_new">I discovered errors in the GBIF map for <i>Pagellus erythrinus</i></a>). The map below shows two sets of points. The <img src="images/dot2.png" width="16"/> points were the localities displayed by GBIF, which seemed odd given that this is a Mediterranean fish. However, all that is needed to move the fish to where it might be expected (<img src="images/dot1.png" width="16"/> symbols) is to swap the latitude and longitudes.
 
 <div>
 <object id="mysvg" type="image/svg+xml" width="360" height="180" data="images/fish.svg"><p>
@@ -132,7 +132,7 @@ Error, browser must support "SVG"</p>
 
 <p>GBIF data comes from museum collections and observations of living organisms. Inevitably this data will be affected by sampling bias (organisms won't be found where people haven't looked) as well as digitisation bias (not every museum collection or database of observations). There may also be data that hasn't been added to GBIF. In this exercise we will explore <a href="http://www.flickr.com">Flickr</a> as a source of distributional data. Flickr contains a wealth of images of organisms, many tagged by their scientific name. Many of these images are geotagged (e.g., they were taken with a camera or phone that has GPS built in), which means we can place them on a may. Given that Flickr exports KML files, it is easy to add these images to Google Earth and compare them with GBIF data.</p>
 
-<p>As an example, we can get images for the spider <i>Leucauge magnifica</i> by searching Flickr for the tag "<a href="http://www.flickr.com/photos/tags/leucaugemagnifica/" target="_new">leucaugemagnifica</a>". Grab the search results as a KML file (you should see a link near the bottom of the page) and load this in to Google Earth.</p>
+<p>As an example, we can get images for the spider <i>Leucauge magnifica</i> by searching Flickr for the tag "<a href="http://www.flickr.com/photos/tags/leucaugemagnifica/" target="_new">leucaugemagnifica</a>". Grab the search results as a KML file (you should see a link near the bottom of the page, or <a href="data/leucaugemagnifica.kml">local copy here</a>) and load this in to Google Earth.</p>
 
 <p>Now go to the GBIF data portal (<a href="http://www.gbif.org" target="_new">http://www.gbif.org</a>) and search for <i>Leucauge magnifica</i> (if you are impatient then click on <a href="http://www.gbif.org/species/2151499/" target="_new">http://www.gbif.org/species/2151499/</a> or grab a <a href="data/taxon-placemarks-2151499.kml">local copy of the KML file here</a>). 
 <span style="background:red;color:white">You can get the GBIF results as a KML file, so download that file and add it to Google Earth - unfortunately the new portal doesn't provide KML files.</span></p>
@@ -148,7 +148,9 @@ Error, browser must support "SVG"</p>
 
 <h2><a name="fusion"/>Google Fusion Tables</h2>
 
-<p><a href="http://www.google.com/fusiontables/Home/" target="_new">Google Fusion tables</a> provide tools to visualise data, and makes it easy to create maps.</p>
+<p><a href="http://www.google.com/fusiontables/Home/" target="_new">Google Fusion tables</a> provide tools to visualise data, and makes it easy to create maps.
+<span style="background:red;color:white;">Note that Google Fusion Tables will not be available after Dec. 3, 2019. <a href="https://support.google.com/fusiontables/answer/9185417">Learn more</a>.</span>
+</p>
 
 <div class="example">
 <b>Fusion tables tutorial</b>
@@ -282,16 +284,17 @@ END;
 
 <p>Creating geophylogeny files isn't terribly straightforward, it would be nice to have a tool that made this simpler, pehraps by being able to take a tree and a list of names and coordinates and automatically merging the two.</p>
 
-<p>See <a href="http://bionames.org/~rpage/geojson-phylogeny/nexus-google.html" target="_new">GeoJSON phylogeny demo</a> for an example of using creating geophylogenies using GeoJSON. <img src="images/563e0d061c97679ca00da9c60b95d5eb9df59c4ad02_439x500.png" /></p>
+<p>See <a href="http://iphylo.org/~rpage/geojson-phylogeny-demo/nexus-leaflet.html" target="_new">GeoJSON phylogeny demo</a> for an example of using creating geophylogenies using GeoJSON. <img src="images/563e0d061c97679ca00da9c60b95d5eb9df59c4ad02_439x500.png" /></p>
 
 <h2><a name="more"/>More maps</h2>
 <p>Examples of maps</p>
 
 <ul>
-<li><a href="http://iphylo.org/~rpage/bold-map/?path=%5B%5D" target="_new">DNA barcodes</a></li>
+<li><a href="http://iphylo.org/~rpage/bold-map/?path=%5B%5D" target="_new"><del>DNA barcodes</del> <span style="background:red;color:white;">Data and map offline</span></a></li>
 <li><a href="http://journalmap.org" target="_new">Journal Map</a></li>
 <li><a href="http://www.globalforestwatch.org" target="_new">Global Forest Watch</a></li>
 <li><a href="http://www.oe-files.de/gmaps/eqmashup.html" target="_new">Earth quake mashup</a></li>
+<li><a href="https://biostor.org/map">BioStor map of publications</a></li>
 </ul>
 
 <h2><a name="reading"/>Reading</h2>
