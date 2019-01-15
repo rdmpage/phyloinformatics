@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link href="//veg.github.io/phylotree.js/phylotree.css" rel="stylesheet">
+
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="phylotree.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+</head>
+
+<body>
+  <div>
+    <form>
+      <label>Radial layout</label>
+      <input type="checkbox" id="layout" checked/>
+    </form>
+  </div>
+
+
+  <svg id="tree_display" style="border:1px solid red;"></svg>
+
+  <script>
+  
+  var newick = '((cow:134.5390625,(fin_whale:158.59090909090909,blue_whale:56.40909090909091):197.9609375):13.2421875,(((harbor_seal:28,grey_seal:28):120.7578125,horse:134.2421875):3.515625,((opossum:172.56875,(rat:126.90625,mouse:131.09375):27.931250000000006):10.770833333333336,((((chimp:27.75,pygmy_chimp:32.25):38.02777777777778,human:68.47222222222223):7.25,gorilla:81):32.07142857142857,orangutan:119.42857142857143):75.26041666666666):6.078125):3.2421875);';
+    
+    newick = '(((EELA:0.150276,CONGERA:0.213019):0.230956,(EELB:0.263487,CONGERB:0.202633):0.246917):0.094785,((CAVEFISH:0.451027,(GOLDFISH:0.340495,ZEBRAFISH:0.390163):0.220565):0.067778,((((((NSAM:0.008113,NARG:0.014065):0.052991,SPUN:0.061003,(SMIC:0.027806,SDIA:0.015298,SXAN:0.046873):0.046977):0.009822,(NAUR:0.081298,(SSPI:0.023876,STIE:0.013652):0.058179):0.091775):0.073346,(MVIO:0.012271,MBER:0.039798):0.178835):0.147992,((BFNKILLIFISH:0.317455,(ONIL:0.029217,XCAU:0.084388):0.201166):0.055908,THORNYHEAD:0.252481):0.061905):0.157214,LAMPFISH:0.717196,((SCABBARDA:0.189684,SCABBARDB:0.362015):0.282263,((VIPERFISH:0.318217,BLACKDRAGON:0.109912):0.123642,LOOSEJAW:0.3971):0.287152):0.140663):0.206729):0.222485,(COELACANTH:0.558103,((CLAWEDFROG:0.441842,SALAMANDER:0.299607):0.135307,((CHAMELEON:0.771665,((PIGEON:0.150909,CHICKEN:0.172733):0.082163,ZEBRAFINCH:0.099172):0.272338):0.014055,((BOVINE:0.167569,DOLPHIN:0.15745):0.104783,ELEPHANT:0.166557):0.367205):0.050892):0.114731):0.295021)';
+newick = '((((((1:0.003181,(2:0.020173,(3:0.004824,4:0.003941):0.013348):0.004084):0.011951,((5:0,6:0):0.028291,(7:0,8:0):0.031470):0.000672):0.007252,(((11:0.002641,12:0.002143):0.018060,((13:0.002093,14:0.002688):0.002807,(15:0.000473,16:0.000324):0.003169):0.016605):0.002041,((17:0.007032,18:0.008551):0.017162,19:0.025889):0.002026):0.014358):0.002074,(9:0.017669,10:0.014463):0.029122):0.029830,(21:0.000261,22:-0.000261):0.059528):0.007831,20:0.062228,(23:0.098848,24:0.100637):0.018084);';
+    
+//    newick = '((((1:0.004443,2:0.004731):0.002512,(3:0.004614,(4:0.001525,5:0):0.006120):0.010057):0.101141,19:0.114107):0.084212,((6:0.007386,((7:0,8:0):0,9:0):0.017292):0.008109,(((10:0,((11:0.001520,(13:0,(14:0,(15:0,(16:0,18:0.001520):0):0):0):0):0.001525,17:0.004576):0.001520):0,12:0.003044):0.006236,(20:0.006484,(21:0,22:0.001519):0.004212):0.015755):0.017828):0);';
+      var tree = d3.layout.phylotree()
+        .svg(d3.select("#tree_display"))
+        .radial(true);
+
+      tree(d3.layout.newick_parser(newick))
+        .layout();
+
+      $("#layout").on("click", function(e) {
+        tree.radial($(this).prop("checked")).placenodes().update();
+      });
+    
+  </script>
+
+</body>
+
+</html>

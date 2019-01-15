@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>Hyperbolic tree</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="keywords" content="hyperbolic,tree,hyperbolic tree,visualisation,tree of life,evolution,animals,phylogenetic,phylogenetic tree,systematic,tree diagram,evolutionary tree,information visualisation,species tree,species,phylogeny,ancestry,darwin,evolutionary biology,DAG visualisation,hierarchy visualisation,tree visualisation,interactice visualisation,dendrogram,cladogram,phylogram,taxonomy,evolutionary taxonomy,animal taxonomy,species taxonomy">
+
+        <link rel="icon"       href="img/favicon.png"/>
+        <link rel="stylesheet" href="hypertree-of-life-light.min.css" id="ldswitch">
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124333733-1"></script>        
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-124333733-1');
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TVV4NXJ');</script>
+        <!-- End Google Tag Manager -->
+    </head>
+
+    <body>        
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TVV4NXJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        <script>
+            const ua = navigator.userAgent
+            const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches
+            const isValidBrowser = !/MSIE/i.test(ua) && !/Trident/i.test(ua) && !/Edge\/\d./i.test(ua)
+            console.log(ua, isMobile, isValidBrowser)
+            if (isMobile || !isValidBrowser)
+                document.body.innerHTML = '<p style="text-align:center; color:#000;"><br><br>Sorry, your browser/device is not supported yet 😿 <br>Please use Chrome, Firefox or Safari,<br>on a device at least the size of a tablet.'
+            else {                
+                const script = document.createElement('script')
+                script.src = 'hypertree-of-life.min.js'
+                document.head.appendChild(script)
+                document.body.onload = function() {
+                    app.release()   
+                }
+            }
+        </script>        
+    </body>
+</html>
