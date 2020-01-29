@@ -2,9 +2,15 @@
 
 Go through web site, look at examples,
 
-- have them find information
+- have them find information on species
 
-- list sites
+- list sites on a Google Docs spreadsheet (what sites are there, do they have an API, is there an R package?)
 
-— discuss what they would want to see added to iSpecies
+- show accessing different types of data (HTML, XML, JSON)
+
+- look at contributing data (e.g., iNaturalist)
+
+
+
+
 
