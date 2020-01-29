@@ -16,6 +16,17 @@
 		background-color: rgb(222,222,222);
 		-webkit-border-radius: 10px;
 	}
+	
+	
+	.warning
+	{
+		margin:20px;
+		padding:20px;
+		background-color: #FFECAC;
+		border: 2px solid orange;
+		-webkit-border-radius: 10px;
+	}
+		
 </style>
 <title>Geography</title>
 </head>
@@ -41,11 +52,12 @@
 
 <h2><a name="background"/>Background</h2>
 
-<p>To follow the examples in this session you will need a Google account (to use Google Fusion tables) and you will need to download <a href="http://www.google.com/earth/index.html">Google Earth</a>.</p>
+<p>To follow the examples in this session you will need <!-- a Google account (to use Google Fusion tables) and you will need--> to download <a href="http://www.google.com/earth/index.html">Google Earth</a>.</p>
 
 <h2><a name="lecture"/>Lecture</h2>
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/IHNZrYvjwYXhAJ" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/rdmpage/geography-11253521" title="Geography" target="_blank">Geography</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/rdmpage">Roderic Page</a></strong> </div>
+<!-- <iframe src="//www.slideshare.net/slideshow/embed_code/key/IHNZrYvjwYXhAJ" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> -->
+<div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/rdmpage/geography-11253521" title="Geography" target="_blank">Geography</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/rdmpage">Roderic Page</a></strong> </div>
 
 <h2><a name="maps"/>Maps</h2>
 
@@ -110,6 +122,20 @@ Error, browser must support "SVG"</p>
 <img src="images/us-new.png" /><br />
 <p>Map 3: Results of new processing workflow for occurrences in the USA</p>
 
+<h3></h3>
+
+<p>An example of a strange distribution (<a href="https://www.gbif.org/species/6758530" target="_new"><i>Paroecanthus</i></a>).</p>
+
+<img src="images/2faaa6c221258c0b57b8da86eb85e729dc271753_2_1186x998.jpeg" width="80%">
+
+
+<div class="example">
+Can you discover why the distribution for <a href="https://www.gbif.org/species/6758530" target="_new"><i>Paroecanthus</i></a> is so odd?
+
+</div>
+
+
+
 <h2><a name="googleearth"/>Google Earth</h2>
 
 
@@ -152,7 +178,7 @@ Error, browser must support "SVG"</p>
 <span style="background:red;color:white;">Note that Google Fusion Tables will not be available after Dec. 3, 2019. <a href="https://support.google.com/fusiontables/answer/9185417">Learn more</a>.</span>
 </p>
 
-<div class="example">
+<div class="warning">
 <b>Fusion tables tutorial</b>
 <p>Google provides a <a href="http://earth.google.com/outreach/tutorial_fusion_sample.html"  target="_new">fusion table tutorial</a> using a biological data set, in this case catepillars collected in Costa Rica. Work through this example to learn how to use fusion tables.</p>
 
@@ -161,7 +187,7 @@ Error, browser must support "SVG"</p>
 </div>
 
 
-<div class="example">
+<div class="warning">
 <b>Where are the new species of mammals being discovered?</b>
 
 <p>In this example we will use Google Fusion Tables to create a distribution map for recently discovered mammals. Go to Google Docs and create a new table. Populate this with data (say, 10 rows) from the paper <b>Global trends and biases in new mammal species discoveries</b>, by Reeder et al. (2007), <i>Occasional Papers Museum of Texas Tech University</i>, 269:1-35  
@@ -290,12 +316,42 @@ END;
 <p>Examples of maps</p>
 
 <ul>
-<li><a href="http://iphylo.org/~rpage/bold-map/?path=%5B%5D" target="_new"><del>DNA barcodes</del> <span style="background:red;color:white;">Data and map offline</span></a></li>
+<!-- <li><a href="http://iphylo.org/~rpage/bold-map/?path=%5B%5D" target="_new">DNA barcodes</a></li> -->
 <li><a href="http://journalmap.org" target="_new">Journal Map</a></li>
 <li><a href="http://www.globalforestwatch.org" target="_new">Global Forest Watch</a></li>
 <li><a href="http://www.oe-files.de/gmaps/eqmashup.html" target="_new">Earth quake mashup</a></li>
-<li><a href="https://biostor.org/map">BioStor map of publications</a></li>
+<li><strike><a href="https://biostor.org/map">BioStor map of publications</a></strike></li>
 </ul>
+
+<h2><a name="grid"/>Grids rather than points</h2>
+<p>For spatial analysis we often want to compare measures (e.g., diversity) in different areas. If those areas
+are of different sizes (e.g., countries) then comparisons become problematic. Another approach is to divide the surface of the planet into
+equally sized areas so each unit is comparable.</p>
+
+<img src="images/grid.png">
+
+<div class="example">
+<b>Load a discrete grid into Google Earth. For example, try this file: <a href="data/isea3h5.kml">isea3h5.kml</a></b>
+
+</div>
+
+<h2>Physical models</h2>
+
+<p>The <a href="https://thegreatglobe.com" target="_new">Great Globe project</a> is a 1:100,000 
+scale model of the earth to be constructed in the southwest United States.
+
+</p>
+
+<img src="images/new-east_sm-1030x580.jpg" width="80%">
+<img src="images/IMG_7686-1030x686.jpg" width="80%">
+
+
+<p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sCICrd-e4Wo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</p>
+
+
 
 <h2><a name="reading"/>Reading</h2>
 <p>(see also <a href="http://www.mendeley.com/groups/1819171/phyloinformatics-course/" target="_new">Phyloinformatics Course on Mendeley</a>)</p>
